@@ -1,9 +1,7 @@
 export const environment = {
-  production: true,
-  locales: ['en', 'ru'],
-  defaultLocale: 'ru',
-  baseUrl: 'http://localhost:8040',
+  production: false,
+  baseUrl: 'https://server.bioprom.ua:8090',
   deploymentUrl: '',
   client_id: '',
-  envName: 'test-locally'
+  envName: 'dev-https'
 };

@@ -2,6 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BASE_URL_TOKEN } from '../token';
+import {environment} from "../../environments/environment.prod-https";
 
 import { StaticData } from '../static/static-data';
 import { UsersLoginForm } from '../models/users-loginform.model';
@@ -19,8 +20,9 @@ import { Subject } from 'rxjs';
 export class UsersService {
   displayingUsers = new Subject<any>();
   arrayOfCountries = new Subject<any>();
+  baseUrl = environment.baseUrl;
 
-  constructor(@Inject(BASE_URL_TOKEN) private baseUrl: string, private http: HttpClient, private router: Router) {
+  constructor(@Inject(BASE_URL_TOKEN) private http: HttpClient, private router: Router) {
   }
 
   getUsers() {

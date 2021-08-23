@@ -53,8 +53,24 @@
               ],
               "outputHashing": "all"
             },
+            "test-locally": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test-locally.ts"
+                }
+              ]
+            },
+            "prod-https": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod-https.ts"
+                }
+              ]
+            },
             "development": {
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
@@ -69,6 +85,9 @@
           "configurations": {
             "production": {
               "browserTarget": "redesigned:build:production"
+            },
+            "test-locally": {
+              "browserTarget": "redesigned:build:test-locally"
             },
             "development": {
               "browserTarget": "redesigned:build:development"
