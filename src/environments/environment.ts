@@ -1,5 +1,7 @@
 export const environment = {
   production: false,
-  locales: ['en', 'ru'],
-  defaultLocale: 'ru'
+  baseUrl: '',
+  deploymentUrl: '',
+  client_id: '',
+  envName: 'default'
 };

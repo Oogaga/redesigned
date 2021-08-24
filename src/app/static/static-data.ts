@@ -920,9 +920,9 @@ export class StaticData {
 //     {path: '/admin/firmware', name: 'adminFirmwarePage'}
 //   ];
 //
-//   static REFRESH_INTERVAL = 50000;
+  static REFRESH_INTERVAL = 50000;
 //
-//   static BIOPROM_LINK = 'http://bioprom.ua/';
+  static BIOPROM_LINK = 'http://bioprom.ua/';
 //
 //   static GetDeviceTypeInfo(deviceType) {
 //     return StaticData.DeviceTypesInfo.find((item) => item.value === deviceType);

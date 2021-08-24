@@ -79,3 +79,6 @@ app-home {
   background: url("src/img/dark.jpg") no-repeat fixed;
   background-size: cover;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
