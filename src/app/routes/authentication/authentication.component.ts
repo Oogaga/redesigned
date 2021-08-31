@@ -76,10 +76,10 @@ export class AuthenticationComponent implements OnInit {
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
-      return 'Введите вашу почту';
+      return '';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'Некорректный адрес почты' : '';
   }
 
   // passwordControl = new FormControl('', [

@@ -21,6 +21,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {BASE_URL_TOKEN} from "./token";
 import {environment} from "../environments/environment.prod-https";
 import {GoogleOauth2Service} from "./services/google-oauth2.service";
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { RegistrationComponent } from './routes/registration/registration.component';
+import { ForgotComponent } from './routes/forgot/forgot.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -33,27 +37,31 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     HeaderComponent,
     RegistrationWithGoogleComponent,
-    ConditionComponent
+    ConditionComponent,
+    AuthLayoutComponent,
+    RegistrationComponent,
+    ForgotComponent
   ],
-  imports: [
-    BrowserModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatMenuModule
+    ],
   providers: [
     {
       provide: BASE_URL_TOKEN,

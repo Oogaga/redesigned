@@ -1,6 +1,9 @@
 #header {
-  width: 49px;
-  height: auto;
+  width: 375px;
+  height: 49px;
   background: linear-gradient(118.75deg, rgba(255, 255, 255, 0.55) 9.52%, rgba(255, 255, 255, 0.7) 86.15%);
-  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30%);
+}
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)){
+
 }
