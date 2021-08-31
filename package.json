@@ -9,12 +9,13 @@
     "build:https": "ng build --configuration=prod-https",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "ng build --configuration=prod-https"
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.1",
     "@angular/cdk": "^12.2.2",
+    "@angular/cli": "~12.0.1",
     "@angular/common": "~12.0.1",
     "@angular/compiler": "~12.0.1",
     "@angular/core": "~12.0.1",
@@ -25,13 +26,13 @@
     "@angular/router": "~12.0.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "nvm": "0.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.4",
-    "@angular/cli": "~12.0.1"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.1",
