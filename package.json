@@ -8,8 +8,7 @@
     "build": "ng build",
     "build:https": "ng build --configuration=prod-https",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postinstall": "ng build --prod"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

@@ -3,6 +3,7 @@
   text-align: center;
 
 }
+
 .login {
   margin: 15% auto 0;
   width: 302px;
@@ -16,15 +17,16 @@
 
 }
 
-#LOGO{
+#LOGO {
   margin-top: 32px;
   margin-bottom: 59px;
 }
 
-#pass{
+#pass {
   margin-top: 11px;
 }
-#PROBERT{
+
+#PROBERT {
   font-family: Probert;
   font-size: 16px;
   background: #585858;
@@ -39,7 +41,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.text_18px{
+.text_18px {
   text-align: left;
   margin-left: 18px;
   font-family: Roboto;
@@ -47,11 +49,11 @@
   color: #FFFFFF;
 }
 
-.text_18px_2{
+.text_18px_2 {
   color: #585858 !important;
 }
 
-input{
+input {
   width: 267px;
   height: 40px;
   margin: 11px auto 0;
@@ -60,29 +62,32 @@ input{
   box-sizing: border-box;
   border-radius: 10px;
 }
+
 ::ng-deep .mat-form-field-infix {
   width: auto !important;
   padding: 0px !important;
   border: 0px !important;
 }
+
 ::ng-deep .mat-form-field-wrapper {
   padding: 0px !important;
 }
+
 ::ng-deep .mat-form-field-flex {
   padding: 0px !important;
 }
 
-::ng-deep .mat-form-field-suffix{
-  position: absolute!important;
+::ng-deep .mat-form-field-suffix {
+  position: absolute !important;
   right: 1%;
   top: 23%;
 }
 
-::ng-deep .mat-form-field-subscript-wrapper{
+::ng-deep .mat-form-field-subscript-wrapper {
   top: calc(100% - 10%);
 }
 
-.button_small{
+.button_small {
   width: 128px;
   height: 40px;
 
@@ -97,11 +102,12 @@ input{
 }
 
 .buttons {
-  margin: 20px 17.5px 20px 17.5px ;
+  margin: 20px 17.5px 20px 17.5px;
   display: flex;
   justify-content: space-between;
 }
-.button_big{
+
+.button_big {
   width: 267px;
   height: 40px;
   background: #FFFFFF;
@@ -124,7 +130,8 @@ input{
 a:visited {
   color: #585858;
 }
-.bottom{
+
+.bottom {
   margin: 7% 0 auto;
   font-family: "Roboto";
   font-size: 16px;
