@@ -1,13 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-
 import {Router} from '@angular/router';
 
 import {ConditionComponent} from './condition/condition.component';
 
 // import {confirmPasswordValidator} from '../../validators/ConfirmPasswordValidator';
-// import {RegExpData} from '../../utils/reqexp_data';
+import {RegExpData} from '../../static/reqexp_data';
 
 import {GoogleOauth2Service} from '../../services/google-oauth2.service';
 import {StaticData} from '../../static/static-data';
@@ -31,132 +29,138 @@ import {Observable} from 'rxjs';
 })
 export class AuthenticationComponent implements OnInit {
 
+
+  hasError: boolean = false;
+  hide = true;
+  isRestoredEmailInvalid: boolean;
+  currentPage: number;
+  emailAlreadyTaken: boolean;
+  emailNotFound: boolean;
+  inputClean: boolean;
+  hasEmptyFields: boolean;
+  maxDate: Date;
+  minDate: Date;
+  phoneAlreadyTaken: boolean;
+  emailValidator: any;
+
   constructor(private service: UsersService,
               private router: Router,
               private googleService: GoogleOauth2Service) {
-    this.biopromUrl = StaticData.BIOPROM_LINK;
-    // this.emailValidator = RegExpData.EMAIL_VALIDATOR;
-    // this.currentPage = 1;
-    // this.emailAlreadyTaken = false;
-    // this.emailNotFound = false;
-    // this.hasError = false;
-    // this.inputClean = true;
-    // this.hasEmptyFields = false;
-    // this.maxDate = new Date();
-    // this.maxDate.setFullYear(this.maxDate.getFullYear() - StaticData.MIN_AGE);
-    // this.minDate = StaticData.MIN_DATE;
-    // this.passwordControl.valueChanges.subscribe((data: Observable<any>) => {
-    //   this.confirmPasswordControl.updateValueAndValidity();
-    // });
-    // this.phoneAlreadyTaken = false;
+    this.emailValidator = RegExpData.EMAIL_VALIDATOR;
+    this.currentPage = 1;
+    this.emailAlreadyTaken = false;
+    this.emailNotFound = false;
+    this.hasError = false;
+    this.inputClean = true;
+    this.hasEmptyFields = false;
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - StaticData.MIN_AGE);
+    this.minDate = StaticData.MIN_DATE;
+    this.passwordControl.valueChanges.subscribe((data: Observable<any>) => {
+      this.confirmPasswordControl.updateValueAndValidity();
+    });
+    this.phoneAlreadyTaken = false;
+    this.isRestoredEmailInvalid = false;
   }
 
-  biopromUrl: string;
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
+  passwordControl = new FormControl(null, [
+    Validators.required,
+    Validators.minLength(RegExpData.MIN_LENGTH_PASSWORD),
+    Validators.pattern(RegExpData.PASSWORD_VALIDATOR)
+  ]);
+  confirmPasswordControl = new FormControl(null, [
+    Validators.required,
+    // confirmPasswordValidator(this.passwordControl)___________________________________________________________________________________>>>>>>>>>>>>>>>>>
+  ]);
 
+  newUser = new FormGroup({
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.NAME_VALIDATOR)
+    ]),
+    surname: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.SURNAME_VALIDATOR)
+    ]),
+    email: new FormControl(null, [
+      // Validators.required, this.isEmailUnique(),___________________________________________________________________________________>>>>>>>>>>>>>>>>>
+      Validators.pattern(RegExpData.EMAIL_VALIDATOR)]),
+    phone: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.PHONE_VALIDATOR_1),
+      Validators.pattern(RegExpData.PHONE_VALIDATOR_2)
+    ]),
+    birthday: new FormControl(null),
+    agree: new FormControl(false, Validators.requiredTrue),
+    password: this.passwordControl,
+    confirmPassword: this.confirmPasswordControl
+  });
+
+  restorePassForm = new FormGroup({
+    emailForRestorePass: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.EMAIL_VALIDATOR)
+    ])
+  });
+
+  loginUser = new FormGroup({
+    enteredEmail: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.EMAIL_ENTERED_VALIDATOR)
+    ]),
+    enteredPassword: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(RegExpData.PASSWORD_ENTERED_VALIDATOR)
+    ])
+  });
 
 
   ngOnInit(): void {
   }
-  // isRestoredEmailInvalid: boolean;
-  // currentPage: number;
-  // hasError: boolean;
-  // emailAlreadyTaken: boolean;
-  // emailNotFound: boolean;
-  // inputClean: boolean;
-  // isLoaderShown: boolean;
-  // hasEmptyFields: boolean;
-  // maxDate: Date;
-  // minDate: Date;
-  // name: string;
-  // phoneAlreadyTaken: boolean;
-  // emailValidator: any;
+
+
+  // email = new FormControl('', [Validators.required, Validators.email]);
+
+
+  // getErrorMessage() {
+  //   if (this.email.hasError('required')) {
+  //     return '';
+  //   }
   //
+  //   return this.email.hasError('email') ? 'Некорректный адрес почты' : '';
+  // }
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return '';
-    }
+  //__________________________________________________________________________________________________________>>>>>>>>>>>>>>>>>
+  // -------------------log in-------------------------
+  logIn() {
+    this.hasError = false;
+    const loginForm = new UsersLoginForm(
+      this.loginUser.value.enteredEmail,
+      this.loginUser.value.enteredPassword
+    );
+    this.loginByParams(loginForm);
 
-    return this.email.hasError('email') ? 'Некорректный адрес почты' : '';
   }
 
-  // passwordControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.minLength(RegExpData.MIN_LENGTH_PASSWORD),
-  //   Validators.pattern(RegExpData.PASSWORD_VALIDATOR)
-  // ]);
-  // confirmPasswordControl = new FormControl('', [
-  //   Validators.required,
-  //   confirmPasswordValidator(this.passwordControl)
-  // ]);
-  //
-  // newUser = new FormGroup({
-  //   name: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.NAME_VALIDATOR)
-  //   ]),
-  //   surname: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.SURNAME_VALIDATOR)
-  //   ]),
-  //   email: new FormControl('', [
-  //     Validators.required, this.isEmailUnique(),
-  //     Validators.pattern(RegExpData.EMAIL_VALIDATOR)]),
-  //   phone: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.PHONE_VALIDATOR_1),
-  //     Validators.pattern(RegExpData.PHONE_VALIDATOR_2)
-  //   ]),
-  //   birthday: new FormControl(''),
-  //   agree: new FormControl(false, Validators.requiredTrue),
-  //   password: this.passwordControl,
-  //   confirmPassword: this.confirmPasswordControl
-  // });
-  //
-  // restorePassForm = new FormGroup({
-  //   emailForRestorePass: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.EMAIL_VALIDATOR)
-  //   ])
-  // });
-  //
-  // loginUser = new FormGroup({
-  //   enteredEmail: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.EMAIL_ENTERED_VALIDATOR)
-  //   ]),
-  //   enteredPassword: new FormControl('', [
-  //     Validators.required,
-  //     Validators.pattern(RegExpData.PASSWORD_ENTERED_VALIDATOR)
-  //   ])
-  // });
+  loginByParams(loginForm : UsersLoginForm) {
+    this.service.confirmDataUser(loginForm).subscribe((result: any) => {
+      const token = result.accessToken;
+      if (token) {
+        const role = result.user.role;
+        this.service.saveToken(token);
+        this.service.saveRole(role);
+        this.loginUser.reset();
+        this.router.navigate(['/home']);
+      } else {
+        this.hasError = true;
+      }
+    }, (error) => {
+      this.hasError = true;
+    });
+  }
 
+  //__________________________________________________________________________________________________________>>>>>>>>>>>>>>>>>
 
-  // getDateStringValidator(pattern: string): ValidatorFn {
-  //   return (control: FormControl): ValidationErrors => {
-  //     if (this.dateInput && this.dateInput.nativeElement.value.match(pattern)) {
-  //       return null;
-  //     }
-  //     return {invalid: true};
-  //   };
-  // }
-  //
-  //
-  // changeTabIndex(page) {
-  //   if (this.currentPage !== page) {
-  //     this.currentPage = page;
-  //     this.hasError = false;
-  //     this.emailAlreadyTaken = false;
-  //     this.phoneAlreadyTaken = false;
-  //     this.emailNotFound = false;
-  //     this.hasEmptyFields = false;
-  //     this.newUser.reset();
-  //     this.loginUser.reset();
-  //   }
-  // }
-  //
   // // -------------------registration form-------------------------
   //
   // googleAuthenticate() {
@@ -240,14 +244,7 @@ export class AuthenticationComponent implements OnInit {
   //
   // // -------------------registration form end-------------------------
   // // -------------------log in-------------------------
-  // logIn() {
-  //   this.hasError = false;
-  //   const loginForm = new UsersLoginForm(
-  //     this.loginUser.value.enteredEmail,
-  //     this.loginUser.value.enteredPassword
-  //   );
-  //   this.loginByParams(loginForm);
-  // }
+
   //
   // loginByParams(loginForm) {
   //   this.service.confirmDataUser(loginForm).subscribe((result: any) => {

@@ -1,29 +1,40 @@
 <div type="text"
      class="text_18px"
-     id="email">
+>
   Адрес эл. почты
 </div>
-<mat-form-field appearance="fill">
-  <input matInput placeholder="bla_bla@example.com" [formControl]="email" required>
-  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-</mat-form-field>
-<div type="password"
-     class="text_18px"
-     id="pass">Пароль
-</div>
-<mat-form-field appearance="fill">
-  <input matInput [type]="hide ? 'password' : 'text'">
-  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide">
-    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-  </button>
-</mat-form-field>
-<div class="buttons">
-  <button class="button_small" routerLink="/home">Войти через
-    <div id="google">Google</div>
-  </button>
-  <button class="button_small" routerLink="/home">Войти</button>
-</div>
+<form
+  [formGroup]="loginUser"
+  (ngSubmit)="logIn()">
+  <mat-form-field appearance="fill">
+    <input matInput
+           placeholder="bla_bla@example.com"
+           formControlName="enteredEmail">
+    <mat-error *ngIf="loginUser.hasError('email') || loginUser.hasError('required')">{{'Некорректный адрес почты'}}</mat-error>
+  </mat-form-field>
+  <div class="text_18px"
+       id="pass">Пароль
+  </div>
+  <mat-form-field appearance="fill">
+    <input matInput
+           formControlName="enteredPassword"
+           [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="buttons">
+    <button class="button_small" routerLink="/home">Войти через
+      <div id="google">Google</div>
+    </button>
+    <button class="button_small"
+            (blur)="loginUser.invalid"
+            type="submit">
+      Войти
+    </button>
+  </div>
+</form>
 <button class="button_big" routerLink="/registration">Создать аккаунт</button>
 <div id="remember" routerLink="/forgot">
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,5 +46,5 @@
       stroke="#585858" stroke-width="2" stroke-linecap="round"/>
     <ellipse cx="9.99992" cy="12.5" rx="1.66667" ry="1.66667" fill="#585858"/>
   </svg>
-  <div class="text_18px text_18px_2" >Забыли пароль?</div>
+  <div class="text_18px text_18px_2">Забыли пароль?</div>
 </div>

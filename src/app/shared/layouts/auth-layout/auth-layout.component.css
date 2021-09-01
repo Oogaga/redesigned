@@ -1,11 +1,12 @@
 
 #entrance {
   text-align: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login {
-  margin: 15% auto 0;
   width: 302px;
   height: 586px;
 
