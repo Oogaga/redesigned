@@ -11,4 +11,25 @@
   color: #323232;
 }
 
-
+::ng-deep.mat-menu-panel {
+  min-width: 70px!important;
+  min-height: 214px!important;
+  background: linear-gradient(118.75deg, rgba(255, 255, 255, 0.55) 9.52%, rgba(255, 255, 255, 0.7) 86.15%);
+  backdrop-filter: blur(30px);
+  border-radius: 5px;
+  }
+::ng-deep.mat-menu-content{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+::ng-deep.mat-menu-item{
+  width: 100% !important;
+  height: 100% !important;
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
+}

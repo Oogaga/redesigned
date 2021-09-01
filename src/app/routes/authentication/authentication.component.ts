@@ -2,25 +2,22 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
-import {ConditionComponent} from './condition/condition.component';
-
-// import {confirmPasswordValidator} from '../../validators/ConfirmPasswordValidator';
-import {RegExpData} from '../../static/reqexp_data';
-
 import {GoogleOauth2Service} from '../../services/google-oauth2.service';
+import {RegExpData} from '../../static/reqexp_data';
 import {StaticData} from '../../static/static-data';
-
-// import {SuccessfulDataRecoveryComponent} from '../pop-up/successful-data-recovery/successful-data-recovery.component';
-// import {SuccessfulRegistrationPopupComponent} from '../pop-up/successful-registration-popup/successful-registration-popup.component';
-
-import {UsersAuthData} from '../../models/users-authdata.model';
-
-import {UsersDataOut} from '../../models/data-out.model';
 import {UsersLoginForm} from '../../models/users-loginform.model';
 import {UsersService} from '../../services/users.service';
-
-import * as moment from 'moment';
 import {Observable} from 'rxjs';
+
+
+
+import {ConditionComponent} from './condition/condition.component';
+// import {confirmPasswordValidator} from '../../validators/ConfirmPasswordValidator';
+// import {SuccessfulDataRecoveryComponent} from '../pop-up/successful-data-recovery/successful-data-recovery.component';
+// import {SuccessfulRegistrationPopupComponent} from '../pop-up/successful-registration-popup/successful-registration-popup.component';
+import {UsersAuthData} from '../../models/users-authdata.model';
+import {UsersDataOut} from '../../models/data-out.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-authentication',
@@ -30,7 +27,7 @@ import {Observable} from 'rxjs';
 export class AuthenticationComponent implements OnInit {
 
 
-  hasError: boolean = false;
+  hasError: boolean;
   hide = true;
   isRestoredEmailInvalid: boolean;
   currentPage: number;
@@ -42,6 +39,7 @@ export class AuthenticationComponent implements OnInit {
   minDate: Date;
   phoneAlreadyTaken: boolean;
   emailValidator: any;
+  emailError: boolean;
 
   constructor(private service: UsersService,
               private router: Router,
@@ -61,6 +59,7 @@ export class AuthenticationComponent implements OnInit {
     });
     this.phoneAlreadyTaken = false;
     this.isRestoredEmailInvalid = false;
+    this.emailError = false;
   }
 
   passwordControl = new FormControl(null, [
@@ -106,6 +105,7 @@ export class AuthenticationComponent implements OnInit {
   loginUser = new FormGroup({
     enteredEmail: new FormControl(null, [
       Validators.required,
+      Validators.email,
       Validators.pattern(RegExpData.EMAIL_ENTERED_VALIDATOR)
     ]),
     enteredPassword: new FormControl(null, [
@@ -115,20 +115,12 @@ export class AuthenticationComponent implements OnInit {
   });
 
 
+
+
   ngOnInit(): void {
   }
 
 
-  // email = new FormControl('', [Validators.required, Validators.email]);
-
-
-  // getErrorMessage() {
-  //   if (this.email.hasError('required')) {
-  //     return '';
-  //   }
-  //
-  //   return this.email.hasError('email') ? 'Некорректный адрес почты' : '';
-  // }
 
   //__________________________________________________________________________________________________________>>>>>>>>>>>>>>>>>
   // -------------------log in-------------------------
@@ -161,12 +153,12 @@ export class AuthenticationComponent implements OnInit {
 
   //__________________________________________________________________________________________________________>>>>>>>>>>>>>>>>>
 
-  // // -------------------registration form-------------------------
-  //
-  // googleAuthenticate() {
-  //   this.googleService.signInGoogle();
-  // }
-  //
+  // -------------------registration form-------------------------
+
+  googleAuthenticate() {
+    this.googleService.signInGoogle();
+  }
+
   // registrationUser() {
   //   this.hasEmptyFields = false;
   //   Object.keys(this.newUser.controls).forEach((key) => {
@@ -243,28 +235,7 @@ export class AuthenticationComponent implements OnInit {
   // }
   //
   // // -------------------registration form end-------------------------
-  // // -------------------log in-------------------------
-
-  //
-  // loginByParams(loginForm) {
-  //   this.service.confirmDataUser(loginForm).subscribe((result: any) => {
-  //     const token = result.accessToken;
-  //     if (token) {
-  //       const role = result.user.role;
-  //       this.service.saveToken(token);
-  //       this.service.saveRole(role);
-  //       this.loginUser.reset();
-  //       this.router.navigate(['/home/devices']);
-  //     } else {
-  //       this.hasError = true;
-  //     }
-  //   }, (error) => {
-  //     this.hasError = true;
-  //   });
-  // }
-  //
-  // // -------------------log in end-------------------------
-  //
+   //
   // restorePass() {
   //   this.isRestoredEmailInvalid = false;
   //   if (this.restorePassForm.invalid) {
@@ -298,3 +269,4 @@ export class AuthenticationComponent implements OnInit {
   // }
 
 };
+

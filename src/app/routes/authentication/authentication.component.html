@@ -10,7 +10,9 @@
     <input matInput
            placeholder="bla_bla@example.com"
            formControlName="enteredEmail">
-    <mat-error *ngIf="loginUser.hasError('email') || loginUser.hasError('required')">{{'Некорректный адрес почты'}}</mat-error>
+    <mat-error
+      *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')">Введите электронную почту
+    </mat-error>
   </mat-form-field>
   <div class="text_18px"
        id="pass">Пароль
@@ -19,23 +21,37 @@
     <input matInput
            formControlName="enteredPassword"
            [type]="hide ? 'password' : 'text'">
+    <mat-error
+      *ngIf="!loginUser.hasError('required')">Введите пароль
+    </mat-error>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
   <div class="buttons">
-    <button class="button_small" routerLink="/home">Войти через
-      <div id="google">Google</div>
+    <button
+      class="button_small"
+      mat-raised-button
+      (click)="googleAuthenticate()">
+      Войти через<br>
+      <label id="google">Google</label>
     </button>
-    <button class="button_small"
-            (blur)="loginUser.invalid"
-            type="submit">
+    <button
+      class="button_small"
+      (blur)="loginUser.invalid"
+      mat-raised-button
+      type="submit">
       Войти
     </button>
   </div>
 </form>
-<button class="button_big" routerLink="/registration">Создать аккаунт</button>
+<button
+  class="button_big"
+  mat-raised-button
+  routerLink="/registration">
+  Создать аккаунт
+</button>
 <div id="remember" routerLink="/forgot">
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path

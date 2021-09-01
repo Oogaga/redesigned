@@ -25,6 +25,7 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {RegistrationComponent} from './routes/authentication/registration/registration.component';
 import {ForgotComponent} from './routes/forgot/forgot.component';
 import {MatMenuModule} from "@angular/material/menu";
+import { BioUniversalComponent } from './components/devices/bio-universal/bio-universal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -40,7 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConditionComponent,
     AuthLayoutComponent,
     RegistrationComponent,
-    ForgotComponent
+    ForgotComponent,
+    BioUniversalComponent
   ],
   imports: [
     BrowserModule,

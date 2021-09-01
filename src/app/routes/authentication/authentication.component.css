@@ -118,6 +118,11 @@ a:visited {
   color: #585858;
 }
 
+::ng-deep.mat-raised-button {
+  line-height: 14px!important;
+}
+
 #remember :hover {
+  cursor: pointer;
 }
 

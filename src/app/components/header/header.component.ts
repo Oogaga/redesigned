@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-// import {MatMenuModule} from '@angular/material/menu';
+import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,12 @@ import {Component, OnInit} from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private userService: UsersService) {
+  }
+
+
+  logout() {
+    this.userService.logout();
   }
 
   ngOnInit(): void {

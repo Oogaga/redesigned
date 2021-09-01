@@ -59,7 +59,7 @@ export class UsersService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/entrance']);
   }
 
   saveToken(token: string) {
