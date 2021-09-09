@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {GoogleOauth2Service} from '../../services/google-oauth2.service';
@@ -18,6 +18,7 @@ import {ConditionComponent} from './condition/condition.component';
 import {UsersAuthData} from '../../models/users-authdata.model';
 import {UsersDataOut} from '../../models/data-out.model';
 import * as moment from 'moment';
+import {CONTROL} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-authentication',
@@ -27,7 +28,7 @@ import * as moment from 'moment';
 export class AuthenticationComponent implements OnInit {
 
 
-  hasError: boolean;
+  wrongPass: boolean;
   hide = true;
   isRestoredEmailInvalid: boolean;
   currentPage: number;
@@ -48,7 +49,7 @@ export class AuthenticationComponent implements OnInit {
     this.currentPage = 1;
     this.emailAlreadyTaken = false;
     this.emailNotFound = false;
-    this.hasError = false;
+    this.wrongPass = false;
     this.inputClean = true;
     this.hasEmptyFields = false;
     this.maxDate = new Date();
@@ -67,40 +68,11 @@ export class AuthenticationComponent implements OnInit {
     Validators.minLength(RegExpData.MIN_LENGTH_PASSWORD),
     Validators.pattern(RegExpData.PASSWORD_VALIDATOR)
   ]);
+
   confirmPasswordControl = new FormControl(null, [
     Validators.required,
     // confirmPasswordValidator(this.passwordControl)___________________________________________________________________________________>>>>>>>>>>>>>>>>>
   ]);
-
-  newUser = new FormGroup({
-    name: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(RegExpData.NAME_VALIDATOR)
-    ]),
-    surname: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(RegExpData.SURNAME_VALIDATOR)
-    ]),
-    email: new FormControl(null, [
-      // Validators.required, this.isEmailUnique(),___________________________________________________________________________________>>>>>>>>>>>>>>>>>
-      Validators.pattern(RegExpData.EMAIL_VALIDATOR)]),
-    phone: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(RegExpData.PHONE_VALIDATOR_1),
-      Validators.pattern(RegExpData.PHONE_VALIDATOR_2)
-    ]),
-    birthday: new FormControl(null),
-    agree: new FormControl(false, Validators.requiredTrue),
-    password: this.passwordControl,
-    confirmPassword: this.confirmPasswordControl
-  });
-
-  restorePassForm = new FormGroup({
-    emailForRestorePass: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(RegExpData.EMAIL_VALIDATOR)
-    ])
-  });
 
   loginUser = new FormGroup({
     enteredEmail: new FormControl(null, [
@@ -110,7 +82,7 @@ export class AuthenticationComponent implements OnInit {
     ]),
     enteredPassword: new FormControl(null, [
       Validators.required,
-      Validators.pattern(RegExpData.PASSWORD_ENTERED_VALIDATOR)
+      Validators.pattern(RegExpData.PASSWORD_ENTERED_VALIDATOR),
     ])
   });
 
@@ -125,7 +97,7 @@ export class AuthenticationComponent implements OnInit {
   //__________________________________________________________________________________________________________>>>>>>>>>>>>>>>>>
   // -------------------log in-------------------------
   logIn() {
-    this.hasError = false;
+    this.wrongPass = false;
     const loginForm = new UsersLoginForm(
       this.loginUser.value.enteredEmail,
       this.loginUser.value.enteredPassword
@@ -144,10 +116,10 @@ export class AuthenticationComponent implements OnInit {
         this.loginUser.reset();
         this.router.navigate(['/home']);
       } else {
-        this.hasError = true;
+        this.wrongPass = true;
       }
     }, (error) => {
-      this.hasError = true;
+      this.wrongPass = true;
     });
   }
 
@@ -159,58 +131,18 @@ export class AuthenticationComponent implements OnInit {
     this.googleService.signInGoogle();
   }
 
-  // registrationUser() {
-  //   this.hasEmptyFields = false;
-  //   Object.keys(this.newUser.controls).forEach((key) => {
-  //     const control = this.newUser.get(key);
-  //     control.markAsTouched();
-  //     control.markAsDirty();
-  //     this.hasEmptyFields = !control.value || this.hasEmptyFields;
-  //   });
-  //   this.newUser.updateValueAndValidity();
-  //   if (!this.newUser.valid) {
-  //     return;
-  //   }
-  //   this.isLoaderShown = true;
-  //   const birthdayString = moment(this.newUser.value.birthday).format(RegExpData.DATE_FORMAT);
-  //   const user = new UsersAuthData(
-  //     this.newUser.value.email,
-  //     this.newUser.value.password,
-  //     this.newUser.value.phone,
-  //     this.newUser.value.name,
-  //     this.newUser.value.surname,
-  //     birthdayString);
-  //
-  //   this.service.postDataUser(user).subscribe((data: UsersDataOut) => {
-  //     this.isLoaderShown = false;
-  //     this.newUser.reset();
-  //     this.openDialogSuccessRegistration(true);
-  //   }, (error) => {
-  //     this.isLoaderShown = false;
-  //   });
-  // }
-  //
-  // isEmailUnique(): ValidatorFn {
-  //   return (control: FormControl): ValidationErrors => {
-  //     return this.emailAlreadyTaken ? {invalid: true} : null;
+
+  // checkPassword(): ValidatorFn {
+  //   return (
+  //     control: AbstractControl
+  //   ): ValidationErrors | null => {
+  //     return this.wrongPass ? {invalid: true} : null;
   //   };
   // }
-  //
+
   // refreshEmailValidity() {
   //   this.emailAlreadyTaken = false;
   //   this.newUser.controls['email'].updateValueAndValidity();
-  // }
-  //
-  // checkEmail() {
-  //   if (this.newUser.controls['email'].invalid) {
-  //     return;
-  //   }
-  //   const email = this.newUser.value.email;
-  //   this.service.checkEmailUser(email).subscribe((data: boolean) => {
-  //       this.emailAlreadyTaken = !data;
-  //       this.newUser.controls['email'].updateValueAndValidity();
-  //     }
-  //   );
   // }
   //
   // openDialogConditions(): void {

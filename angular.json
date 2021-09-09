@@ -24,7 +24,17 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob" : "dark.jpg",
+                "input": "src/img/",
+                "output": "/"
+              },
+              {
+                "glob" : "light.jpg",
+                "input": "src/img/",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/custom-theme.scss",

@@ -46,14 +46,14 @@ export class UsersService {
     return this.http.put(url, newPass);
   }
 
-  postDataUser(user: UsersAuthData) {
+  postDataUser(user: UsersAuthData) : Observable<UsersAuthData> {
     const url = `${this.baseUrl}/common/register/user`;
-    return this.http.post(url, user);
+    return this.http.post<UsersAuthData>(url, user);
   }
 
-  confirmDataUser(loginForm: UsersLoginForm): Observable<object> {
+  confirmDataUser(loginForm: UsersLoginForm): Observable<UsersLoginForm> {
     const url = `${this.baseUrl}/common/signin`;
-    return this.http.post(url, loginForm);
+    return this.http.post<UsersLoginForm>(url, loginForm);
   }
 
   logout(): void {
@@ -88,6 +88,12 @@ export class UsersService {
     const params = encodeURIComponent(email);
     const url = `${this.baseUrl}/owned/check?email=${params}`;
     return this.http.get(url);
+  }
+
+  checkEmailUser(email: string) {
+    const params = email;
+    const url = `${this.baseUrl}/common/util/unique/em`;
+    return this.http.post<string>(url, params);
   }
 
   sendGoogleToken(token: string) {

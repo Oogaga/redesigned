@@ -9,6 +9,7 @@
 }
 .menu{
   color: #323232;
+  margin-right: 15px;
 }
 
 ::ng-deep.mat-menu-panel {
@@ -18,6 +19,10 @@
   backdrop-filter: blur(30px);
   border-radius: 5px;
   }
+
+::ng-deep.cdk-overlay-connected-position-bounding-box{
+  right: 0px!important;
+}
 ::ng-deep.mat-menu-content{
   height: 100%;
   width: 100%;

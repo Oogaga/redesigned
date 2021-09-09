@@ -1,0 +1,50 @@
+input{
+  width: 267px;
+  height: 40px;
+  margin: 5px auto 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#back{
+  display: flex;
+  align-items: center;
+  color: #06bcee;
+  margin-left: 25px;
+  width: auto!important;
+}
+
+::ng-deep.mat-form-field-suffix {
+  top: 8%;
+}
+
+::ng-deep.mat-form-field-subscript-wrapper{
+margin-top: -5px;
+}
+
+.text_18px{
+  text-align: left;
+  font-family: Roboto;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+.button_big{
+  width: 267px;
+  height: 40px;
+  background: #FFFFFF;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #585858;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}

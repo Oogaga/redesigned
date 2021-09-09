@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("src/img/dark.jpg") no-repeat fixed;
+  background-size: cover;
 }
 
 .login {
@@ -20,7 +22,6 @@
 
 #LOGO {
   margin-top: 32px;
-  margin-bottom: 59px;
 }
 
 #pass {

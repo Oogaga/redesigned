@@ -5,6 +5,7 @@ import {AuthenticationComponent} from "./routes/authentication/authentication.co
 import {RegistrationComponent} from "./routes/authentication/registration/registration.component";
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {ForgotComponent} from "./routes/forgot/forgot.component";
+import {RegistrationWithGoogleComponent} from "./routes/authentication/registration-with-google/registration-with-google.component";
 
 // http://home/ -> HomeComponent
 // http://enterance -> AuthenticationComponent
@@ -14,7 +15,8 @@ const routes: Routes = [
       {path: '', redirectTo: '/entrance', pathMatch: 'full'},
       {path: 'entrance', component: AuthenticationComponent},
       {path: 'registration', component: RegistrationComponent},
-      {path: 'forgot', component: ForgotComponent}
+      {path: 'forgot', component: ForgotComponent},
+      {path: 'registrationWithGoogle', component: RegistrationWithGoogleComponent}
     ]},
   {path: 'home', component: HomeComponent}
 ]

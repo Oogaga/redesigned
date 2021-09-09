@@ -28,7 +28,7 @@ export class RegistrationWithGoogleComponent implements OnInit {
         const role = result.user.role;
         this.service.saveToken(token);
         this.service.saveRole(role);
-        this.router.navigate(['/home/devices']);
+        this.router.navigate(['/home']);
       }
     });
   }

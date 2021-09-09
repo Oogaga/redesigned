@@ -1,1 +1,102 @@
-<p>registration works!</p>
+<button
+  id="back"
+  routerLink="/"
+  mat-icon-button>
+  <mat-icon>arrow_back_ios</mat-icon>
+  <mat-label>Назад</mat-label>
+</button>
+<form
+  [formGroup]="newUser"
+  (ngSubmit)="registrationUser()">
+  <mat-form-field appearance="fill">
+    <div type="text"
+         class="text_18px">
+      Имя
+    </div>
+    <input matInput
+           formControlName="enteredName">
+    <mat-error
+      *ngIf="!newUser.hasError('required') || newUser.hasError('enteredName')">
+      Введите имя
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <div type="text"
+         class="text_18px">
+      Фамилия
+    </div>
+    <input matInput
+           formControlName="enteredSurname">
+    <mat-error
+      *ngIf="!newUser.hasError('required') || newUser.hasError('enteredSurname')">
+      Введите фамилию
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <div type="text"
+         class="text_18px">
+      Адрес эл. почты
+    </div>
+    <input matInput
+           placeholder="bla_bla@example.com"
+           formControlName="email">
+    <mat-error
+      *ngIf="!newUser.hasError('required') || newUser.hasError('email')">
+      Введите электронную почту
+    </mat-error>
+<!--    <mat-error-->
+<!--      *ngIf="checkEmail()">-->
+<!--      Введите электронную почту-->
+<!--    </mat-error>-->
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <div type="text"
+         class="text_18px">
+      Телефон
+    </div>
+    <input matInput
+           formControlName="phone">
+    <mat-error
+      *ngIf="!newUser.hasError('required') || newUser.hasError('PHONE_VALIDATOR_1') || newUser.hasError('PHONE_VALIDATOR_2')">
+      Неверный формат телефона
+    </mat-error>
+  </mat-form-field>
+  <div
+    type="text"
+    class="text_18px">
+    Придумайте пароль
+  </div>
+  <mat-form-field appearance="fill">
+    <input matInput
+           formControlName="password"
+           [type]="hide ? 'password' : 'text'">
+    <mat-error
+      *ngIf="!newUser.hasError('required')">Введите пароль
+    </mat-error>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput
+           placeholder="Повторите пароль"
+           formControlName="confirmPassword"
+           [type]="hide2 ? 'password' : 'text'">
+    <mat-error
+      *ngIf="!newUser.hasError('required')">Пароли не совпадают!
+    </mat-error>
+    <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide2">
+      <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    class="button_big"
+    mat-raised-button
+    type="submit">
+    Зарегистрироваться
+  </button>
+
+</form>

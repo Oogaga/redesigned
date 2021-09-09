@@ -76,8 +76,7 @@ app-home {
 }
 
 #body_main {
-  background: url("src/img/dark.jpg") no-repeat fixed;
-  background-size: cover;
+
 }
 
 html, body { height: 100%; }
