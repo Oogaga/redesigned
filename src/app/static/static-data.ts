@@ -23,8 +23,8 @@ export class StaticData {
   static DEFAULT_TEMPERATURE = 40;
   static HOURS_IN_DAY = 24;
   static SET_TIME_BEFORE_CLOSE = 2000;
-  static ROUTE_LOGIN = '/login';
-  static ROUTE_ADMIN = '/admin';
+  static ROUTE_LOGIN = '/';
+  static ROUTE_ADMIN = '/';
   static ROUTE_HOME = '/home';
 
   static BIO_UNIVERSAL = 'BIO_UNIVERSAL';

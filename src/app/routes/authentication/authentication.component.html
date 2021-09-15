@@ -85,6 +85,7 @@
     <label id="google">Google</label>
   </button>
   <button
+    [disabled]="!loginUser.valid"
     class="button_small"
     mat-raised-button
     type="submit">

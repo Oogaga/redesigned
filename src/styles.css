@@ -1,57 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+/* only english font*/
 
 @font-face {
   font-family: 'Probert';
   src: url('fonts/Probert-Bold.woff2') format('woff2'),
-  /*url('webfont.ttf')  format('truetype'),*/
-  url('fonts/Probert-Bold.woff') format('woff');
+    /*url('webfont.ttf')  format('truetype'),*/ url('fonts/Probert-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto Regular';
   src: url('fonts/Roboto-Regular.woff2') format('woff2'),
-  url('fonts/Roboto-Regular.ttf')  format('truetype'),
+  url('fonts/Roboto-Regular.ttf') format('truetype'),
   url('fonts/Roboto-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Montserrat Bold';
   src: url('fonts/Montserrat-Bold.woff2') format('woff2'),
-  url('fonts/Montserrat-Bold.ttf')  format('truetype'),
+  url('fonts/Montserrat-Bold.ttf') format('truetype'),
   url('fonts/Montserrat-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Montserrat Medium';
   src: url('fonts/Montserrat-Medium.woff2') format('woff2'),
-  url('fonts/Montserrat-Medium.ttf')  format('truetype'),
+  url('fonts/Montserrat-Medium.ttf') format('truetype'),
   url('fonts/Montserrat-Medium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Montserrat SemiBold';
   src: url('fonts/Montserrat-SemiBold.woff2') format('woff2'),
-  url('fonts/Montserrat-SemiBold.ttf')  format('truetype'),
+  url('fonts/Montserrat-SemiBold.ttf') format('truetype'),
   url('fonts/Montserrat-SemiBold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto Bold';
   src: url('fonts/Roboto-Bold.woff2') format('woff2'),
-  url('fonts/Roboto-Bold.ttf')  format('truetype'),
+  url('fonts/Roboto-Bold.ttf') format('truetype'),
   url('fonts/Roboto-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-html{
+html {
   box-sizing: border-box;
 }
+
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -64,6 +69,7 @@ body, html {
 body {
   margin: 0;
 }
+
 app-root {
   min-width: 100%;
   min-height: 100vh;
@@ -79,5 +85,18 @@ app-home {
 
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::ng-deep.mat-icon{
+  position: absolute;
+  right: 1%;
+  font-size: 34px !important;
+  top: 20px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
