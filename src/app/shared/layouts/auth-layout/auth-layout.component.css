@@ -6,6 +6,7 @@
   align-items: center;
   background: url("src/img/dark.jpg") no-repeat fixed;
   background-size: cover;
+  height: 100vh;
 }
 
 .login {

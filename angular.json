@@ -27,12 +27,17 @@
               "src/assets",
               {
                 "glob" : "dark.jpg",
-                "input": "src/img/",
+                "input": "src/img/dark.jpg",
                 "output": "/"
               },
               {
                 "glob" : "light.jpg",
-                "input": "src/img/",
+                "input": "src/img/light.jpg",
+                "output": "/"
+              },
+              {
+                "glob" : "wifi_id.jpg",
+                "input": "src/img/wifi_id.jpg",
                 "output": "/"
               }
             ],

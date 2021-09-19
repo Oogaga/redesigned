@@ -1,6 +1,12 @@
-<div class="home" id="body_home">
+<body id="body_home">
+<div class="home">
   <app-header></app-header>
-  <app-bio-universal></app-bio-universal>
-  <app-bio-pid></app-bio-pid>
-  <app-add-new-device></app-add-new-device>
+  <mat-accordion
+    class="all_devices">
+    <app-bio-universal></app-bio-universal>
+    <app-bio-universal></app-bio-universal>
+    <app-bio-pid></app-bio-pid>
+    <app-add-new-device></app-add-new-device>
+  </mat-accordion>
 </div>
+</body>

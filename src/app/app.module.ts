@@ -31,6 +31,9 @@ import { AdminHomeComponent } from './routes/admin/admin-home/admin-home.compone
 import { BioPidComponent } from './components/devices/bio-pid/bio-pid.component';
 import { AddNewDeviceComponent } from './components/devices/add-new-device/add-new-device.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { AddingDeviceComponent } from './components/adding-device/adding-device.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatStepperModule} from "@angular/material/stepper";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -50,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BioUniversalComponent,
     AdminHomeComponent,
     BioPidComponent,
-    AddNewDeviceComponent
+    AddNewDeviceComponent,
+    AddingDeviceComponent
   ],
     imports: [
         BrowserModule,
@@ -71,7 +75,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatButtonModule,
         ReactiveFormsModule,
         MatMenuModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatDialogModule,
+        MatStepperModule
     ],
   providers: [
     AuthGuard,

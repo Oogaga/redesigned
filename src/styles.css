@@ -9,6 +9,15 @@
 }
 
 @font-face {
+  font-family: 'Segoe UI Bold';
+  src: url('fonts/SegoeUI-bold.woff2') format('woff2'),
+  url('fonts/SegoeUI-bold.ttf') format('truetype'),
+  url('fonts/SegoeUI-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Roboto Regular';
   src: url('fonts/Roboto-Regular.woff2') format('woff2'),
   url('fonts/Roboto-Regular.ttf') format('truetype'),
@@ -53,8 +62,24 @@
   font-style: normal;
 }
 
+::-webkit-scrollbar { /* chrome based */
+  width: 0px; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
+}
+
 html {
+  height: 100%;
   box-sizing: border-box;
+  overflow: visible;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+#modal {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(50px) !important;
+  border-radius: 0 !important;
+
 }
 
 *, *::before, *::after {
@@ -63,11 +88,12 @@ html {
 
 body, html {
   width: 100%;
-  min-height: 100%;
 }
 
 body {
   margin: 0;
+  overflow: visible;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 app-root {
@@ -81,22 +107,12 @@ app-home {
   min-height: 100vh;
 }
 
-#body_main {
 
+@media only screen and (max-device-width: 480px) {
+  /*html {*/
+  /*  height: calc(100% + 60px);*/
+  /*  min-height: calc(100% + 60px);*/
+  /*}*/
 }
 
-::ng-deep.mat-icon{
-  position: absolute;
-  right: 1%;
-  font-size: 34px !important;
-  top: 20px;
-}
 
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
