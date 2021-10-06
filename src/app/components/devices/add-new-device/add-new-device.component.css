@@ -1,0 +1,32 @@
+.deviceName {
+  text-align: center;
+  font-family: "Segoe UI Bold";
+  font-size: 18px;
+  justify-content: center;
+  display: flex;
+  width: calc(96vw - 70px);
+  padding-right: 24px;
+  margin-left: 70px;
+  align-items: center;
+  color: #525252;
+}
+
+.deviceLogo {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+}
+
+.device {
+  height: 70px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  margin: 20px 2% 2% 2%;
+  border-radius: 35px 15px 15px 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

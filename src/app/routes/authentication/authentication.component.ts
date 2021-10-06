@@ -9,6 +9,7 @@ import {UsersLoginForm} from '../../models/users-loginform.model';
 import {UsersService} from '../../services/users.service';
 import {Observable} from 'rxjs';
 
+
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -107,8 +108,7 @@ export class AuthenticationComponent implements OnInit {
   // -------------------registration form-------------------------
 
   googleAuthenticate() {
-    this.googleService.signInGoogle();
+    this.googleAuthenticate()
   }
-
 };
 

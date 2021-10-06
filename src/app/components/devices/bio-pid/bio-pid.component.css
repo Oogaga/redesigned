@@ -1,0 +1,178 @@
+::ng-deep.mat-expansion-panel {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  border-radius: 35px 15px 15px 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._biopid_ {
+  color: #303030;
+}
+
+.device {
+  margin: 20px 2% 0% 2% !important;
+}
+
+::ng-deep.mat-expansion-panel-header {
+  min-height: 70px;
+  min-width: 90%;
+}
+
+::ng-deep.mat-accordion .mat-expansion-panel {
+  border-radius: 35px 15px 15px 35px !important;
+}
+
+
+.buttons {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.svg_button {
+  margin-left: 67px !important;
+  height: 50px;
+  width: 50px;
+}
+
+::ng-deep.mat-button-ripple.mat-ripple {
+  border-radius: 16px !important;
+}
+
+.shadow {
+  -webkit-filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1));
+  /* Similar syntax to box-shadow */
+}
+
+.svg_button_in {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+::ng-deep.mat-expansion-panel-body {
+  padding: 0px 0px 16px !important;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deviceLogo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.deviceName {
+  text-align: center;
+  font-family: Probert;
+  font-size: 18px;
+  justify-content: center;
+  display: flex;
+  margin-left: 16%;
+
+}
+
+.top-info {
+  display: flex;
+  justify-content: space-between;
+  width: 345px;
+  margin: 9px 0px 6px 0px;
+}
+
+.header-small-card {
+  font-family: "Montserrat Medium";
+  font-size: 17px;
+  margin-left: 5px;
+  margin-top: 10px;
+  color: #525252;
+}
+
+.value-small-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 39px;
+  font-family: "Roboto Regular";
+  font-size: 36px;
+}
+
+.input-temperature {
+  width: 69px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 5px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 22px;
+  color: #525252;
+}
+
+.data-temperature {
+  color: #336214;
+  font-family: Roboto;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  padding-right: 27px;
+}
+
+.bott-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 456px;
+}
+
+.header-bot-card {
+  font-family: "Montserrat Medium";
+  font-size: 17px;
+  margin-left: 14px;
+  margin-top: 5px;
+  color: #525252;
+}
+
+.value-card {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 37px;
+  padding-right: 15px;
+  align-items: center;
+  height: calc(100% - 20px);
+}
+
+.data {
+  font-family: "Segoe UI Bold";
+  font-size: 18px;
+  text-align: end
+}
+
+.small-card-info {
+  width: 111px;
+  height: 134px;
+  background: rgba(242, 255, 234, 0.25);
+  border-radius: 10px;
+}
+
+.change-temp-card {
+  width: 345px;
+  height: 96px;
+  background: rgba(242, 255, 234, 0.25);
+  border-radius: 10px;
+}
+
+.big-card-info {
+  width: 345px;
+  height: 80px;
+  background: rgba(242, 255, 234, 0.25);
+  border-radius: 10px;
+}
+

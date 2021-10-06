@@ -1,0 +1,63 @@
+<mat-dialog-actions align="start">
+  <button
+    mat-icon-button
+    mat-dialog-close>Отмена
+  </button>
+<!--  <button mat-button-->
+<!--          [mat-dialog-close]="true"-->
+<!--          cdkFocusInitial>ДАА-->
+<!--  </button>-->
+</mat-dialog-actions>
+<mat-stepper
+
+  [linear]="true"
+  #stepper>
+  <mat-step>
+    <section>
+      <div style="height: 40%; width: 40%">Выполните подключение устройства к сети по видеоинструкции</div>
+
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15 17.5L14.2929 18.2071L15 18.9142L15.7071 18.2071L15 17.5ZM16 6.25C16 5.69771 15.5523 5.25 15 5.25C14.4477 5.25 14 5.69771 14 6.25L16 6.25ZM8.04289 11.9571L14.2929 18.2071L15.7071 16.7929L9.45711 10.5429L8.04289 11.9571ZM15.7071 18.2071L21.9571 11.9571L20.5429 10.5429L14.2929 16.7929L15.7071 18.2071ZM16 17.5L16 6.25L14 6.25L14 17.5L16 17.5Z"
+          fill="#004070"/>
+        <path
+          d="M6.25 20L6.25 21.25C6.25 22.6307 7.36929 23.75 8.75 23.75L21.25 23.75C22.6307 23.75 23.75 22.6307 23.75 21.25V20"
+          stroke="#004070" stroke-width="2"/>
+      </svg>
+
+      Загрузить видео
+    </section>
+    <div>
+      <button mat-button matStepperNext>Далее</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <form>
+      <section>
+        <img
+          style="width: 100%; max-width: 600px"
+          src="wifiid.jpg">
+        Введите ID устройства
+      </section>
+      <div>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <div>
+      <button mat-button matStepperPrevious>Назад</button>
+      <button mat-button matStepperNext>Далее</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <p>Конец</p>
+    <div>
+      <button mat-button matStepperPrevious>Назад</button>
+      <button mat-button (click)="stepper.reset()">Сброс</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+
