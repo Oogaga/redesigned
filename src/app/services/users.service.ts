@@ -6,7 +6,7 @@ import { BASE_URL_TOKEN } from '../token';
 import { StaticData } from '../static/static-data';
 import { UsersLoginForm } from '../models/users-loginform.model';
 import { UsersAuthData } from '../models/users-authdata.model';
-import { UsersDataOut } from '../models/data-out.model';
+import { UsersDataOut } from '../models/dataOut/data-out.model';
 
 
 

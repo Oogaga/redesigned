@@ -12,4 +12,6 @@ export class BioPidComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }

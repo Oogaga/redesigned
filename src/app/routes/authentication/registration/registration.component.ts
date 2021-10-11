@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, 
 import {RegExpData} from "../../../static/reqexp_data";
 import {UsersService} from "../../../services/users.service";
 import {UsersAuthData} from "../../../models/users-authdata.model";
-import {UsersDataOut} from "../../../models/data-out.model";
+import {UsersDataOut} from "../../../models/dataOut/data-out.model";
 import * as moment from "moment";
 
 @Component({

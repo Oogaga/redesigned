@@ -1,12 +1,10 @@
-// @ts-nocheck
+import { Role } from '../role.model';
+import { Socialdatadto } from '../users-socialdatadto.model';
 
-import { Role } from './role.model';
-import { Socialdatadto } from './users-socialdatadto.model';
+import { SocialProvider } from '../social-provider-enum.model';
+import { BaseDeviceModel } from '../base-device.model';
 
-import { SocialProvider } from './social-provider-enum.model';
-import { BaseDeviceModel } from './base-device.model';
-
-export class UsersDataOut {
+export interface UsersDataOut {
   birthday: string;
   deviceDtos: BaseDeviceModel[];
   email: string;

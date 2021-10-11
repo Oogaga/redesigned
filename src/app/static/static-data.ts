@@ -15,6 +15,8 @@
 
 export class StaticData {
 
+  private static DeviceTypesInfo: any;
+
   static MOBILE_CLIENT_WIDTH = 790;
   static MIN_AGE = 16;
   static MIN_DATE = new Date(1920, 0, 1);
@@ -924,8 +926,8 @@ export class StaticData {
 //
   static BIOPROM_LINK = 'http://bioprom.ua/';
 //
-//   static GetDeviceTypeInfo(deviceType) {
-//     return StaticData.DeviceTypesInfo.find((item) => item.value === deviceType);
-//   }
-//
+  static GetDeviceTypeInfo(deviceType: any) {
+    return StaticData.DeviceTypesInfo.find((item: any) => item.value === deviceType);
+  }
+
 }
