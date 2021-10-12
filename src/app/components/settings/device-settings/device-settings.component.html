@@ -1,0 +1,403 @@
+<mat-dialog-actions align="start">
+  <button
+    class="back"
+    mat-icon-button
+    mat-dialog-close>
+    <mat-icon>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.67 20.1299L9.9 21.8999L0 11.9999L9.9 2.0999L11.67 3.8699L3.54 11.9999L11.67 20.1299Z"
+              fill="#004070"/>
+      </svg>
+    </mat-icon>
+    Отмена
+  </button>
+</mat-dialog-actions>
+<mat-stepper
+  [linear]="true"
+  #stepper>
+
+  //________________________________________________________________________________Приоритет работы
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                disabled>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#CCCCCC"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Приоритет работы</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+        <button
+          style="margin-top: 35px"
+          class="button_priority"
+          mat-icon-button>
+          <mat-icon>
+            <img src="./img/heating.svg">
+          </mat-icon>
+        </button>
+        <button
+          class="button_priority"
+          mat-icon-button>
+          <mat-icon>
+            <img src="./img/pomp.svg">
+          </mat-icon>
+        </button>
+        <button
+          class="button_priority"
+          mat-icon-button>
+          <mat-icon>
+            <img src="./img/summer.svg">
+          </mat-icon>
+        </button>
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Еженедельные настройки
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Еженедельные настройки</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Настройка розжига
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Настройка розжига</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+        <section>
+          <div>Диапазон мощности первого вент.</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+        <section>
+          <div>Диапазон мощности второго вент.</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+        <section>
+          <div>Время работы внутреннего шнека</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+        <section>
+          <div>Время работы внешнего шнека</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+        <section>
+          <div>Прирост температуры/ед. опт. датчика</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+        <section>
+          <div>Время розжига</div>
+
+          <ngx-slider [(value)]="value" [(highValue)]="highValue"
+                      [options]="{floor: 1, ceil: 100}"></ngx-slider>
+          <input class="input_small" matInput [(ngModel)]="value">
+          <input class="input_small" matInput [(ngModel)]="highValue">
+        </section>
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Настройка шнеков
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Настройка шнеков</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Настройка вентиляторов
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Настройка вентиляторов</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Настройка насосов
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Настройка насосов</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Режим работы
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Режим работы</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________История
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">История</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.669843 2.37668L3.04653 -1.16214e-06L16.3398 13.2933L3.04653 26.5866L0.669841 24.2099L11.5865 13.2933L0.669843 2.37668Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+  //________________________________________________________________________________Об устройстве
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.67 24.21L13.2933 26.5867L0 13.2934L13.2933 4.19617e-05L15.67 2.37673L4.75337 13.2934L15.67 24.21Z"
+                fill="#525252"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Об устройстве</div>
+        <button mat-icon-button
+                class="navigate-button"
+                disabled>
+          <mat-icon>
+            <svg width="16" height="27" viewBox="0 0 16 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M-7.86936e-05 2.37668L2.37661 0L15.6699 13.2933L2.37661 26.5866L-7.86936e-05 24.2099L10.9166 13.2933L-7.86936e-05 2.37668Z"
+                fill="#CCCCCC"/>
+            </svg>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs">
+
+
+      </div>
+    </section>
+  </mat-step>
+
+</mat-stepper>
+

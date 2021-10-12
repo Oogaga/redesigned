@@ -18,19 +18,19 @@ export class DevicesService {
   isShowWeekleySettings = new Subject<boolean>();
   fullPointInfo = new Subject<any>();
   needFullRefresh: boolean;
-  requestsInProcess : any[] = [];
+  requestsInProcess: any[] = [];
   showWeeklySettingsFlag: boolean;
   stateActive: string;
   tempChartSettings: any[];
   typesStr: string;
   urlDeviceType: string;
-  waitingRequests : any[] = [];
+  waitingRequests: any[] = [];
 
   constructor(@Inject(BASE_URL_TOKEN) private baseUrl: string,
               private http: HttpClient) {
-    this.blockFullRefresh=false;
-    this.isFirmwareFlag=false;
-    this.needFullRefresh=false;
+    this.blockFullRefresh = false;
+    this.isFirmwareFlag = false;
+    this.needFullRefresh = false;
     this.tempChartSettings = [];
     this.showWeeklySettingsFlag = false;
     this.urlDeviceType = '';
@@ -53,7 +53,7 @@ export class DevicesService {
   }
 
 
-  removeDevice(id : number): Observable<any> {
+  removeDevice(id: number): Observable<any> {
     const url = `${this.baseUrl}/device/disable/${id}`;
     return this.http.delete(url);
   }
@@ -89,7 +89,7 @@ export class DevicesService {
     });
   }
 
-  releaseRequest(id : number) {
+  releaseRequest(id: number) {
     const index = this.requestsInProcess.indexOf(id);
     if (index === -1) {
       return;
@@ -105,12 +105,12 @@ export class DevicesService {
     }
   }
 
-  changeTimeZone(dto:any, id:number) {
+  changeTimeZone(dto: any, id: number) {
     const url = `${this.baseUrl}/device/${id}`;
     return this.http.put(url, dto);
   }
 
-  PutWeeklySettings(dto: WeeklySettingDtoModel, id:number) {
+  PutWeeklySettings(dto: WeeklySettingDtoModel, id: number) {
     const url = `${this.baseUrl}/device/${id}/weekly-settings`;
     return this.http.put(url, dto);
   }
@@ -122,22 +122,14 @@ export class DevicesService {
       return;
     }
     this.needFullRefresh = false;
-    const url = `${this.baseUrl}/device/list/detailed${this.stateActive}`;
-    this.http.get(url).subscribe((devices: BaseDeviceModel[]) => {
+    const url = `${this.baseUrl}/device/list/detailed`;
+    this.http.get(url).subscribe((devices: any) => {
       if (this.requestsInProcess.length > 0 || this.blockFullRefresh) {
         this.needFullRefresh = true;
         return;
       }
       this.displayingDevices.next(devices);
     });
-  }
-
-  setStateActive(activeState:string) {
-    if (activeState !== undefined) {
-      this.stateActive = '?type=' + activeState;
-    } else {
-      this.stateActive = '';
-    }
   }
 
 
@@ -159,11 +151,8 @@ export class DevicesService {
   }
 
   downloadUpdates(id: number): Observable<any> {
-    const headers = new HttpHeaders();
-    const options = {headers};
-    options.responseType = 'blob';
     const url = `${this.baseUrl}/firmware/${id}/file`;
-    return this.http.get(url, options);
+    return this.http.get(url, {observe: "response", responseType: "blob"});
   }
 
   getFiles() {
@@ -172,17 +161,12 @@ export class DevicesService {
   }
 
   downloadFile(id: number): Observable<any> {
-    const headers = new HttpHeaders();
-    headers.set('Accept', 'application/octet-stream');
-    const options = {headers};
-    options['responseType'] = 'blob';
+    const header = {
+      'Accept': 'application/octet-stream',
+    }
     const url = `${this.baseUrl}/instruction/${id}/file`;
-    return this.http.get(url, options);
+    return this.http.get(url, {headers: header, observe: "response", responseType: "blob"});
   }
-
-
-
-
 
   getOwnedDevices(): Observable<BaseDeviceModel[]> {
     const url = `${this.baseUrl}/device/list/live`;

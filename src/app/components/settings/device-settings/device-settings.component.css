@@ -30,24 +30,28 @@ mat-step {
 }
 
 .one-step {
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 35px;
 }
 
-input {
-  width: 290px;
-  height: 50px;
+mat-dialog-actions {
+  padding: 0px;
+  min-height: 0px;
+}
+
+.input_small {
+  width: 30px;
+  height: 20px;
   background: rgba(255, 255, 255, 0.38);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
-  border-radius: 10px;
-  font-family: "Montserrat SemiBold";
+  border-radius: 5px;
+  font-family: "Roboto Regular";
   font-size: 18px;
   text-align: center;
-  margin-top: 35px;
 }
 
 .navigate-buttons {
@@ -57,18 +61,30 @@ input {
   justify-content: space-between;
 }
 
-.navigate-button {
-  width: 142px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-sizing: border-box;
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(30px);
-  border-radius: 12px;
-  font-family: "Montserrat Medium";
-  font-size: 16px;
+.mat-icon {
+  height: auto;
+  width: auto;
 }
+
+.settings_label {
+  font-family: "Montserrat SemiBold";
+  font-size: 14px;
+}
+
+/*.extreme_values {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*}*/
+/*.extreme_value {*/
+/*  font-family: "Roboto Regular";*/
+/*  opacity: 20%;*/
+/*  color: #000000;*/
+/*}*/
+
+.ngx-slider {
+  min-width: 310px;
+}
+
 
 .back {
   width: 77px;
@@ -76,12 +92,19 @@ input {
   align-items: center;
 }
 
-.configs{
-  height: 80%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 14px;
+.button_priority{
+  height: 140px;
+  width: 250px;
+  border-radius: 25px!important;
+  margin-bottom: 30px;
 }
 
-
+.configs{
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

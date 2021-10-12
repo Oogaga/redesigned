@@ -25,15 +25,18 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {RegistrationComponent} from './routes/authentication/registration/registration.component';
 import {ForgotComponent} from './routes/forgot/forgot.component';
 import {MatMenuModule} from "@angular/material/menu";
-import { BioUniversalComponent } from './components/devices/bio-universal/bio-universal.component';
+import {BioUniversalComponent} from './components/devices/bio-universal/bio-universal.component';
 import {AuthGuard} from "./guards/auth.guard";
-import { AdminHomeComponent } from './routes/admin/admin-home/admin-home.component';
-import { BioPidComponent } from './components/devices/bio-pid/bio-pid.component';
-import { AddNewDeviceComponent } from './components/devices/add-new-device/add-new-device.component';
+import {AdminHomeComponent} from './routes/admin/admin-home/admin-home.component';
+import {BioPidComponent} from './components/devices/bio-pid/bio-pid.component';
+import {AddNewDeviceComponent} from './components/devices/add-new-device/add-new-device.component';
 import {MatExpansionModule} from "@angular/material/expansion";
-import { AddingDeviceComponent } from './components/adding-device/adding-device.component';
+import {AddingDeviceComponent} from './components/adding-device/adding-device.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatStepperModule} from "@angular/material/stepper";
+import {ChangeDateMsPipe} from "./pipes/change-date-ms.pipe";
+import {DeviceSettingsComponent} from './components/settings/device-settings/device-settings.component';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -54,31 +57,34 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminHomeComponent,
     BioPidComponent,
     AddNewDeviceComponent,
-    AddingDeviceComponent
+    AddingDeviceComponent,
+    ChangeDateMsPipe,
+    DeviceSettingsComponent
   ],
-    imports: [
-        BrowserModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        MatMenuModule,
-        MatExpansionModule,
-        MatDialogModule,
-        MatStepperModule
-    ],
+  imports: [
+    BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatDialogModule,
+    MatStepperModule,
+    NgxSliderModule
+  ],
   providers: [
     AuthGuard,
     {

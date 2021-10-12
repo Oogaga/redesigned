@@ -13,6 +13,8 @@
 //
 // import { TypePermission } from '../models/type-permission.model';
 
+import {TimeZone} from "../models/timezones.model";
+
 export class StaticData {
 
   private static DeviceTypesInfo: any;
@@ -36,33 +38,43 @@ export class StaticData {
 
   static Social = ['FACEBOOK', 'TWITTER', 'LINKEDIN', 'GOOGLE', 'NONE'];
 //
-//   static TimeZones: TimeZone[] = [
-//     {value: -12, name: 'TIMEZONE.UTC-12:00'},
-//     {value: -11, name: 'TIMEZONE.UTC-11:00'},
-//     {value: -10, name: 'TIMEZONE.UTC-10:00'},
-//     {value: -9, name: 'TIMEZONE.UTC-9:00'},
-//     {value: -8, name: 'TIMEZONE.UTC-8:00'},
-//     {value: -7, name: 'TIMEZONE.UTC-7:00'},
-//     {value: -6, name: 'TIMEZONE.UTC-6:00'},
-//     {value: -5, name: 'TIMEZONE.UTC-5:00'},
-//     {value: -4, name: 'TIMEZONE.UTC-4:00'},
-//     {value: -3, name: 'TIMEZONE.UTC-3:00'},
-//     {value: -2, name: 'TIMEZONE.UTC-2:00'},
-//     {value: -1, name: 'TIMEZONE.UTC-1:00'},
-//     {value: 0, name: 'TIMEZONE.UTC+0:00'},
-//     {value: 1, name: 'TIMEZONE.UTC+1:00'},
-//     {value: 2, name: 'TIMEZONE.UTC+2:00'},
-//     {value: 3, name: 'TIMEZONE.UTC+3:00'},
-//     {value: 4, name: 'TIMEZONE.UTC+4:00'},
-//     {value: 5, name: 'TIMEZONE.UTC+5:00'},
-//     {value: 6, name: 'TIMEZONE.UTC+6:00'},
-//     {value: 7, name: 'TIMEZONE.UTC+7:00'},
-//     {value: 8, name: 'TIMEZONE.UTC+8:00'},
-//     {value: 9, name: 'TIMEZONE.UTC+9:00'},
-//     {value: 10, name: 'TIMEZONE.UTC+10:00'},
-//     {value: 11, name: 'TIMEZONE.UTC+11:00'},
-//     {value: 12, name: 'TIMEZONE.UTC+12:00'}
-//   ];
+  static TimeZones: TimeZone[] = [
+    {value: -12, name: 'TIMEZONE.UTC-12:00'},
+    {value: -11, name: 'TIMEZONE.UTC-11:00'},
+    {value: -10, name: 'TIMEZONE.UTC-10:00'},
+    {value: -9, name: 'TIMEZONE.UTC-9:00'},
+    {value: -8, name: 'TIMEZONE.UTC-8:00'},
+    {value: -7, name: 'TIMEZONE.UTC-7:00'},
+    {value: -6, name: 'TIMEZONE.UTC-6:00'},
+    {value: -5, name: 'TIMEZONE.UTC-5:00'},
+    {value: -4, name: 'TIMEZONE.UTC-4:00'},
+    {value: -3, name: 'TIMEZONE.UTC-3:00'},
+    {value: -2, name: 'TIMEZONE.UTC-2:00'},
+    {value: -1, name: 'TIMEZONE.UTC-1:00'},
+    {value: 0, name: 'TIMEZONE.UTC+0:00'},
+    {value: 1, name: 'TIMEZONE.UTC+1:00'},
+    {value: 2, name: 'TIMEZONE.UTC+2:00'},
+    {value: 3, name: 'TIMEZONE.UTC+3:00'},
+    {value: 4, name: 'TIMEZONE.UTC+4:00'},
+    {value: 5, name: 'TIMEZONE.UTC+5:00'},
+    {value: 6, name: 'TIMEZONE.UTC+6:00'},
+    {value: 7, name: 'TIMEZONE.UTC+7:00'},
+    {value: 8, name: 'TIMEZONE.UTC+8:00'},
+    {value: 9, name: 'TIMEZONE.UTC+9:00'},
+    {value: 10, name: 'TIMEZONE.UTC+10:00'},
+    {value: 11, name: 'TIMEZONE.UTC+11:00'},
+    {value: 12, name: 'TIMEZONE.UTC+12:00'}
+  ];
+
+  static Week = [
+    'WEEK.MONDAY',
+    'WEEK.TUESDAY',
+    'WEEK.WEDNESDAY',
+    'WEEK.THURSDAY',
+    'WEEK.FRIDAY',
+    'WEEK.SATURDAY',
+    'WEEK.SUNDAY'
+  ];
 //
 //
 //   static Criterion = [
