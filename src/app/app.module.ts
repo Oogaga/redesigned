@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AuthenticationComponent} from './routes/authentication/authentication.component';
 import {HomeComponent} from './routes/home/home.component';
@@ -37,6 +37,9 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {ChangeDateMsPipe} from "./pipes/change-date-ms.pipe";
 import {DeviceSettingsComponent} from './components/settings/device-settings/device-settings.component';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
+import { DevicesComponent } from './components/devices/devices.component';
+import {TokenInterceptor} from "./services/token-interceptor";
+import { BaseItemComponent } from './components/devices/base-item/base-item.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -59,7 +62,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddNewDeviceComponent,
     AddingDeviceComponent,
     ChangeDateMsPipe,
-    DeviceSettingsComponent
+    DeviceSettingsComponent,
+    DevicesComponent,
+    BaseItemComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl
     },
-    GoogleOauth2Service
+    GoogleOauth2Service,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -14,10 +14,11 @@
 // import { TypePermission } from '../models/type-permission.model';
 
 import {TimeZone} from "../models/timezones.model";
+import {DeviceTypesInfoModel} from "../models/DeviceTypesInfo.model";
+import {TypeConfig1} from "../models/Type-config-1.model";
 
 export class StaticData {
 
-  private static DeviceTypesInfo: any;
 
   static MOBILE_CLIENT_WIDTH = 790;
   static MIN_AGE = 16;
@@ -33,8 +34,12 @@ export class StaticData {
 
   static BIO_UNIVERSAL = 'BIO_UNIVERSAL';
   static PELLET_LEVEL = 'PELLET_LEVEL';
+  static BIO_UNIVERSAL_GEFEST = 'BIO_UNIVERSAL_GEFEST';
+  static BIO_UNIVERSAL_OVEN = 'BIO_UNIVERSAL_OVEN';
   static SMART_SOCKET = 'SMART_SOCKET';
+  static AIR_TOUCH = 'AIR_TOUCH';
   static BIO_PID = 'BIO_PID';
+  static BIO_UNIVERSAL_HIDE = 'BIO_UNIVERSAL_HIDE';
 
   static Social = ['FACEBOOK', 'TWITTER', 'LINKEDIN', 'GOOGLE', 'NONE'];
 //
@@ -191,288 +196,288 @@ export class StaticData {
 //     {name: 'DEVICES.READ', value: false},
 //     {name: 'DEVICES.WRITE', value: true}
 //   ];
-//   private static _typeConfig1: TypeConfig1[] = [
-//     {
-//       param: 'CENTRAL_HEATING_TEMPERATURE',
-//       name: 'TYPE_CONFIG_1.VALUE_1',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//       name: 'TYPE_CONFIG_1.VALUE_2',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'OPTICAL_SENSOR_VALUE',
-//       name: 'TYPE_CONFIG_1.VALUE_3',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: (data) => !data.SENSOR_TYPE
-//     }, // TODO: Filter it
-//     {
-//       param: 'OPTICAL_SENSOR_VALUE',
-//       name: 'TYPE_CONFIG_1.VALUE_4',
-//       formatter: null,
-//       showPredicate: (data) => data.SENSOR_TYPE
-//     }, // TODO: Filter it
-//     {
-//       param: 'SENSOR_TYPE',
-//       name: 'TYPE_CONFIG_1.VALUE_5',
-//       formatter: Formatters.formatSensorType,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'WORKING_POWER_IN_PERCENT',
-//       name: 'TYPE_CONFIG_1.VALUE_6',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'ACTUAL_STATE',
-//       name: 'TYPE_CONFIG_1.VALUE_7',
-//       formatter: Formatters.formatAutomationState,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'ACTUAL_ERROR',
-//       name: 'TYPE_CONFIG_1.VALUE_8',
-//       formatter: Formatters.formatError,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'FUEL_AMOUNT',
-//       name: 'TYPE_CONFIG_1.VALUE_9',
-//       formatter: Formatters.formatKg,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
-//       name: 'TYPE_CONFIG_1.VALUE_10',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//       name: 'TYPE_CONFIG_1.VALUE_11',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'FAN_POWER_DURING_IGNITION',
-//       name: 'TYPE_CONFIG_1.VALUE_12',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'FAN_POWER_DURING_IGNITION_MAX',
-//       name: 'TYPE_CONFIG_1.VALUE_13',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'IGNITION_FAN_EXTERN_POWER_MIN',
-//       name: 'TYPE_CONFIG_1.VALUE_14',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'IGNITION_FAN_EXTERN_POWER_MAX',
-//       name: 'TYPE_CONFIG_1.VALUE_15',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'EXTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION',
-//       name: 'TYPE_CONFIG_1.VALUE_16',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'INTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION',
-//       name: 'TYPE_CONFIG_1.VALUE_17',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'OPTICAL_SENSOR_TEMPERATURE_GROWING',
-//       name: 'TYPE_CONFIG_1.VALUE_18',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'IGNITION_TIME',
-//       name: 'TYPE_CONFIG_1.VALUE_19',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'WORK_PRIORITY',
-//       name: 'TYPE_CONFIG_1.VALUE_20',
-//       formatter: Formatters.formatPriority,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'INTERNAL_AUGER_CONVEYOR_WORK_TIME',
-//       name: 'TYPE_CONFIG_1.VALUE_21',
-//       formatter: (value, translateService: TranslateService) => Formatters.formatSeconds(value / 1000, translateService),
-//       showPredicate: null
-//     },
-//     {
-//       param: 'EXTERNAL_AUGER_CONVEYOR_PAUSE',
-//       name: 'TYPE_CONFIG_1.VALUE_22',
-//       formatter: (value, translateService: TranslateService) => Formatters.formatSeconds(value / 1000, translateService),
-//       showPredicate: null
-//     },
-//     {
-//       param: 'EXTERNAL_AUGER_CONVEYOR_WORK_TIME',
-//       name: 'TYPE_CONFIG_1.VALUE_23',
-//       formatter: (value, translateService: TranslateService) => Formatters.formatSeconds(value / 1000, translateService),
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_WORK_TIME',
-//       name: 'TYPE_CONFIG_1.VALUE_24',
-//       formatter: (value, translateService: TranslateService) => Formatters.formatSeconds(value / 1000, translateService),
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_CYCLES_COUNT',
-//       name: 'TYPE_CONFIG_1.VALUE_25',
-//       formatter: (value, translateService: TranslateService) => Formatters.formatSeconds(value / 1000, translateService),
-//       showPredicate: null
-//     },
-//     {
-//       param: 'MIN_FAN_WORKING_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_26',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'MAX_FAN_WORKING_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_27',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'RESERVE_FAN_START_TIMEOUT',
-//       name: 'TYPE_CONFIG_1.VALUE_28',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'RESERVE_FAN_STOP_TIMEOUT',
-//       name: 'TYPE_CONFIG_1.VALUE_29',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'RESERVE_FAN_MIN_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_30',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'RESERVE_FAN_WORKING_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_31',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CENTRAL_HEATING_PUMP_HYSTERESIS',
-//       name: 'TYPE_CONFIG_1.VALUE_32',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CENTRAL_HEATING_PUMP_START_TEMPERATURE',
-//       name: 'TYPE_CONFIG_1.VALUE_33',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'AUGER_CONVEYOR_WORK_MODE',
-//       name: 'TYPE_CONFIG_1.VALUE_34',
-//       formatter: Formatters.formatActivity,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'DEVICE_HYSTERESIS',
-//       name: 'TYPE_CONFIG_1.VALUE_35',
-//       formatter: Formatters.formatCelsius,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'MIN_AUTOMATICS_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_36',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'MAX_AUTOMATICS_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_37',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'AUTOMATICS_POWER_DURING_SUPPLY',
-//       name: 'TYPE_CONFIG_1.VALUE_38',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_SETTINGS_WORK_TIME',
-//       name: 'TYPE_CONFIG_1.VALUE_39',
-//       formatter: Formatters.formatSeconds,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_SETTINGS_FAN_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_40',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_SETTINGS_FAN_EXTERN_POWER',
-//       name: 'TYPE_CONFIG_1.VALUE_41',
-//       formatter: Formatters.formatPercent,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_SETTINGS_CLEANER',
-//       name: 'TYPE_CONFIG_1.VALUE_42',
-//       formatter: Formatters.formatActivity,
-//       showPredicate: null
-//     },
-//     {
-//       param: 'CLEANING_SETTINGS_FAN',
-//       name: 'TYPE_CONFIG_1.VALUE_43',
-//       formatter: Formatters.formatActivity,
-//       showPredicate: null
-//     }
-//   ];
-//   private static _typeConfig2 = [
-//     {
-//       param: 'LEVEL_CURRENT',
-//       name: 'TYPE_CONFIG_2.VALUE_1',
-//       formatter: Formatters.formatLevel
-//     },
-//     {
-//       param: 'RELAY_STATE',
-//       name: 'TYPE_CONFIG_2.VALUE_2',
-//       formatter: Formatters.formatRelayState
-//     },
-//     {
-//       param: 'SENSOR_1_STATE',
-//       name: 'TYPE_CONFIG_2.VALUE_3',
-//       formatter: Formatters.formatSensorState
-//     },
-//     {
-//       param: 'SENSOR_2_STATE',
-//       name: 'TYPE_CONFIG_2.VALUE_4',
-//       formatter: Formatters.formatSensorState
-//     }
-//   ];
+  private static _typeConfig1: TypeConfig1[] = [
+    {
+      param: 'CENTRAL_HEATING_TEMPERATURE',
+      name: 'TYPE_CONFIG_1.VALUE_1',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+      name: 'TYPE_CONFIG_1.VALUE_2',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'OPTICAL_SENSOR_VALUE',
+      name: 'TYPE_CONFIG_1.VALUE_3',
+      formatter: null,
+      showPredicate: (data: { SENSOR_TYPE: any; }) => !data.SENSOR_TYPE
+    }, // TODO: Filter it
+    {
+      param: 'OPTICAL_SENSOR_VALUE',
+      name: 'TYPE_CONFIG_1.VALUE_4',
+      formatter: null,
+      showPredicate: (data: { SENSOR_TYPE: any; }) => data.SENSOR_TYPE
+    }, // TODO: Filter it
+    {
+      param: 'SENSOR_TYPE',
+      name: 'TYPE_CONFIG_1.VALUE_5',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'WORKING_POWER_IN_PERCENT',
+      name: 'TYPE_CONFIG_1.VALUE_6',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'ACTUAL_STATE',
+      name: 'TYPE_CONFIG_1.VALUE_7',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'ACTUAL_ERROR',
+      name: 'TYPE_CONFIG_1.VALUE_8',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'FUEL_AMOUNT',
+      name: 'TYPE_CONFIG_1.VALUE_9',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
+      name: 'TYPE_CONFIG_1.VALUE_10',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+      name: 'TYPE_CONFIG_1.VALUE_11',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'FAN_POWER_DURING_IGNITION',
+      name: 'TYPE_CONFIG_1.VALUE_12',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'FAN_POWER_DURING_IGNITION_MAX',
+      name: 'TYPE_CONFIG_1.VALUE_13',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'IGNITION_FAN_EXTERN_POWER_MIN',
+      name: 'TYPE_CONFIG_1.VALUE_14',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'IGNITION_FAN_EXTERN_POWER_MAX',
+      name: 'TYPE_CONFIG_1.VALUE_15',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'EXTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION',
+      name: 'TYPE_CONFIG_1.VALUE_16',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'INTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION',
+      name: 'TYPE_CONFIG_1.VALUE_17',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'OPTICAL_SENSOR_TEMPERATURE_GROWING',
+      name: 'TYPE_CONFIG_1.VALUE_18',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'IGNITION_TIME',
+      name: 'TYPE_CONFIG_1.VALUE_19',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'WORK_PRIORITY',
+      name: 'TYPE_CONFIG_1.VALUE_20',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'INTERNAL_AUGER_CONVEYOR_WORK_TIME',
+      name: 'TYPE_CONFIG_1.VALUE_21',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'EXTERNAL_AUGER_CONVEYOR_PAUSE',
+      name: 'TYPE_CONFIG_1.VALUE_22',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'EXTERNAL_AUGER_CONVEYOR_WORK_TIME',
+      name: 'TYPE_CONFIG_1.VALUE_23',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_WORK_TIME',
+      name: 'TYPE_CONFIG_1.VALUE_24',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_CYCLES_COUNT',
+      name: 'TYPE_CONFIG_1.VALUE_25',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'MIN_FAN_WORKING_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_26',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'MAX_FAN_WORKING_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_27',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'RESERVE_FAN_START_TIMEOUT',
+      name: 'TYPE_CONFIG_1.VALUE_28',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'RESERVE_FAN_STOP_TIMEOUT',
+      name: 'TYPE_CONFIG_1.VALUE_29',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'RESERVE_FAN_MIN_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_30',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'RESERVE_FAN_WORKING_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_31',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CENTRAL_HEATING_PUMP_HYSTERESIS',
+      name: 'TYPE_CONFIG_1.VALUE_32',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CENTRAL_HEATING_PUMP_START_TEMPERATURE',
+      name: 'TYPE_CONFIG_1.VALUE_33',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'AUGER_CONVEYOR_WORK_MODE',
+      name: 'TYPE_CONFIG_1.VALUE_34',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'DEVICE_HYSTERESIS',
+      name: 'TYPE_CONFIG_1.VALUE_35',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'MIN_AUTOMATICS_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_36',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'MAX_AUTOMATICS_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_37',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'AUTOMATICS_POWER_DURING_SUPPLY',
+      name: 'TYPE_CONFIG_1.VALUE_38',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_SETTINGS_WORK_TIME',
+      name: 'TYPE_CONFIG_1.VALUE_39',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_SETTINGS_FAN_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_40',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_SETTINGS_FAN_EXTERN_POWER',
+      name: 'TYPE_CONFIG_1.VALUE_41',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_SETTINGS_CLEANER',
+      name: 'TYPE_CONFIG_1.VALUE_42',
+      formatter: null,
+      showPredicate: null
+    },
+    {
+      param: 'CLEANING_SETTINGS_FAN',
+      name: 'TYPE_CONFIG_1.VALUE_43',
+      formatter: null,
+      showPredicate: null
+    }
+  ];
+  private static _typeConfig2 = [
+    {
+      param: 'LEVEL_CURRENT',
+      name: 'TYPE_CONFIG_2.VALUE_1',
+      formatter: null
+    },
+    {
+      param: 'RELAY_STATE',
+      name: 'TYPE_CONFIG_2.VALUE_2',
+      formatter: null
+    },
+    {
+      param: 'SENSOR_1_STATE',
+      name: 'TYPE_CONFIG_2.VALUE_3',
+      formatter: null
+    },
+    {
+      param: 'SENSOR_2_STATE',
+      name: 'TYPE_CONFIG_2.VALUE_4',
+      formatter: null
+    }
+  ];
 //   private static _typeConfig7: TypeConfig1[] = [
 //     {
 //       param: 'sensors_co',
@@ -781,86 +786,49 @@ export class StaticData {
 //       showPredicate: null
 //     }
 //   ];
-//   static DeviceTypesInfo: DeviceTypesInfoModel[] = [
-//     {
-//       value: StaticData.BIO_UNIVERSAL,
-//       name: 'Bio Universal',
-//       endpoint: 'type1',
-//       parameters: [
-//         'CENTRAL_HEATING_TEMPERATURE',
-//         'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//         'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
-//         'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//         'OPTICAL_SENSOR_VALUE',
-//         'WORKING_POWER_IN_PERCENT',
-//         'ACTUAL_STATE',
-//         'ACTUAL_ERROR'
-//       ],
-//       historyConfig: StaticData._typeConfig1
-//     } as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.PELLET_LEVEL,
-//       name: 'Pellete level',
-//       endpoint: 'type6',
-//       parameters: [
-//         'LEVEL_CURRENT'
-//       ],
-//       historyConfig: StaticData._typeConfig2
-//     } as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.BIO_UNIVERSAL_GEFEST,
-//       name: 'Bio Universal Gefest',
-//       endpoint: null,
-//       parameters: null,
-//       historyConfig: null
-//     } as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.BIO_UNIVERSAL_OVEN,
-//       name: 'Bio Universal Oven',
-//       endpoint: null,
-//       parameters: null,
-//       historyConfig: null
-//     } as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.SMART_SOCKET,
-//       name: 'Smart socket',
-//       endpoint: null,
-//       parameters: null,
-//       historyConfig: null
-//     }  as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.AIR_TOUCH,
-//       name: 'Air Touch',
-//       endpoint: 'type7',
-//       parameters: [
-//         'sensors_co',
-//         'sensors_hws',
-//         'neededTemperatures_co',
-//         'neededTemperatures_hws',
-//         'sensors_opt',
-//         'power',
-//         'automaticState',
-//         'errors'
-//       ],
-//       historyConfig: StaticData._typeConfig7
-//     } as DeviceTypesInfoModel,
-//     {
-//       value: StaticData.BIO_UNIVERSAL_HIDE,
-//       name: 'Bio Pid',
-//       endpoint: 'type8',
-//       parameters: [
-//         'CENTRAL_HEATING_TEMPERATURE',
-//         'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//         'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
-//         'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
-//         'OPTICAL_SENSOR_VALUE',
-//         'WORKING_POWER_IN_PERCENT',
-//         'ACTUAL_STATE',
-//         'ACTUAL_ERROR'
-//       ],
-//       historyConfig: StaticData._typeConfig1
-//     } as DeviceTypesInfoModel
-//   ];
+  static DeviceTypesInfo: DeviceTypesInfoModel[] = [
+    {
+      value: StaticData.BIO_UNIVERSAL,
+      name: 'Bio Universal',
+      endpoint: 'type1',
+      parameters: [
+        'CENTRAL_HEATING_TEMPERATURE',
+        'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+        'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
+        'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+        'OPTICAL_SENSOR_VALUE',
+        'WORKING_POWER_IN_PERCENT',
+        'ACTUAL_STATE',
+        'ACTUAL_ERROR'
+      ],
+      historyConfig: StaticData._typeConfig1
+    } as DeviceTypesInfoModel,
+    {
+      value: StaticData.PELLET_LEVEL,
+      name: 'Pellete level',
+      endpoint: 'type6',
+      parameters: [
+        'LEVEL_CURRENT'
+      ],
+      historyConfig: StaticData._typeConfig2
+    } as DeviceTypesInfoModel,
+    {
+      value: StaticData.BIO_UNIVERSAL_HIDE,
+      name: 'Bio Pid',
+      endpoint: 'type8',
+      parameters: [
+        'CENTRAL_HEATING_TEMPERATURE',
+        'CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+        'EXTERNAL_CENTRAL_HEATING_TEMPERATURE',
+        'EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE',
+        'OPTICAL_SENSOR_VALUE',
+        'WORKING_POWER_IN_PERCENT',
+        'ACTUAL_STATE',
+        'ACTUAL_ERROR'
+      ],
+      historyConfig: StaticData._typeConfig1
+    } as DeviceTypesInfoModel
+  ];
 //
 //   static Errors: ServerError[] = [
 //     {
@@ -934,7 +902,7 @@ export class StaticData {
 //     {path: '/admin/firmware', name: 'adminFirmwarePage'}
 //   ];
 //
-  static REFRESH_INTERVAL = 50000;
+  static REFRESH_INTERVAL = 1000;
 //
   static BIOPROM_LINK = 'http://bioprom.ua/';
 //

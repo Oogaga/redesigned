@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {BioUniversalModel} from "../../../models/bioUniversal.model";
 
 @Component({
   selector: 'app-bio-pid',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bio-pid.component.css']
 })
 export class BioPidComponent implements OnInit {
+
+  @Input() device?: BioUniversalModel;
 
   constructor() { }
 

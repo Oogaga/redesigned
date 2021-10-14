@@ -1,0 +1,7 @@
+{
+  "short_name": "Bioprom",
+  "name": "Bioprom",
+  "start_url": "/",
+  "orientation": "any",
+  "display": "standalone"
+}

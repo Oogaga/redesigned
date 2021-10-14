@@ -4,9 +4,6 @@
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(30px);
   border-radius: 35px 15px 15px 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 ._biopid_ {

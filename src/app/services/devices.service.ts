@@ -12,7 +12,7 @@ import {WeeklySettingDtoModel} from "../models/dataOut/weeklysettingdto.model";
 export class DevicesService {
   blockFullRefresh: boolean;
   ChartPoints = new Subject<any>();
-  displayingDevices = new Subject<BaseDeviceModel[]>();
+  displayingDevices$ = new Subject<BaseDeviceModel[]>();
   isFirmware = new Subject<boolean>();
   isFirmwareFlag: boolean;
   isShowWeekleySettings = new Subject<boolean>();
@@ -25,6 +25,7 @@ export class DevicesService {
   typesStr: string;
   urlDeviceType: string;
   waitingRequests: any[] = [];
+  private allDevices$ = new Subject<BaseDeviceModel[]>();
 
   constructor(@Inject(BASE_URL_TOKEN) private baseUrl: string,
               private http: HttpClient) {
@@ -117,18 +118,18 @@ export class DevicesService {
 
 // ------------------------------------------------------------------------------device component
   getDevices() {
-    if (this.blockFullRefresh || this.requestsInProcess.length > 0) {
-      this.needFullRefresh = true;
-      return;
-    }
-    this.needFullRefresh = false;
     const url = `${this.baseUrl}/device/list/detailed`;
     this.http.get(url).subscribe((devices: any) => {
-      if (this.requestsInProcess.length > 0 || this.blockFullRefresh) {
-        this.needFullRefresh = true;
-        return;
-      }
-      this.displayingDevices.next(devices);
+      this.displayingDevices$.next(devices);
+    });
+  }
+
+  downloadData() {
+    const url = `${this.baseUrl}/device/list/detailed`;
+    this.http.get(url).subscribe((devices: any) => {
+      localStorage.setItem("devices", JSON.stringify(devices));
+      console.log(JSON.parse(localStorage.getItem('devices') || 'null'))
+
     });
   }
 

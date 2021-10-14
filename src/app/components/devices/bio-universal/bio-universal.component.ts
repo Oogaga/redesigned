@@ -6,6 +6,7 @@ import {DeviceTypesInfoModel} from "../../../models/DeviceTypesInfo.model";
 import {Place} from "../../../models/places.model";
 import {BioUniversalModel} from "../../../models/bioUniversal.model";
 import {DeviceSettingsComponent} from "../../settings/device-settings/device-settings.component";
+import {BaseDeviceModel} from "../../../models/base-device.model";
 
 
 @Component({
@@ -17,48 +18,55 @@ export class BioUniversalComponent implements OnInit {
 
   WAITING_TIME = 5000;
 
-  @Input() device?: BioUniversalModel;
+  @Input() device: BioUniversalModel;
 
-  // currentTemperature1: number;
-  // rangeTemperature1: number;
-  // currentTemperature2: number;
-  // rangeTemperature2: number;
-  // oldRangeTemperature1: number;
-  // oldRangeTemperature2: number;
-  // minTemperature: number;
-  // maxTemperature: number;
-  // opticalSensor: number;
-  // actualState: number;
-  // actualStateSwitch: boolean;
-  // name: string;
-  // arrayOfDeviceTypes: DeviceTypesInfoModel[];
-  // deviceType: string;
-  // houseType: string;
-  // workingPower: number;
-  // sensorType: number;
-  // error: number;
-  // workPriority: number;
-  //
-  // arrayOfPlaces: Place[];
-  // deviceTypeToShow: number;
-  // onMouseUpBind: any;
-  // onMouseDownBind: any;
-  // isRemoved: boolean;
-  // usedFuel: number;
-  // removeDate;
-  // intevalObj;
-  // day;
-  // hours;
-  // minutes;
-  // seconds;
-  // isWaiting;
-  // isWaitingBtn;
-  // previousData;
+  deviceName: string;
+  isOnline: boolean;
+  currentCo: number;
+  currentGvs: number;
+  currentUse: number;
+  currentPow: number;
+  currentTtg: number;
+
+
 
   constructor(
     private service: DevicesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
+    this.deviceName = '';
+    this.isOnline = true;
+    this.currentCo = 0;
+    this.currentGvs = 0;
+    this.currentUse = 0;
+    this.currentPow = 0;
+    this.currentTtg = 0;
+    this.device = new class implements BaseDeviceModel {
+      autoWeekly: any;
+      country :any;
+      data: any;
+      dataChangedByUser: any;
+      devId: any;
+      devKey: any;
+      deviceInfoDto: any;
+      deviceState: any;
+      deviceType: any;
+      errorCode: any;
+      firmware: any;
+      id: any;
+      ip: any;
+      isOnline: any;
+      latitude: any;
+      longitude: any;
+      name: any;
+      onlineTimeSec: any;
+      owner: any;
+      permission: any;
+      recoverCountDate: any;
+      remove: any;
+      removeDate: any;
+      timezone: any;
+    };
     // this.isWaitingBtn = false;
     // this.previousData = this.device;
     // this.minTemperature = 40;
@@ -86,6 +94,7 @@ export class BioUniversalComponent implements OnInit {
       minWidth: '100vw',
       id: 'modal',
       hasBackdrop: true,
+      data: {device: this.device}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -94,6 +103,14 @@ export class BioUniversalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.deviceName = this.device.name;
+    this.isOnline = !this.device.isOnline;
+    this.currentCo = this.device.data.data.CENTRAL_HEATING_TEMPERATURE
+    this.currentGvs = this.device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE
+    this.currentUse = 0;
+    this.currentPow = this.device.data.data.WORKING_POWER_IN_PERCENT;
+    this.currentTtg = 0;
+
     // if (!this.device.data) {
     //   return;
     // }

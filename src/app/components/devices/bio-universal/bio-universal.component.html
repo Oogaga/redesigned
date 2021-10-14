@@ -1,4 +1,6 @@
-<mat-expansion-panel class="device">
+<mat-expansion-panel
+  [disabled]="isOnline"
+  class="device">
   <mat-expansion-panel-header
     class="deviceHeader">
     <svg class="deviceLogo" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +39,7 @@
     <mat-panel-description
       class="deviceName flex">
       <div class="_biouniversal_">Bio Universal</div>
-      [BIOUNIVERSAL_NAME]
+      {{deviceName}}
     </mat-panel-description>
 
   </mat-expansion-panel-header>
@@ -184,7 +186,7 @@
         <div class="header-small-card">Мощность</div>
         <div
           style="color: #336214"
-          class="value-small-card">75%
+          class="value-small-card">{{currentPow + '%'}}
         </div>
       </div>
       <div class="small-card-info">
@@ -218,7 +220,7 @@
             </svg>
           </mat-icon>
           <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
-            <div class="data-temperature">85
+            <div class="data-temperature">{{currentCo}}
               <div style="font-size: 25px">°C</div>
             </div>
             <button
@@ -251,7 +253,7 @@
             </svg>
           </mat-icon>
           <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
-            <div class="data-temperature">85
+            <div class="data-temperature">{{currentGvs}}
               <div style="font-size: 25px">°C</div>
             </div>
             <button

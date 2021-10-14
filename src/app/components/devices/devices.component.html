@@ -1,0 +1,4 @@
+<mat-accordion *ngIf="devices && devices.length > 0"
+               class="all_devices">
+  <app-base-item *ngFor="let device of devices" [device]="device"></app-base-item>
+</mat-accordion>

@@ -1,0 +1,8 @@
+<div *ngIf="device">
+  <app-bio-universal
+    [device]="device"
+    *ngIf="deviceTypeToShow === 0"></app-bio-universal>
+  <app-bio-pid
+    [device]="device"
+    *ngIf="deviceTypeToShow === 2"></app-bio-pid>
+</div>
