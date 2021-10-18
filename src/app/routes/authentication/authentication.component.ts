@@ -43,24 +43,12 @@ export class AuthenticationComponent implements OnInit {
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - StaticData.MIN_AGE);
     this.minDate = StaticData.MIN_DATE;
-    this.passwordControl.valueChanges.subscribe((data: Observable<any>) => {
-      this.confirmPasswordControl.updateValueAndValidity();
-    });
     this.phoneAlreadyTaken = false;
     this.isRestoredEmailInvalid = false;
     this.emailError = false;
   }
 
-  passwordControl = new FormControl(null, [
-    Validators.required,
-    Validators.minLength(RegExpData.MIN_LENGTH_PASSWORD),
-    Validators.pattern(RegExpData.PASSWORD_VALIDATOR)
-  ]);
 
-  confirmPasswordControl = new FormControl(null, [
-    Validators.required,
-    // confirmPasswordValidator(this.passwordControl)___________________________________________________________________________________>>>>>>>>>>>>>>>>>
-  ]);
 
   loginUser = new FormGroup({
     enteredEmail: new FormControl(null, [

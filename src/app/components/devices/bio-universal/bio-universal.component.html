@@ -1,5 +1,5 @@
 <mat-expansion-panel
-  [disabled]="isOnline"
+  [disabled]="false"
   class="device">
   <mat-expansion-panel-header
     class="deviceHeader">
@@ -50,7 +50,7 @@
         mat-icon-button>
         <mat-icon
           class="svg_button_in">
-          <svg class="shadow" width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
               <path
                 d="M21.8832 36.5855C22.198 38.0458 22.7887 39.264 23.5193 40.1048C24.3035 41.0076 25.1458 41.3705 25.8864 41.3705C26.6269 41.3705 27.4692 41.0076 28.2535 40.1048C28.984 39.264 29.5747 38.0458 29.8895 36.5855H21.8832Z"
@@ -96,7 +96,7 @@
       >
         <mat-icon
           class="svg_button_in">
-          <svg class="shadow" width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
               <mask id="path-1-inside-1" fill="white">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -135,7 +135,7 @@
         mat-icon-button>
         <mat-icon
           class="svg_button_in">
-          <svg class="shadow" width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
               <rect x="1" y="1" width="50" height="50" rx="16" fill="url(#paint0_linear)"/>
               <rect x="1.5" y="1.5" width="49" height="49" rx="15.5" stroke="black" stroke-opacity="0.12"/>
@@ -193,18 +193,18 @@
         <div class="header-small-card">ТТГ</div>
         <div
           style="color: #BB0000"
-          class="value-small-card">400°
+          class="value-small-card">{{currentTtg + '°'}}
         </div>
       </div>
       <div class="small-card-info">
         <div class="header-small-card">Использ.</div>
         <div
           style="color: #303030"
-          class="value-small-card">1,25т
+          class="value-small-card">{{currentUse + 'т'}}
         </div>
       </div>
     </div>
-    <div class="bott-info">
+    <form [formGroup]="inputControl" class="bott-info">
       <div class="change-temp-card">
         <div class="header-bot-card">ЦО</div>
         <section class="value-card">
@@ -224,15 +224,25 @@
               <div style="font-size: 25px">°C</div>
             </div>
             <button
+              (click)="reduceCo()"
               mat-icon-button>
-              <mat-icon>arrow_back_ios</mat-icon>
+              <i class="material-icons-round">arrow_back_ios</i>
             </button>
             <input
+              type="tel"
+              maxlength="2"
+              max="90"
+              min="40"
+              minlength="2"
+              formControlName="co"
+              [ngClass]="{'input-error': inputControl.invalid}"
+              [(ngModel)]="changeCo"
               class="input-temperature"
               matInput>
             <button
+              (click)="growCo()"
               mat-icon-button>
-              <mat-icon>arrow_forward_ios</mat-icon>
+              <i class="material-icons-round">arrow_forward_ios</i>
             </button>
           </section>
         </section>
@@ -241,7 +251,7 @@
       <div class="change-temp-card">
         <div class="header-bot-card">ГВС</div>
         <section class="value-card">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">
+          <mat-icon>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16 13.5278V3.99998C16 1.79086 14.2091 0 12 0C9.79087 0 8.00002 1.79086 8.00002 3.99998V13.5278C6.7725 14.6264 6 16.223 6 18C6 21.3137 8.68631 24 12 24C15.3137 24 18 21.3137 18 18C18 16.223 17.2275 14.6264 16 13.5278ZM12 22C9.79087 22 8.00002 20.2091 8.00002 18C8.00002 16.8451 8.48944 15.7738 9.33384 15.018L10 14.4218V3.99998C10 2.89542 10.8955 1.99997 12 1.99997C13.1046 1.99997 14.0001 2.89538 14.0001 3.99998V14.4218L14.6663 15.018C15.5107 15.7738 16.0001 16.8451 16.0001 18C16 20.2091 14.2091 22 12 22Z"
@@ -257,15 +267,25 @@
               <div style="font-size: 25px">°C</div>
             </div>
             <button
+              (click)="reduceGvs()"
               mat-icon-button>
-              <mat-icon>arrow_back_ios</mat-icon>
+              <i class="material-icons-round">arrow_back_ios</i>
             </button>
             <input
+              type="tel"
+              maxlength="2"
+              max="90"
+              min="40"
+              minlength="2"
+              formControlName="gvs"
+              [ngClass]="{'input-error': inputControl.invalid}"
+              [(ngModel)]="changeGvs"
               class="input-temperature"
               matInput>
             <button
+              (click)="growGvs()"
               mat-icon-button>
-              <mat-icon>arrow_forward_ios</mat-icon>
+              <i class="material-icons-round">arrow_forward_ios</i>
             </button>
           </section>
         </section>
@@ -273,26 +293,54 @@
       </div>
       <div class="big-card-info">
         <div class="header-bot-card">Состояние</div>
-        <section class="value-card">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">local_fire_department</mat-icon>
+        <section class="value-card" *ngIf="actualState === 0">
+          <i class="material-icons-outlined">watch_later</i>
+          <div class="data">ОЖИДАНИЕ</div>
+        </section>
+        <section class="value-card" *ngIf="actualState === 1">
+          <i class="material-icons">local_fire_department</i>
           <div class="data">РОЗЖИГ</div>
+        </section>
+        <section class="value-card" *ngIf="actualState === 2">
+          <i class="material-icons-outlined">autorenew</i>
+          <div class="data">РАБОТА</div>
+        </section>
+        <section class="value-card" *ngIf="actualState === 3">
+          <i class="material-icons-outlined">engineering</i>
+          <div class="data">ПОДДЕРЖКА</div>
+        </section>
+        <section class="value-card" *ngIf="actualState === 4">
+          <i class="material-icons-outlined">whatshot</i>
+          <div class="data">ГАШЕНИЕ</div>
         </section>
       </div>
       <div class="big-card-info">
         <div class="header-bot-card">Режим</div>
-        <section class="value-card">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">settings_input_component</mat-icon>
+        <section class="value-card" *ngIf="workPriority === 0">
+          <i class="material-icons-round">settings_input_component</i>
           <div class="data">ПАРАЛЛЕЛЬНЫЕ<br> НАСОСЫ</div>
+        </section>
+        <section class="value-card" *ngIf="workPriority === 1">
+          <i class="material-icons-round">chalet</i>
+          <div class="data">ОТОПЛЕНИЕ<br> ДОМА</div>
+        </section>
+        <section class="value-card" *ngIf="workPriority === 2">
+          <i class="material-icons-round">beach_access</i>
+          <div class="data">ЛЕТНИЙ<br> РЕЖИМ</div>
         </section>
       </div>
       <div class="big-card-info">
         <div class="header-bot-card">Доступ</div>
-        <section class="value-card">
+        <section class="value-card" *ngIf="device.permission === 'WRITE'">
           <mat-icon aria-hidden="false" aria-label="Example home icon">speaker_phone</mat-icon>
           <div class="data">УПРАВЛЕНИЕ</div>
         </section>
+        <section class="value-card" *ngIf="device.permission === 'READ'">
+          <i class="material-icons-outlined">fact_check</i>
+          <div class="data">ПРОСМОТР</div>
+        </section>
 
       </div>
-    </div>
+    </form>
   </div>
 </mat-expansion-panel>

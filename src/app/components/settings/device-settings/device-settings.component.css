@@ -3,7 +3,17 @@
 }
 
 ::ng-deep.mat-horizontal-content-container {
-  padding: 0!important;
+  padding: 0 !important;
+}
+
+::ng-deep.mat-dialog-container {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(100px);
+  border-radius: 0;
+}
+
+mat-ripple {
+  border-radius: 10px !important;
 }
 
 ::ng-deep.mat-horizontal-stepper-header {
@@ -61,10 +71,6 @@ mat-dialog-actions {
   justify-content: space-between;
 }
 
-.mat-icon {
-  height: auto;
-  width: auto;
-}
 
 .settings_label {
   font-family: "Montserrat SemiBold";
@@ -86,25 +92,43 @@ mat-dialog-actions {
 }
 
 
-.back {
-  width: 77px;
+
+
+.button_priority {
+  height: 141px;
+  width: 251px;
+  border-radius: 25px !important;
+  margin-bottom: 30px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.button_priority{
-  height: 140px;
-  width: 250px;
-  border-radius: 25px!important;
-  margin-bottom: 30px;
+.svg {
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
-.configs{
+
+
+
+.configs {
   width: 100%;
+  min-height: calc(80vh - 40px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+.configs1 {
+  width: 100%;
+  min-height: calc(80vh - 40px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }

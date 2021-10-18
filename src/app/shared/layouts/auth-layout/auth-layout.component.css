@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("src/img/dark.jpg") no-repeat fixed;
+  background: url("src/img/dark.avif") no-repeat fixed;
   background-size: cover;
   height: 100vh;
 }

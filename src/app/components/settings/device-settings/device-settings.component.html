@@ -1,13 +1,13 @@
 <mat-dialog-actions align="start">
   <button
     class="back"
-    mat-icon-button
+    mat-ripple
+    [matRippleUnbounded]="false"
+    [matRippleRadius]="65"
+
     mat-dialog-close>
     <mat-icon>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.67 20.1299L9.9 21.8999L0 11.9999L9.9 2.0999L11.67 3.8699L3.54 11.9999L11.67 20.1299Z"
-              fill="#004070"/>
-      </svg>
+      <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
     </mat-icon>
     Отмена
   </button>
@@ -44,28 +44,25 @@
           </mat-icon>
         </button>
       </div>
-      <div class="configs">
+      <div class="configs1">
         <button
           style="margin-top: 35px"
-          class="button_priority"
-          mat-icon-button>
-          <mat-icon>
-            <img src="./img/heating.svg">
-          </mat-icon>
+          class="button_priority button_common"
+          mat-ripple
+          [matRippleRadius]="150">
+          <img class="svg" src="./img/heating.svg">
         </button>
         <button
-          class="button_priority"
-          mat-icon-button>
-          <mat-icon>
-            <img src="./img/pomp.svg">
-          </mat-icon>
+          class="button_priority button_common"
+          mat-ripple
+          [matRippleRadius]="150">
+          <img class="svg" src="./img/pomp.svg">
         </button>
         <button
-          class="button_priority"
-          mat-icon-button>
-          <mat-icon>
-            <img src="./img/summer.svg">
-          </mat-icon>
+          class="button_priority button_common"
+          mat-ripple
+          [matRippleRadius]="150">
+          <img class="svg" src="./img/summer.svg">
         </button>
       </div>
     </section>

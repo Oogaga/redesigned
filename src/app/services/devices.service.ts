@@ -17,7 +17,6 @@ export class DevicesService {
   isFirmwareFlag: boolean;
   isShowWeekleySettings = new Subject<boolean>();
   fullPointInfo = new Subject<any>();
-  needFullRefresh: boolean;
   requestsInProcess: any[] = [];
   showWeeklySettingsFlag: boolean;
   stateActive: string;
@@ -31,7 +30,6 @@ export class DevicesService {
               private http: HttpClient) {
     this.blockFullRefresh = false;
     this.isFirmwareFlag = false;
-    this.needFullRefresh = false;
     this.tempChartSettings = [];
     this.showWeeklySettingsFlag = false;
     this.urlDeviceType = '';
@@ -70,7 +68,7 @@ export class DevicesService {
   }
 
 
-  changeDeviceState(data: any, deviceId: string, onNext: any, onError: any, deviceType: string) {
+  changeDeviceState(data: any, deviceId: any, onNext: any, onError: any, deviceType: string) {
     if (this.requestsInProcess.indexOf(data.id) > -1) {
       this.waitingRequests[data.id] = () => this.changeDeviceState(data, deviceId, onNext, onError, deviceType);
       return;
@@ -86,6 +84,7 @@ export class DevicesService {
       this.releaseRequest(data.id);
       if (onError) {
         onError(error);
+        console.log(onError);
       }
     });
   }
@@ -101,8 +100,6 @@ export class DevicesService {
     this.waitingRequests.splice(waitingIndex, 1);
     if (waiting) {
       waiting();
-    } else if (this.needFullRefresh) {
-      this.getDevices();
     }
   }
 
@@ -128,8 +125,6 @@ export class DevicesService {
     const url = `${this.baseUrl}/device/list/detailed`;
     this.http.get(url).subscribe((devices: any) => {
       localStorage.setItem("devices", JSON.stringify(devices));
-      console.log(JSON.parse(localStorage.getItem('devices') || 'null'))
-
     });
   }
 

@@ -7,7 +7,10 @@ import {Place} from "../../../models/places.model";
 import {BioUniversalModel} from "../../../models/bioUniversal.model";
 import {DeviceSettingsComponent} from "../../settings/device-settings/device-settings.component";
 import {BaseDeviceModel} from "../../../models/base-device.model";
-
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {interval, Observable} from "rxjs";
+import {RegExpData} from "../../../static/reqexp_data";
+import {Permission} from "../../../static/enums/permissionEnum.model";
 
 @Component({
   selector: 'app-bio-universal',
@@ -20,6 +23,7 @@ export class BioUniversalComponent implements OnInit {
 
   @Input() device: BioUniversalModel;
 
+  deviceNumber: number;
   deviceName: string;
   isOnline: boolean;
   currentCo: number;
@@ -27,7 +31,14 @@ export class BioUniversalComponent implements OnInit {
   currentUse: number;
   currentPow: number;
   currentTtg: number;
+  actualState: number;
+  workPriority: number;
 
+  changeCo: number;
+  changeGvs: number;
+  oldValueCo: number;
+  oldValueGvs: number;
+  interval: any;
 
 
   constructor(
@@ -41,9 +52,19 @@ export class BioUniversalComponent implements OnInit {
     this.currentUse = 0;
     this.currentPow = 0;
     this.currentTtg = 0;
+    this.actualState = 0;
+    this.workPriority = 0;
+
+    this.deviceNumber = 0;
+
+    this.changeCo = 0;
+    this.changeGvs = 0;
+    this.oldValueCo = 0;
+    this.oldValueGvs = 0;
+
     this.device = new class implements BaseDeviceModel {
       autoWeekly: any;
-      country :any;
+      country: any;
       data: any;
       dataChangedByUser: any;
       devId: any;
@@ -67,26 +88,61 @@ export class BioUniversalComponent implements OnInit {
       removeDate: any;
       timezone: any;
     };
-    // this.isWaitingBtn = false;
-    // this.previousData = this.device;
-    // this.minTemperature = 40;
-    // this.maxTemperature = 90;
-    // this.arrayOfPlaces = StaticData.Places;
-    // this.arrayOfDeviceTypes = StaticData.DeviceTypesInfo;
-    //
-    // this.onMouseUpBind = this.onMouseUp.bind(this);
-    // document.body.addEventListener('mouseup', this.onMouseUpBind, true);
-    // this.onMouseDownBind = this.onMouseDown.bind(this);
-    // document.body.addEventListener('mousedown', this.onMouseDownBind, true);
+
+
   }
 
-  // get isDataPresent() {
-  //   if (this.device.data) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+
+  inputControl = new FormGroup({
+    co: new FormControl(null, [
+      Validators.required,
+      Validators.max(90),
+      Validators.min(40)
+    ]),
+    gvs: new FormControl(null, [
+      Validators.required,
+      Validators.max(90),
+      Validators.min(40)
+    ])
+  });
+
+  growCo() {
+    if (this.changeCo < 90) {
+      if (this.changeCo < 40) {
+        this.changeCo = 39;
+      }
+      this.changeCo++;
+
+    }
+  }
+
+  reduceCo() {
+    if (this.changeCo > 40 || !this.changeCo) {
+      if (this.changeCo > 90 || !this.changeCo) {
+        this.changeCo = 91;
+      }
+      this.changeCo--;
+    }
+  }
+
+  growGvs() {
+    if (this.changeGvs < 90) {
+      if (this.changeGvs < 40) {
+        this.changeGvs = 39;
+      }
+      this.changeGvs++;
+    }
+  }
+
+  reduceGvs() {
+    if (this.changeGvs > 40 || !this.changeGvs) {
+      if (this.changeGvs > 90 || !this.changeGvs) {
+        this.changeGvs = 91;
+      }
+      this.changeGvs--;
+    }
+  }
+
 
   openDialog() {
     const dialogRef = this.dialog.open(DeviceSettingsComponent, {
@@ -103,82 +159,77 @@ export class BioUniversalComponent implements OnInit {
   }
 
   ngOnInit() {
+    let devices = JSON.parse(localStorage.getItem('devices') || 'null');
+    for (let i = 0; i < devices.length; i++) {
+      if (devices[i].id == this.device.id) {
+        this.deviceNumber = i;
+      }
+    }
     this.deviceName = this.device.name;
     this.isOnline = !this.device.isOnline;
-    this.currentCo = this.device.data.data.CENTRAL_HEATING_TEMPERATURE
-    this.currentGvs = this.device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE
-    this.currentUse = 0;
+    this.currentCo = this.device.data.data.CENTRAL_HEATING_TEMPERATURE;
+    this.currentGvs = this.device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
+    this.currentUse = this.device.data.data.FUEL_AMOUNT;
     this.currentPow = this.device.data.data.WORKING_POWER_IN_PERCENT;
-    this.currentTtg = 0;
+    this.currentTtg = this.device.data.data.OPTICAL_SENSOR_VALUE;
+    this.actualState = this.device.data.data.ACTUAL_STATE;
+    this.workPriority = this.device.data.data.WORK_PRIORITY;
 
-    // if (!this.device.data) {
-    //   return;
-    // }
-    // if (this.device.removeDate) {
-    //   this.isRemoved = true;
-    //   this.startCountdown(this.device.removeDate);
-    // }
-    // this.name = this.device['name'];
-    //
-    // if (this.device['deviceInfoDto']) {
-    //
-    //   const found = this.arrayOfPlaces.find((item: Place) => item.value === this.device['deviceInfoDto'].houseType);
-    //   if (found) {
-    //     this.houseType = found.name;
-    //   }
-    // }
-    // for (let i = 0; i < this.arrayOfDeviceTypes.length; i++) {
-    //   if (this.device['deviceType']) {
-    //     if (this.arrayOfDeviceTypes[i].value === this.device['deviceType']) {
-    //       this.deviceType = this.arrayOfDeviceTypes[i].name;
-    //       this.deviceTypeToShow = i;
-    //     }
-    //   }
-    // }
-    // this.rangeTemperature1 = this.device['data'].data.CENTRAL_HEATING_TEMPERATURE;
-    // this.rangeTemperature2 = this.device['data'].data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
-    //
-    // this.currentTemperature1 = this.device['data'].data.EXTERNAL_CENTRAL_HEATING_TEMPERATURE;
-    // this.currentTemperature2 = this.device['data'].data.EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
-    // this.opticalSensor = this.device['data'].data.OPTICAL_SENSOR_VALUE;
-    // this.actualState = this.device['data'].data.ACTUAL_STATE;
-    //
-    // this.actualStateSwitch = this.device['deviceState'] === 'START';
-    //
-    // this.workingPower = this.device['data'].data.WORKING_POWER_IN_PERCENT;
-    // this.sensorType = this.device['data'].data.SENSOR_TYPE;
-    // this.error = this.device['data'].data.ACTUAL_ERROR;
-    // this.workPriority = this.device['data'].data.WORK_PRIORITY;
-    // this.usedFuel = this.device['data'].data.FUEL_AMOUNT;
-    //
-    // this.oldRangeTemperature1 = this.currentTemperature1;
-    // this.oldRangeTemperature2 = this.currentTemperature2;
+
+    this.changeCo = this.device.data.data.EXTERNAL_CENTRAL_HEATING_TEMPERATURE;
+    this.changeGvs = this.device.data.data.EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
+    this.oldValueCo = this.changeCo;
+    this.oldValueGvs = this.changeGvs;
+
+    this.interval = setInterval(() => {
+      let device = JSON.parse(localStorage.getItem('devices') || 'null')[this.deviceNumber];
+      this.isOnline = !device.isOnline;
+      this.currentCo = device.data.data.CENTRAL_HEATING_TEMPERATURE;
+      this.currentGvs = device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
+      this.currentUse = device.data.data.FUEL_AMOUNT;
+      this.currentPow = device.data.data.WORKING_POWER_IN_PERCENT;
+      this.currentTtg = device.data.data.OPTICAL_SENSOR_VALUE;
+      this.actualState = device.data.data.ACTUAL_STATE;
+      this.workPriority = device.data.data.WORK_PRIORITY;
+
+
+      if (this.oldValueCo !== this.changeCo) {
+        const dto = {
+          data: {EXTERNAL_CENTRAL_HEATING_TEMPERATURE: this.changeCo},
+          id: this.device.id
+        };
+        this.putChangeData(dto);
+        this.oldValueCo = this.changeCo;
+      } else if (this.oldValueGvs !== this.changeGvs) {
+        const dto = {
+          data: {EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE: this.changeGvs},
+          id: this.device.id
+        };
+        this.putChangeData(dto);
+        this.oldValueGvs = this.changeGvs;
+      }
+    }, 1000)
+
+
   }
 
-  @HostListener('window:touchend')
-  onMouseUp() {
-    // this.service.blockFullRefresh = false;
-    // if (this.oldRangeTemperature1 !== this.currentTemperature1) {
-    //   const dto = {
-    //     data: {EXTERNAL_CENTRAL_HEATING_TEMPERATURE: this.currentTemperature1},
-    //     id: this.device.id
-    //   };
-    //   this.putChangeData(dto);
-    //   this.oldRangeTemperature1 = this.currentTemperature1;
-    // } else if (this.oldRangeTemperature2 !== this.currentTemperature2) {
-    //   const dto = {
-    //     data: {EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE: this.currentTemperature2},
-    //     id: this.device.id
-    //   };
-    //   this.putChangeData(dto);
-    //   this.oldRangeTemperature2 = this.currentTemperature2;
-    // } else if (this.service.needFullRefresh) {
-    //   this.service.getDevices();
-    // }
+  ngOnDestroy() {
+    if (this.interval) clearInterval(this.interval)
   }
 
-  onMouseDown() {
-    this.service.blockFullRefresh = true;
+  putChangeData(data: any) {
+    if (this.device.isOnline && this.device.permission === Permission.WRITE) {
+      console.log('Changed data:' + JSON.stringify(data))
+      this.service.changeDeviceState(
+        data,
+        this.device.id,
+        () => {},
+        (error: Error) => console.log(error),
+        'type1');
+    }
   }
+
+
+
 
 }

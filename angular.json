@@ -27,12 +27,12 @@
               "src/assets",
               "src/img",
               {
-                "glob" : "dark.jpg",
+                "glob" : "dark.avif",
                 "input": "src/img/",
                 "output": "/"
               },
               {
-                "glob" : "light.jpg",
+                "glob" : "light.avif",
                 "input": "src/img/",
                 "output": "/"
               },

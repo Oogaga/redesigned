@@ -70,17 +70,11 @@
 html {
   height: 100%;
   box-sizing: border-box;
-  overflow: visible;
   -ms-overflow-style: none; /* IE 10+ */
   scrollbar-width: none; /* Firefox */
 }
 
-#modal {
-  background: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(50px) !important;
-  border-radius: 0 !important;
 
-}
 
 *, *::before, *::after {
   box-sizing: inherit;
@@ -92,20 +86,25 @@ body, html {
 
 body {
   margin: 0;
-  overflow: visible;
+  overflow: auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-app-root {
-  min-width: 100%;
-  min-height: 100vh;
+.button_common {
+  border: none;
+  background: none;
 }
 
-app-home {
-  min-width: 100%;
+.back {
+  height: 35px;
   display: flex;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
+  color: #525252;
 }
+
 
 
 @media only screen and (max-device-width: 480px) {

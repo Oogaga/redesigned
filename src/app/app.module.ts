@@ -40,6 +40,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import { DevicesComponent } from './components/devices/devices.component';
 import {TokenInterceptor} from "./services/token-interceptor";
 import { BaseItemComponent } from './components/devices/base-item/base-item.component';
+import {MatRippleModule} from "@angular/material/core";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -88,7 +89,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatExpansionModule,
     MatDialogModule,
     MatStepperModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatRippleModule
   ],
   providers: [
     AuthGuard,

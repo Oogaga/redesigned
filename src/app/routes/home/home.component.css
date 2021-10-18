@@ -1,21 +1,31 @@
 #body_home {
-  background-image: url("src/img/light.jpg");
+  background-image: url("src/img/light.avif");
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  min-height: 106vh;
+  min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  overflow: hidden;
-}
-
-.home {
   overflow: visible;
 }
+
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+
+::ng-deep.mat-ripple {
+  border-radius: 10px;
+}
+
 
 /*.background-img {*/
 /*  background-attachment: fixed;*/
