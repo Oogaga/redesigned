@@ -24,9 +24,7 @@ export class AddingDeviceComponent {
     Validators.required,
     Validators.pattern(RegExpData.DEVICE_ID)])
 
-  deviceName = new FormGroup({
-    name: new FormControl(null, Validators.required)
-  });
+  deviceName = new FormControl(null, [Validators.required]);
   isBadRequestResult: boolean;
   deviceRegistrationDto: DeviceRegistrationDTO;
 
@@ -58,7 +56,8 @@ export class AddingDeviceComponent {
       return;
     }
     this.isBadRequestResult = false;
-    this.service.getIsDeviceReadyStatus(this.device_id.value.deviceId).subscribe((result) => {
+    console.log(this.device_id.value)
+    this.service.getIsDeviceReadyStatus(this.device_id.value).subscribe((result) => {
         this.goForward(stepper);
       }
       , (error2) => {
@@ -71,8 +70,8 @@ export class AddingDeviceComponent {
     if (!this.deviceName.valid) {
       return;
     }
-    this.deviceRegistrationDto.deviceId = this.device_id.value.deviceId;
-    this.deviceRegistrationDto.name = this.deviceName.value.name;
+    this.deviceRegistrationDto.deviceId = this.device_id.value;
+    this.deviceRegistrationDto.name = this.deviceName.value;
   }
 
   registrationNewDevice() {

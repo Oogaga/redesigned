@@ -16,24 +16,27 @@
   #stepper>
   <mat-step>
     <section class="one-step">
-      <div  class="stepper_tips" style="margin-bottom: 21px">Выполните подключение устройства к
+      <div class="stepper_tips" style="margin-bottom: 21px">Выполните подключение устройства к
         сети по видеоинструкции
       </div>
 
-      <button
-        mat-button
-        style="font-family: 'Segoe UI Bold'; color: #004070; font-size: 18px"
-        class="downloads">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15 17.5L14.2929 18.2071L15 18.9142L15.7071 18.2071L15 17.5ZM16 6.25C16 5.69771 15.5523 5.25 15 5.25C14.4477 5.25 14 5.69771 14 6.25L16 6.25ZM8.04289 11.9571L14.2929 18.2071L15.7071 16.7929L9.45711 10.5429L8.04289 11.9571ZM15.7071 18.2071L21.9571 11.9571L20.5429 10.5429L14.2929 16.7929L15.7071 18.2071ZM16 17.5L16 6.25L14 6.25L14 17.5L16 17.5Z"
-            fill="#004070"/>
-          <path
-            d="M6.25 20L6.25 21.25C6.25 22.6307 7.36929 23.75 8.75 23.75L21.25 23.75C22.6307 23.75 23.75 22.6307 23.75 21.25V20"
-            stroke="#004070" stroke-width="2"/>
-        </svg>
-        Загрузить видео
-      </button>
+      <a href="https://r1---sn-xuu-ig3l.googlevideo.com/videoplayback?expire=1634673954&ei=wtBuYZOAMJvVx_APg4-A6AI&ip=85.90.198.2&id=o-AMLGrNa5vIMxg5Oclf6zbbXFSZhBzt6dCpEUDyIRVkAi&itag=22&source=youtube&requiressl=yes&mh=Yn&mm=31%2C29&mn=sn-xuu-ig3l%2Csn-jvhnu5g-n8vk&ms=au%2Crdu&mv=m&mvi=1&pcm2cms=yes&pl=23&initcwndbps=817500&vprv=1&mime=video%2Fmp4&ns=bYvkn--ks-F_x1WX_pBaehUG&ratebypass=yes&dur=470.691&lmt=1521060875444524&mt=1634652083&fvip=6&fexp=24001373%2C24007246&c=WEB&n=z_zu90RmSHNI-zlMZJG&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAMDxwNN89bbbJFYVnTgEkpYSMzBoMVhwPK3pGbANlM1cAiBkkMzKiTGMRVrB3D4xN1cCr9JXgLGNdfb3BWnxNy17hA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgAaFSYc_E2pGFN5SfGo98S5IfSf1Df2zjx6b5w0oqlFYCIQCUKt0GoO9V4FkZK9-2gdhM4DW2kGCzjrBmWOlvZwAREw%3D%3D&title=Bio%20Universal%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D1%83%20%D0%B4%D0%BB%D1%8F%20%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0">
+        <button
+          mat-button
+          style="font-family: 'Segoe UI Bold'; color: #004070; font-size: 18px"
+
+          class="downloads">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15 17.5L14.2929 18.2071L15 18.9142L15.7071 18.2071L15 17.5ZM16 6.25C16 5.69771 15.5523 5.25 15 5.25C14.4477 5.25 14 5.69771 14 6.25L16 6.25ZM8.04289 11.9571L14.2929 18.2071L15.7071 16.7929L9.45711 10.5429L8.04289 11.9571ZM15.7071 18.2071L21.9571 11.9571L20.5429 10.5429L14.2929 16.7929L15.7071 18.2071ZM16 17.5L16 6.25L14 6.25L14 17.5L16 17.5Z"
+              fill="#004070"/>
+            <path
+              d="M6.25 20L6.25 21.25C6.25 22.6307 7.36929 23.75 8.75 23.75L21.25 23.75C22.6307 23.75 23.75 22.6307 23.75 21.25V20"
+              stroke="#004070" stroke-width="2"/>
+          </svg>
+          Загрузить видео
+        </button>
+      </a>
     </section>
     <div class="navigate-buttons" style="justify-content: flex-end">
       <button mat-button
@@ -43,17 +46,21 @@
     </div>
   </mat-step>
   <mat-step>
-    <form >
+    <form>
       <section class="one-step">
         <img
-          style="max-width: 100%; max-height: 40%"
+          style="max-width: 100%; max-height: 40%; margin-top: 100px"
           src="wifiid.jpg">
-        <div class="stepper_tips">Введите ID
+        <div style="margin-top: 35px" class="stepper_tips">Введите ID
           устройства
         </div>
         <input matInput [formControl]="device_id">
-        <mat-error *ngIf="(device_id.hasError('required') && device_id.touched ) || device_id.hasError('pattern')">Введите верный ID</mat-error>
-        <mat-error *ngIf="isBadRequestResult">Не найден в кеше ожидания</mat-error>
+        <div class="errors">
+          <mat-error *ngIf="isBadRequestResult">Не найден в кеше ожидания</mat-error>
+          <mat-error *ngIf="(device_id.hasError('required') && device_id.touched ) || device_id.hasError('pattern')">
+            Введите верный ID
+          </mat-error>
+        </div>
       </section>
       <div class="navigate-buttons">
         <button mat-button
@@ -72,7 +79,12 @@
     <section class="one-step">
       <div style="font-family: 'Segoe UI Bold'; font-size: 18px; margin-top: 35px; opacity: 75%">Дайте имя устройству
       </div>
-      <input matInput>
+      <input matInput [formControl]="deviceName">
+      <div class="errors">
+        <mat-error *ngIf="deviceName.hasError('required') && deviceName.touched">
+          Введите верный ID
+        </mat-error>
+      </div>
     </section>
     <div class="navigate-buttons">
       <button mat-button
@@ -81,7 +93,7 @@
       </button>
       <button mat-button
               class="navigate-button"
-              [disabled]="false"
+              [disabled]="deviceName.invalid"
               (click)="createDto()"
               matStepperNext>Далее
       </button>
@@ -94,7 +106,7 @@
           <div class="title_info">Имя устройства</div>
           <div class="value_info">{{this.deviceRegistrationDto.name}}</div>
         </section>
-        <section>
+        <section style="margin-top: 55px">
           <div class="title_info">ID устройства</div>
           <div class="value_info">{{this.deviceRegistrationDto.deviceId}}</div>
         </section>
@@ -108,7 +120,7 @@
       <button mat-button
               class="navigate-button"
               mat-dialog-close
-              (click)="registrationNewDevice()">Готово!
+              (click)="registrationNewDevice()">Соханить!
       </button>
     </div>
   </mat-step>

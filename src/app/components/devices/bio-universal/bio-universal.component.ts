@@ -93,18 +93,17 @@ export class BioUniversalComponent implements OnInit {
   }
 
 
-  inputControl = new FormGroup({
-    co: new FormControl(null, [
-      Validators.required,
-      Validators.max(90),
-      Validators.min(40)
-    ]),
-    gvs: new FormControl(null, [
-      Validators.required,
-      Validators.max(90),
-      Validators.min(40)
-    ])
-  });
+  inputControlCo = new FormControl(null, [
+    Validators.required,
+    Validators.max(90),
+    Validators.min(40)
+  ]);
+
+  inputControlGvs = new FormControl(null, [
+    Validators.required,
+    Validators.max(90),
+    Validators.min(40)
+  ]);
 
   growCo() {
     if (this.changeCo < 90) {
@@ -193,14 +192,14 @@ export class BioUniversalComponent implements OnInit {
       this.workPriority = device.data.data.WORK_PRIORITY;
 
 
-      if (this.oldValueCo !== this.changeCo) {
+      if ((this.oldValueCo !== this.changeCo)&&this.inputControlCo.valid) {
         const dto = {
           data: {EXTERNAL_CENTRAL_HEATING_TEMPERATURE: this.changeCo},
           id: this.device.id
         };
         this.putChangeData(dto);
         this.oldValueCo = this.changeCo;
-      } else if (this.oldValueGvs !== this.changeGvs) {
+      } else if ((this.oldValueGvs !== this.changeGvs)&&this.inputControlGvs.valid) {
         const dto = {
           data: {EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE: this.changeGvs},
           id: this.device.id
@@ -223,13 +222,12 @@ export class BioUniversalComponent implements OnInit {
       this.service.changeDeviceState(
         data,
         this.device.id,
-        () => {},
+        () => {
+        },
         (error: Error) => console.log(error),
         'type1');
     }
   }
-
-
 
 
 }

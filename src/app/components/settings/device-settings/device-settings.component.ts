@@ -90,6 +90,7 @@ export class DeviceSettingsComponent implements OnInit {
   notPresentData25 = false;
   notPresentData26 = false;
 
+
   constructor(
     private service: DevicesService,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -139,6 +140,84 @@ export class DeviceSettingsComponent implements OnInit {
     this.range21 = [];
     this.range22 = 0;
   }
+
+  options_1Pers_100: Options = {
+    floor: 1,
+    ceil: 100,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '%'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_0Sec_100: Options = {
+    floor: 0,
+    ceil: 100,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'сек.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_1Temp_20: Options = {
+    floor: 1,
+    ceil: 20,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '°С'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_1Min_20: Options = {
+    floor: 1,
+    ceil: 20,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'мин.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_1Sec_250: Options = {
+    floor: 1,
+    ceil: 250,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'сек.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_0Sec_120: Options = {
+    floor: 0,
+    ceil: 120,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'сек.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_30Temp_80: Options = {
+    floor: 30,
+    ceil: 80,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '°С'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_0Temp_10: Options = {
+    floor: 0,
+    ceil: 10,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '°С'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_5Pers_100: Options = {
+    floor: 5,
+    ceil: 100,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '%'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_0Temp_20: Options = {
+    floor: 0,
+    ceil: 20,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '°С'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_50Sec_1200: Options = {
+    floor: 50,
+    ceil: 1200,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'сек.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
 
   setTimeZone() {
     const temp = StaticData.TimeZones.find((timezone) => timezone.value === this.device.timezone);
@@ -199,8 +278,26 @@ export class DeviceSettingsComponent implements OnInit {
     this.deviceName = this.device.name;
     this.deviceIp = this.device.ip;
 
-    if (this.device['data'].data.FAN_POWER_DURING_IGNITION != null && this.device['data'].data.FAN_POWER_DURING_IGNITION_MAX != null) {
-      this.range = [this.device['data'].data.FAN_POWER_DURING_IGNITION, this.device['data'].data.FAN_POWER_DURING_IGNITION_MAX];
+    // ___________________________________________________________________________________________________________________________________Костыль
+    let slider = document.getElementsByClassName('ngx-slider') as HTMLCollectionOf<HTMLElement>
+    setTimeout(()=>{
+      if(slider.length>0) {
+        for (let i = 0; i < slider.length; i++) {
+          slider[i].style.width = "101%";
+        }
+      }
+    } , 500);
+    setTimeout(()=>{
+      if(slider.length>0) {
+        for (let i = 0; i < slider.length; i++) {
+          slider[i].style.width = "100%";
+        }
+      }
+    } , 1000)
+    // ___________________________________________________________________________________________________________________________________Костыль
+
+    if (this.device.data.data.FAN_POWER_DURING_IGNITION != null && this.device.data.data.FAN_POWER_DURING_IGNITION_MAX != null) {
+      this.range = [this.device.data.data.FAN_POWER_DURING_IGNITION, this.device.data.data.FAN_POWER_DURING_IGNITION_MAX];
     } else {
       this.range = [0, 1];
       this.notPresentData = true;
@@ -411,8 +508,5 @@ export class DeviceSettingsComponent implements OnInit {
       this.ONE_SECOND_FOR_COUNTER);
   }
 
-
-  value: number = 40;
-  highValue: number = 50;
 
 }

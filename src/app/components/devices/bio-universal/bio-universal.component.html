@@ -204,7 +204,7 @@
         </div>
       </div>
     </div>
-    <form [formGroup]="inputControl" class="bott-info">
+    <form class="bott-info">
       <div class="change-temp-card">
         <div class="header-bot-card">ЦО</div>
         <section class="value-card">
@@ -234,8 +234,8 @@
               max="90"
               min="40"
               minlength="2"
-              formControlName="co"
-              [ngClass]="{'input-error': inputControl.invalid}"
+              [formControl]="inputControlCo"
+              [ngClass]="{'input-error': inputControlCo.invalid}"
               [(ngModel)]="changeCo"
               class="input-temperature"
               matInput>
@@ -277,8 +277,8 @@
               max="90"
               min="40"
               minlength="2"
-              formControlName="gvs"
-              [ngClass]="{'input-error': inputControl.invalid}"
+              [formControl]="inputControlGvs"
+              [ngClass]="{'input-error': inputControlGvs.invalid}"
               [(ngModel)]="changeGvs"
               class="input-temperature"
               matInput>
