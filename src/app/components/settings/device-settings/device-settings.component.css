@@ -53,14 +53,14 @@ mat-dialog-actions {
 }
 
 .input_small {
-  width: 30px;
-  height: 20px;
+  width: 50px;
+  height: 25px;
   background: rgba(255, 255, 255, 0.38);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   border-radius: 5px;
   font-family: "Roboto Regular";
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
 }
 
@@ -89,34 +89,35 @@ mat-dialog-actions {
 /*}*/
 
 .ngx-slider {
-  min-width: 250px!important;
+  min-width: 250px !important;
 }
 
-::ng-deep.ngx-slider .ngx-slider-pointer:hover:after{
-  display: none!important;
+::ng-deep.ngx-slider .ngx-slider-pointer:hover:after {
+  display: none !important;
 }
 
-::ng-deep.ngx-slider .ngx-slider-pointer:after{
-  display: none!important;
+::ng-deep.ngx-slider .ngx-slider-pointer:after {
+  display: none !important;
 }
 
-::ng-deep.ngx-slider .ngx-slider-pointer{
-  border: 1px solid #A6ACAF ;
-  top: -15px!important;
+::ng-deep.ngx-slider .ngx-slider-pointer {
+  border: 1px solid #A6ACAF;
+  top: -15px !important;
 }
 
-::ng-deep.ngx-slider .ngx-slider-bar{
-  height: 2px!important;
-  background: #B6B6B6!important;
+::ng-deep.ngx-slider .ngx-slider-bar {
+  height: 2px !important;
+  background: #B6B6B6 !important;
 }
 
 ::ng-deep.ngx-slider .ngx-slider-selection {
-  background: #1381FE!important;
+  background: #1381FE !important;
 }
 
 
 .slider_box {
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .px30 {
@@ -134,22 +135,30 @@ mat-dialog-actions {
   align-items: center;
 }
 
-svg{
+svg {
   height: 100%;
   width: 100%;
 }
 
+.description_settings {
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+  color: #525252;
+}
 
-/*.configs {*/
-/*  width: 100%;*/
-/*  min-height: calc(80vh - 40px);*/
-/*  border: 1px solid rgba(255, 255, 255, 0.3);*/
-/*  border-radius: 14px;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*  justify-content: space-around;*/
-/*}*/
+.inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.configs {
+  min-width: 100%;
+  min-height: calc(80vh - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .configs1 {
   width: 100%;
@@ -159,3 +168,58 @@ svg{
   align-items: center;
   justify-content: space-around;
 }
+
+.description{
+  color: #9D9D9D;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.input_settings{
+  width: 290px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
+  text-align: center;
+  color: #525252;
+}
+
+.choose {
+  width: 290px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
+  color: #525252;
+}
+
+.delete_button {
+  width: 237px;
+  height: 40px;
+  border-radius: 10px;
+  border:solid 1px transparent;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(180deg, #FD5757, #9B0505);
+}
+.delete_text {
+  font-family: "Montserrat SemiBold";
+  font-size: 14px;
+  background: linear-gradient(180deg, #FD5757, #9B0505);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+

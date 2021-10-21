@@ -84,6 +84,8 @@ body, html {
   width: 100%;
 }
 
+input {outline:none;}
+
 body {
   margin: 0;
   overflow: auto;
@@ -103,6 +105,12 @@ body {
   font-family: "Montserrat SemiBold";
   font-size: 16px;
   color: #525252;
+}
+
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 

@@ -41,6 +41,8 @@ import { DevicesComponent } from './components/devices/devices.component';
 import {TokenInterceptor} from "./services/token-interceptor";
 import { BaseItemComponent } from './components/devices/base-item/base-item.component';
 import {MatRippleModule} from "@angular/material/core";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSelectModule} from "@angular/material/select";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -90,7 +92,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     MatStepperModule,
     NgxSliderModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [
     AuthGuard,

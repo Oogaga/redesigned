@@ -164,21 +164,23 @@
 .small-card-info {
   width: 111px;
   height: 134px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid #E8E8E8;
   border-radius: 10px;
 }
 
 .change-temp-card {
   width: 345px;
   height: 96px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
 }
 
 .big-card-info {
   width: 345px;
   height: 80px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid #DDDDDD;
   border-radius: 10px;
 }
 

@@ -6,6 +6,9 @@ import {DevicesService} from "../../../services/devices.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {StaticData} from "../../../static/static-data";
 import * as moment from "moment";
+import {ThemePalette} from "@angular/material/core";
+import {Permission} from "../../../static/enums/permissionEnum.model";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-device-settings',
@@ -22,18 +25,23 @@ export class DeviceSettingsComponent implements OnInit {
   timezone: number;
   workPriority;
   range: number[];
+  range21: number[];
   range1: number;
   range2: number;
   range3: number;
+  range22: number;
+  // _____________________________Шнеки
   range4: number;
   range5: number;
   range6: number;
   range7: number;
   range8: number;
+//____________________________________Настройка вентиляторов
   range9: number[];
   range10: number;
   range11: number;
   range12: number[];
+  //_________________________________________
   range13: number;
   range14: number;
   augerWorkMode: boolean;
@@ -45,8 +53,6 @@ export class DeviceSettingsComponent implements OnInit {
   range18: number;
   range19: number;
   range20: number;
-  range21: number[];
-  range22: number;
   deviceId: string;
   deviceName: string;
   deviceIp: string;
@@ -89,7 +95,7 @@ export class DeviceSettingsComponent implements OnInit {
   notPresentData24 = false;
   notPresentData25 = false;
   notPresentData26 = false;
-
+  color: ThemePalette = 'primary';
 
   constructor(
     private service: DevicesService,
@@ -148,6 +154,13 @@ export class DeviceSettingsComponent implements OnInit {
     translate: (value: number): string => {return value + '%'},
     getPointerColor: (value: number): string => {return '#F0F6F9'}
   };
+  options_0Pers_100: Options = {
+    floor: 0,
+    ceil: 100,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + '%'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
   options_0Sec_100: Options = {
     floor: 0,
     ceil: 100,
@@ -172,6 +185,13 @@ export class DeviceSettingsComponent implements OnInit {
   options_1Sec_250: Options = {
     floor: 1,
     ceil: 250,
+    showSelectionBar: true,
+    translate: (value: number): string => {return value + 'сек.'},
+    getPointerColor: (value: number): string => {return '#F0F6F9'}
+  };
+  options_1Sec_100: Options = {
+    floor: 1,
+    ceil: 100,
     showSelectionBar: true,
     translate: (value: number): string => {return value + 'сек.'},
     getPointerColor: (value: number): string => {return '#F0F6F9'}
@@ -506,6 +526,19 @@ export class DeviceSettingsComponent implements OnInit {
         this.seconds = this.removeDate.seconds();
       },
       this.ONE_SECOND_FOR_COUNTER);
+  }
+
+  deleteDevice() {
+    if (this.device.isOnline && this.device.permission === Permission.WRITE) {
+      const deviceId = this.device.id;
+      this.service.removeDevice(deviceId).pipe(switchMap((data) => this.service.getRemoveDate(deviceId)))
+        .subscribe((data: number) => {
+          if (data) {
+            this.isRemoved = true;
+            this.startCountdown(data);
+          }
+        });
+    }
   }
 
 
