@@ -253,31 +253,63 @@
   </mat-step>
 
   //________________________________________________________________________________Еженедельные настройки
-  <!--  <mat-step>-->
-  <!--    <section class="one-step">-->
-  <!--      <div class="navigate-buttons">-->
-  <!--        <button mat-icon-button-->
-  <!--                class="navigate-button"-->
-  <!--                matStepperPrevious>-->
-  <!--          <mat-icon>-->
-  <!--            <i class="material-icons-round px30">arrow_back_ios</i>-->
-  <!--          </mat-icon>-->
-  <!--        </button>-->
-  <!--        <div class="settings_label">Еженедельные настройки</div>-->
-  <!--        <button mat-icon-button-->
-  <!--                class="navigate-button"-->
-  <!--                matStepperNext>-->
-  <!--          <mat-icon>-->
-  <!--            <i class="material-icons-round px30">arrow_forward_ios</i>-->
-  <!--          </mat-icon>-->
-  <!--        </button>-->
-  <!--      </div>-->
-  <!--      <div class="configs">-->
+    <mat-step>
+      <section class="one-step">
+        <div class="navigate-buttons">
+          <button mat-icon-button
+                  class="navigate-button"
+                  matStepperPrevious>
+            <mat-icon>
+              <i class="material-icons-round px30">arrow_back_ios</i>
+            </mat-icon>
+          </button>
+          <div class="settings_label">Еженедельные настройки</div>
+          <button mat-icon-button
+                  class="navigate-button"
+                  matStepperNext>
+            <mat-icon>
+              <i class="material-icons-round px30">arrow_forward_ios</i>
+            </mat-icon>
+          </button>
+        </div>
+        <div class="configs">
 
+          <section>
+            <div class="weekly_description_state">Понедельник</div>
+            <mat-checkbox [(ngModel)]="weeklySettingsCheckBox" (change)="changeWeeklySettingsCheckBox()"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[0]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[1]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[2]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[3]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[4]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[5]"></mat-checkbox>
+          </section>
+          <section>
+            <button class="weekly_button">Понедельник</button>
+            <mat-checkbox [(ngModel)]="weeklyCheckbox[6]"></mat-checkbox>
+          </section>
 
-  <!--      </div>-->
-  <!--    </section>-->
-  <!--  </mat-step>-->
+        </div>
+      </section>
+    </mat-step>
 
   //_______________________________________________________+________________________Настройка розжига
   <mat-step>
@@ -678,7 +710,7 @@
                 class="navigate-button"
                 disabled>
           <mat-icon>
-            <i class="material-icons-round px30">arrow_forward_ios</i>
+            <i class="material-icons-round px30" style="color: #ccc">arrow_forward_ios</i>
           </mat-icon>
         </button>
       </div>
@@ -691,7 +723,11 @@
         <section style="height: 110px; width: 100%">
           <div class="description_settings">Изменение имени устройства</div>
           <div class="description">
-            <input class="input_settings" [(ngModel)]="deviceName">
+            <mat-form-field class="input_settings" appearance="fill">
+              <input matInput [(ngModel)]="deviceName">
+              <button matSuffix mat-icon-button (click)="changeName()" >
+                <mat-icon class="material-icons-round">done</mat-icon></button>
+            </mat-form-field>
           </div>
         </section>
         <section style="height: 110px; width: 100%">
@@ -701,23 +737,31 @@
         <section style="height: 110px; width: 100%">
           <div class="description_settings">Установка часового пояса для устройства</div>
           <div class="description">
-            <select class="choose" [(ngModel)]="timezone">
+            <select class="choose" [(ngModel)]="timezone"  (change)="changeTimeZone()">
               <option *ngFor="let timeZone of arrayOfTimeZone" [value]="timeZone.value">{{timeZone.name}}</option>
             </select>
           </div>
         </section>
 
-        <button mat-ripple class="delete_button"><label class="delete_text">Удалить устройство</label></button>
+        <section style="height: 110px; width: 100%" class="box">
+          <div style="display: flex; width: 100%; justify-content: space-between; height: 30px">
+            <div class="description_settings">
+              Хочу удалить устройство
+            </div>
+            <mat-checkbox [color]="warn" [(ngModel)]="accept" [(indeterminate)]="indeterminate"></mat-checkbox>
+          </div>
+          <button
+            [disabled]="accept"
+            mat-ripple
+            [ngClass]="{'delete_button_disabled': !accept}"
+            class="delete_button"
+            (click)="deleteDevice()"><label [ngClass]="{'delete_text_disabled': !accept}" class="delete_text">Удалить
+            устройство</label></button>
+        </section>
 
       </div>
     </section>
   </mat-step>
-
-<!--  <mat-select [(value)]="timezone">-->
-<!--    <mat-option *ngFor="let timeZone of arrayOfTimeZone" [value]="timeZone.value">-->
-<!--      {{timeZone.name}}-->
-<!--    </mat-option>-->
-<!--  </mat-select>-->
 
 </mat-stepper>
 

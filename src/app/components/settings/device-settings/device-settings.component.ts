@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { Options } from '@angular-slider/ngx-slider';
+import {Options} from '@angular-slider/ngx-slider';
 import {BaseDeviceModel} from "../../../models/base-device.model";
 import {TimeZone} from "../../../models/timezones.model";
 import {DevicesService} from "../../../services/devices.service";
@@ -56,7 +56,7 @@ export class DeviceSettingsComponent implements OnInit {
   deviceId: string;
   deviceName: string;
   deviceIp: string;
-  weekleySettingsCheckBox: boolean;
+  weeklySettingsCheckBox: boolean;
   isRemoved: boolean;
   removeDate: moment.Duration;
   intevalObj;
@@ -67,6 +67,7 @@ export class DeviceSettingsComponent implements OnInit {
   weather: any;
   count: number;
   week: any[];
+  weeklyCheckbox: boolean[];
   selectedDayIndex: number;
   notPresentData = false;
   notPresentData21 = false;
@@ -96,6 +97,9 @@ export class DeviceSettingsComponent implements OnInit {
   notPresentData25 = false;
   notPresentData26 = false;
   color: ThemePalette = 'primary';
+  warn: ThemePalette = 'warn';
+  indeterminate: boolean = true;
+  accept: boolean;
 
   constructor(
     private service: DevicesService,
@@ -120,7 +124,7 @@ export class DeviceSettingsComponent implements OnInit {
     this.deviceId = '';
     this.deviceIp = '';
     this.deviceName = '';
-    this.weekleySettingsCheckBox = false;
+    this.weeklySettingsCheckBox = false;
     this.isRemoved = false;
     this.range = [];
     this.range1 = 0;
@@ -145,98 +149,165 @@ export class DeviceSettingsComponent implements OnInit {
     this.range20 = 0;
     this.range21 = [];
     this.range22 = 0;
+    this.accept = false;
+    this.weeklyCheckbox = []
   }
 
   options_1Pers_100: Options = {
     floor: 1,
     ceil: 100,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '%'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '%'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_0Pers_100: Options = {
     floor: 0,
     ceil: 100,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '%'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '%'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_0Sec_100: Options = {
     floor: 0,
     ceil: 100,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'сек.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'сек.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_1Temp_20: Options = {
     floor: 1,
     ceil: 20,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '°С'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '°С'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_1Min_20: Options = {
     floor: 1,
     ceil: 20,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'мин.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'мин.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_1Sec_250: Options = {
     floor: 1,
     ceil: 250,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'сек.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'сек.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_1Sec_100: Options = {
     floor: 1,
     ceil: 100,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'сек.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'сек.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_0Sec_120: Options = {
     floor: 0,
     ceil: 120,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'сек.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'сек.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_30Temp_80: Options = {
     floor: 30,
     ceil: 80,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '°С'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '°С'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_0Temp_10: Options = {
     floor: 0,
     ceil: 10,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '°С'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '°С'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_5Pers_100: Options = {
     floor: 5,
     ceil: 100,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '%'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '%'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_0Temp_20: Options = {
     floor: 0,
     ceil: 20,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + '°С'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + '°С'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
   options_50Sec_1200: Options = {
     floor: 50,
     ceil: 1200,
     showSelectionBar: true,
-    translate: (value: number): string => {return value + 'сек.'},
-    getPointerColor: (value: number): string => {return '#F0F6F9'}
+    translate: (value: number): string => {
+      return value + 'сек.'
+    },
+    draggableRange: true,
+    getPointerColor: (value: number): string => {
+      return '#F0F6F9'
+    }
   };
 
   setTimeZone() {
@@ -257,9 +328,12 @@ export class DeviceSettingsComponent implements OnInit {
       this.week = StaticData.Week.map((dayName: any, dayIndex: any) => {
         const hoursOfDay = settings ? settings.filter((hour: any) => hour.dayOfWeek === dayIndex) : null;
         hoursOfDay.sort((a: any, b: any) => {
-          if (a.hourOfDay > b.hourOfDay) { return 1; }
-          if (a.hourOfDay < b.hourOfDay) { return -1; }
-          else return
+          if (a.hourOfDay > b.hourOfDay) {
+            return 1;
+          }
+          if (a.hourOfDay < b.hourOfDay) {
+            return -1;
+          } else return
         });
         const enable = Boolean(hoursOfDay) && hoursOfDay.some((hour: any) => hour.enabled);
         let data;
@@ -279,6 +353,7 @@ export class DeviceSettingsComponent implements OnInit {
       });
     });
   }
+
   private correctDayByDeviceTimezone(hour: any) {
     if (hour.hourOfDay < 0) {
       hour.dayOfWeek = hour.dayOfWeek === 0 ? 6 : hour.dayOfWeek -= 1;
@@ -300,20 +375,20 @@ export class DeviceSettingsComponent implements OnInit {
 
     // ___________________________________________________________________________________________________________________________________Костыль
     let slider = document.getElementsByClassName('ngx-slider') as HTMLCollectionOf<HTMLElement>
-    setTimeout(()=>{
-      if(slider.length>0) {
+    setTimeout(() => {
+      if (slider.length > 0) {
         for (let i = 0; i < slider.length; i++) {
           slider[i].style.width = "101%";
         }
       }
-    } , 500);
-    setTimeout(()=>{
-      if(slider.length>0) {
+    }, 500);
+    setTimeout(() => {
+      if (slider.length > 0) {
         for (let i = 0; i < slider.length; i++) {
           slider[i].style.width = "100%";
         }
       }
-    } , 1000)
+    }, 1000)
     // ___________________________________________________________________________________________________________________________________Костыль
 
     if (this.device.data.data.FAN_POWER_DURING_IGNITION != null && this.device.data.data.FAN_POWER_DURING_IGNITION_MAX != null) {
@@ -490,7 +565,7 @@ export class DeviceSettingsComponent implements OnInit {
       this.notPresentData20 = true;
     }
 
-    this.weekleySettingsCheckBox = this.device.autoWeekly;
+    this.weeklySettingsCheckBox = this.device.autoWeekly;
 
     if (this.device['data'].data.IGNITION_FAN_EXTERN_POWER_MIN != null && this.device['data'].data.IGNITION_FAN_EXTERN_POWER_MAX != null) {
       this.range21 = [this.device['data'].data.IGNITION_FAN_EXTERN_POWER_MIN, this.device['data'].data.IGNITION_FAN_EXTERN_POWER_MAX];
@@ -541,5 +616,22 @@ export class DeviceSettingsComponent implements OnInit {
     }
   }
 
+  changeName() {
+    if ((this.deviceName !== '') && (this.deviceName !== this.device.name)) {
+      this.service.changeNameDevice(this.deviceName, this.device.id).subscribe();
+    }
+  }
+
+  changeWeeklySettingsCheckBox() {
+    this.service.isShowWeekleySettings.next(this.weeklySettingsCheckBox);
+  }
+
+  changeTimeZone() {
+    const dto = {
+      timezone: this.timezone,
+      devId: this.device.devId
+    };
+    this.service.changeTimeZone(dto, this.device.id).subscribe((data: any) => {}, (error) => {console.log(error)});
+  }
 
 }

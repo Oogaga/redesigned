@@ -43,6 +43,7 @@ import { BaseItemComponent } from './components/devices/base-item/base-item.comp
 import {MatRippleModule} from "@angular/material/core";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSelectModule} from "@angular/material/select";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -69,33 +70,34 @@ export function HttpLoaderFactory(http: HttpClient) {
     DevicesComponent,
     BaseItemComponent
   ],
-  imports: [
-    BrowserModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatMenuModule,
-    MatExpansionModule,
-    MatDialogModule,
-    MatStepperModule,
-    NgxSliderModule,
-    MatRippleModule,
-    MatSlideToggleModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatMenuModule,
+        MatExpansionModule,
+        MatDialogModule,
+        MatStepperModule,
+        NgxSliderModule,
+        MatRippleModule,
+        MatSlideToggleModule,
+        MatSelectModule,
+        MatCheckboxModule
+    ],
   providers: [
     AuthGuard,
     {

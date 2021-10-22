@@ -12,6 +12,15 @@
   border-radius: 0;
 }
 
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0!important;
+  align-items: center!important;
+}
+
 mat-ripple {
   border-radius: 10px !important;
 }
@@ -114,6 +123,12 @@ mat-dialog-actions {
   background: #1381FE !important;
 }
 
+::ng-deep.ngx-slider .ngx-slider-bar-wrapper {
+  height: 0!important;
+  padding-top: 0!important;
+  margin-top: 0!important;
+}
+
 
 .slider_box {
   width: 100%;
@@ -123,6 +138,15 @@ mat-dialog-actions {
 .px30 {
   font-size: 30px;
   color: #525252;
+}
+
+.box {
+
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .button_priority {
@@ -214,6 +238,19 @@ svg {
   box-shadow: 2px 1000px 1px #fff inset;
   background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(180deg, #FD5757, #9B0505);
 }
+
+.delete_button_disabled {
+  background-image: none!important;
+  border: 1px solid #cccccc;
+}
+
+.delete_text_disabled {
+  background: none!important;
+  -webkit-background-clip: unset!important;
+  -webkit-text-fill-color: #cccccc!important;
+  color: #cccccc!important;
+}
+
 .delete_text {
   font-family: "Montserrat SemiBold";
   font-size: 14px;
