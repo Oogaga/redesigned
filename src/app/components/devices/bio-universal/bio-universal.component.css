@@ -1,9 +1,10 @@
 ::ng-deep.mat-expansion-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 0.65);
+  background: none;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(30px);
   border-radius: 35px 15px 15px 35px;
+  border: 1px solid rgba(75, 75, 75, 0.5);
 }
 
 ._biouniversal_ {

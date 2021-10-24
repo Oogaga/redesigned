@@ -1,0 +1,40 @@
+::ng-deep.cdk-overlay-dark-backdrop {
+  background: none;
+}
+
+::ng-deep.mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+::ng-deep.mat-dialog-container {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(25px);
+  border-radius: 0;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0!important;
+  align-items: center!important;
+}
+
+::ng-deep.mat-horizontal-stepper-header {
+  display: none !important;
+}
+
+::ng-deep.mat-stepper-horizontal-line {
+  display: none !important;
+}
+
+.back {
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
+  color: #525252;
+}

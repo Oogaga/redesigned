@@ -3,12 +3,15 @@ import {Options} from '@angular-slider/ngx-slider';
 import {BaseDeviceModel} from "../../../models/base-device.model";
 import {TimeZone} from "../../../models/timezones.model";
 import {DevicesService} from "../../../services/devices.service";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {StaticData} from "../../../static/static-data";
 import * as moment from "moment";
 import {ThemePalette} from "@angular/material/core";
 import {Permission} from "../../../static/enums/permissionEnum.model";
 import {switchMap} from "rxjs/operators";
+import {WeeklySettingsDayComponent} from "../weekly-settings-day/weekly-settings-day.component";
+import {WeeklySettingDtoModel} from "../../../models/dataOut/weeklysettingdto.model";
+import {SettingItem} from "../../../models/dataOut/weeklysettingdto.model";
 
 @Component({
   selector: 'app-device-settings',
@@ -59,7 +62,7 @@ export class DeviceSettingsComponent implements OnInit {
   weeklySettingsCheckBox: boolean;
   isRemoved: boolean;
   removeDate: moment.Duration;
-  intevalObj;
+  intervalObj: any;
   day;
   hours;
   minutes;
@@ -100,9 +103,11 @@ export class DeviceSettingsComponent implements OnInit {
   warn: ThemePalette = 'warn';
   indeterminate: boolean = true;
   accept: boolean;
+  rippleColor = 'rgba(63,81,181,0.2)';
 
   constructor(
     private service: DevicesService,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.arrayOfTimeZone = StaticData.TimeZones;
@@ -111,7 +116,6 @@ export class DeviceSettingsComponent implements OnInit {
     this.selectedDayIndex = 0;
     this.timezone = 0;
     this.removeDate = moment.duration();
-    this.intevalObj = 0;
     this.day = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -152,6 +156,8 @@ export class DeviceSettingsComponent implements OnInit {
     this.accept = false;
     this.weeklyCheckbox = []
   }
+
+
 
   options_1Pers_100: Options = {
     floor: 1,
@@ -310,6 +316,23 @@ export class DeviceSettingsComponent implements OnInit {
     }
   };
 
+  changeTemperature(dayNumber: number) {
+    const dailyTemperature = this.dialog.open(WeeklySettingsDayComponent, {
+      minHeight: '100vh',
+      minWidth: '100vw',
+      id: 'dayOfWeek',
+      hasBackdrop: true,
+      data: {data: this.week[dayNumber], day: dayNumber, id: this.device.id}
+    });
+
+    console.log(`opened dialog ${dayNumber} with` + JSON.stringify(this.week[dayNumber]))
+
+    dailyTemperature.afterClosed().subscribe(dailyTemperature => {
+
+      console.log(`Dialog result: ` + JSON.stringify(dailyTemperature.value));
+    });
+  }
+
   setTimeZone() {
     const temp = StaticData.TimeZones.find((timezone) => timezone.value === this.device.timezone);
     if (temp) {
@@ -325,6 +348,8 @@ export class DeviceSettingsComponent implements OnInit {
         this.correctDayByDeviceTimezone(updatedHour);
         return updatedHour;
       });
+
+
       this.week = StaticData.Week.map((dayName: any, dayIndex: any) => {
         const hoursOfDay = settings ? settings.filter((hour: any) => hour.dayOfWeek === dayIndex) : null;
         hoursOfDay.sort((a: any, b: any) => {
@@ -350,7 +375,10 @@ export class DeviceSettingsComponent implements OnInit {
           enable,
           data
         };
-      });
+      }
+      );
+      localStorage.setItem(this.device.id.toString(), JSON.stringify(this.week))
+      console.log(this.week);
     });
   }
 
@@ -593,7 +621,7 @@ export class DeviceSettingsComponent implements OnInit {
 
   startCountdown(data: number) {
     const endTime = moment(data).valueOf();
-    this.intevalObj = setInterval(() => {
+    this.intervalObj = setInterval(() => {
         this.removeDate = moment.duration(endTime - moment().valueOf());
         this.day = this.removeDate.days();
         this.hours = this.removeDate.hours();
@@ -601,6 +629,174 @@ export class DeviceSettingsComponent implements OnInit {
         this.seconds = this.removeDate.seconds();
       },
       this.ONE_SECOND_FOR_COUNTER);
+  }
+
+  changeState() {
+    if (this.device.isOnline && this.device.permission === Permission.WRITE) {
+      const data = this.device.data.data;
+      this.changeName();
+      this.changeWeeklySettings();
+
+      if (this.device.timezone !== this.timezone) {
+        this.changeTimeZone();
+      }
+
+      const dto = {data: {}, id: this.device.data.id};
+      if (!this.notPresentData) {
+        this.setIfChanged('FAN_POWER_DURING_IGNITION', data, this.range[0], dto.data);
+        this.setIfChanged('FAN_POWER_DURING_IGNITION_MAX', data, this.range[1], dto.data);
+      }
+      if (!this.notPresentData1) {
+        this.setIfChanged('EXTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION', data, this.range1, dto.data);
+      }
+      if (!this.notPresentData2) {
+        this.setIfChanged('INTERNAL_AUGER_CONVEYOR_WORK_TIME_IGNITION', data, this.range2, dto.data);
+      }
+      if (!this.notPresentData3) {
+        this.setIfChanged('OPTICAL_SENSOR_TEMPERATURE_GROWING', data, this.range3, dto.data);
+      }
+      if (!this.notPresentData24) {
+        this.setIfChanged('WORK_PRIORITY', data, this.workPriority, dto.data);
+      }
+      if (!this.notPresentData4) {
+        this.setIfChanged('INTERNAL_AUGER_CONVEYOR_WORK_TIME', data, this.range4 * this.VALUE_FOR_CHANGE_DEVICE_DATA, dto.data);
+      }
+      if (!this.notPresentData5) {
+        this.setIfChanged('EXTERNAL_AUGER_CONVEYOR_PAUSE', data, this.range5 * this.VALUE_FOR_CHANGE_DEVICE_DATA, dto.data);
+      }
+      if (!this.notPresentData6) {
+        this.setIfChanged('CLEANING_CYCLES_COUNT', data, this.range6 * this.VALUE_FOR_CHANGE_DEVICE_DATA, dto.data);
+      }
+      if (!this.notPresentData7) {
+        this.setIfChanged('EXTERNAL_AUGER_CONVEYOR_WORK_TIME', data, this.range7 * this.VALUE_FOR_CHANGE_DEVICE_DATA, dto.data);
+      }
+      if (!this.notPresentData8) {
+        this.setIfChanged('CLEANING_WORK_TIME', data, this.range8 * this.VALUE_FOR_CHANGE_DEVICE_DATA, dto.data);
+      }
+      if (!this.notPresentData9) {
+        this.setIfChanged('MIN_FAN_WORKING_POWER', data, this.range9[0], dto.data);
+        this.setIfChanged('MAX_FAN_WORKING_POWER', data, this.range9[1], dto.data);
+      }
+      if (!this.notPresentData10) {
+        this.setIfChanged('RESERVE_FAN_START_TIMEOUT', data, this.range10, dto.data);
+      }
+      if (!this.notPresentData11) {
+        this.setIfChanged('RESERVE_FAN_STOP_TIMEOUT', data, this.range11, dto.data);
+      }
+      if (!this.notPresentData12) {
+        this.setIfChanged('RESERVE_FAN_MIN_POWER', data, this.range12[0], dto.data);
+        this.setIfChanged('RESERVE_FAN_WORKING_POWER', data, this.range12[1], dto.data);
+      }
+      if (!this.notPresentData13) {
+        this.setIfChanged('CENTRAL_HEATING_PUMP_START_TEMPERATURE', data, this.range13, dto.data);
+      }
+      if (!this.notPresentData14) {
+        this.setIfChanged('CENTRAL_HEATING_PUMP_HYSTERESIS', data, this.range14, dto.data);
+      }
+      if (!this.notPresentData25) {
+        const augerWorkMode = this.augerWorkMode ? 1 : 0;
+        this.setIfChanged('AUGER_CONVEYOR_WORK_MODE', data, augerWorkMode, dto.data, true);
+      }
+      if (!this.notPresentData23) {
+        const cleaningWork = this.cleaningWork ? 1 : 0;
+        this.setIfChanged('CLEANING_SETTINGS_CLEANER', data, cleaningWork, dto.data, true);
+      }
+      if (!this.notPresentData26) {
+        const cleaningSettingsFun = this.cleaningSettingsFun ? 1 : 0;
+        this.setIfChanged('CLEANING_SETTINGS_FAN', data, cleaningSettingsFun, dto.data, true);
+      }
+      if (!this.notPresentData15) {
+        this.setIfChanged('DEVICE_HYSTERESIS', data, this.range15, dto.data);
+      }
+      if (!this.notPresentData16) {
+        this.setIfChanged('MIN_AUTOMATICS_POWER', data, this.range16[0], dto.data);
+        this.setIfChanged('MAX_AUTOMATICS_POWER', data, this.range16[1], dto.data);
+      }
+      if (!this.notPresentData17) {
+        this.setIfChanged('AUTOMATICS_POWER_DURING_SUPPLY', data, this.range17, dto.data);
+      }
+      if (!this.notPresentData18) {
+        this.setIfChanged('CLEANING_SETTINGS_FAN_EXTERN_POWER', data, this.range18, dto.data);
+      }
+      if (!this.notPresentData19) {
+        this.setIfChanged('CLEANING_SETTINGS_FAN_POWER', data, this.range19, dto.data);
+      }
+      if (!this.notPresentData20) {
+        this.setIfChanged('CLEANING_SETTINGS_WORK_TIME', data, this.range20, dto.data);
+      }
+      if (!this.notPresentData21) {
+        this.setIfChanged('IGNITION_FAN_EXTERN_POWER_MIN', data, this.range21[0], dto.data);
+        this.setIfChanged('IGNITION_FAN_EXTERN_POWER_MAX', data, this.range21[1], dto.data);
+      }
+      if (!this.notPresentData22) {
+        this.setIfChanged('IGNITION_TIME', data, this.range22, dto.data);
+      }
+      let found = false;
+      for (const prop in dto.data) {
+        if (dto.data.hasOwnProperty(prop)) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+
+        return;
+      }
+
+      this.service.changeDeviceState(dto, this.device.id, () => {
+
+      }, (error: Error) => {
+        console.log(error)
+      }, 'type1');
+    }
+  }
+
+  changeWeeklySettings() {
+    // @ts-ignore
+    const dto = new WeeklySettingDtoModel();
+    dto.on = this.weeklySettingsCheckBox;
+    dto.settings = [];
+    this.week.forEach((day, dayIndex) => {
+      day.data.forEach((temperature: any, hourIndex: any) => {
+        // @ts-ignore
+        const hour = new SettingItem();
+        hour.dayOfWeek = dayIndex;
+        hour.enabled = day.enable;
+        hour.hourOfDay = hourIndex;
+        hour.targetTemperature = temperature;
+        dto.settings.push(hour as SettingItem);
+      });
+
+    });
+    dto.settings.forEach((hour: SettingItem) => {
+      hour.hourOfDay -= this.device.timezone;
+      this.correctDayByDeviceTimezone(hour);
+    });
+    this.service.PutWeeklySettings(dto, this.device.id).subscribe((data: any) => {
+      this.service.getDevices();
+    }, (error2) => {
+      this.service.getDevices();
+    });
+  }
+
+  setIfChanged(propName: any, oldData: any, newValue: any, target: any, inverse = false) {
+    if (!inverse) {
+      if (oldData[propName] !== newValue) {
+        target[propName] = newValue;
+      }
+    } else {
+      if (oldData[propName] === newValue) {
+        switch (typeof(newValue)) {
+          case 'boolean':
+            newValue = !newValue;
+            break;
+          case 'number':
+            newValue = newValue === 0 ? 1 : 0;
+            break;
+        }
+        target[propName] = newValue;
+      }
+    }
   }
 
   deleteDevice() {

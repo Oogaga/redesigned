@@ -1,0 +1,41 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
+<input style="display: none" id="day" [value]="dayNumber">
+<input style="display: none" id="id" [value]="id">
+
+<button
+  class="back button_common"
+  mat-ripple
+  [matRippleUnbounded]="false"
+  [matRippleRadius]="65"
+  [mat-dialog-close]="data">
+  <mat-icon>
+    <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
+  </mat-icon>
+  Назад
+</button>
+
+<div class="title">{{dayOfWeek}}</div>
+
+<div style="display: flex; height: 70vh;     justify-content: center;    align-items: center;">
+  <div class="container">
+    <div class="scrollbar_hours">
+      <div class="not_chose" [id]="hour" *ngFor="let hour of hours">{{hour}}</div>
+      <hr class="hr hr_top" noshade>
+      <hr class="hr hr_bot" noshade>
+      <div class="note">Время</div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="scrollbar_temperature">
+      <div class="not_chosed" [id]="temperature"
+           *ngFor="let temperature of choseTemperature">{{temperature}}</div>
+      <hr class="hr hr_top" noshade>
+      <hr class="hr hr_bot" noshade>
+      <div class="note">Температура</div>
+    </div>
+  </div>
+</div>
+
+

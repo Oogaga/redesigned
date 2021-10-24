@@ -33,6 +33,7 @@ export class BioUniversalComponent implements OnInit {
   currentTtg: number;
   actualState: number;
   workPriority: number;
+  isOn: boolean
 
   changeCo: number;
   changeGvs: number;
@@ -54,7 +55,7 @@ export class BioUniversalComponent implements OnInit {
     this.currentTtg = 0;
     this.actualState = 0;
     this.workPriority = 0;
-
+    this.isOn = false
     this.deviceNumber = 0;
 
     this.changeCo = 0;
@@ -149,7 +150,7 @@ export class BioUniversalComponent implements OnInit {
       minWidth: '100vw',
       id: 'modal',
       hasBackdrop: true,
-      data: {device: this.device}
+      data: {device: JSON.parse(localStorage.getItem('devices') || 'null')[this.deviceNumber]}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -190,16 +191,17 @@ export class BioUniversalComponent implements OnInit {
       this.currentTtg = device.data.data.OPTICAL_SENSOR_VALUE;
       this.actualState = device.data.data.ACTUAL_STATE;
       this.workPriority = device.data.data.WORK_PRIORITY;
+      this.isOn = device.data.deviceState === 'START'
 
 
-      if ((this.oldValueCo !== this.changeCo)&&this.inputControlCo.valid) {
+      if ((this.oldValueCo !== this.changeCo) && this.inputControlCo.valid) {
         const dto = {
           data: {EXTERNAL_CENTRAL_HEATING_TEMPERATURE: this.changeCo},
           id: this.device.id
         };
         this.putChangeData(dto);
         this.oldValueCo = this.changeCo;
-      } else if ((this.oldValueGvs !== this.changeGvs)&&this.inputControlGvs.valid) {
+      } else if ((this.oldValueGvs !== this.changeGvs) && this.inputControlGvs.valid) {
         const dto = {
           data: {EXTERNAL_CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE: this.changeGvs},
           id: this.device.id
@@ -214,6 +216,17 @@ export class BioUniversalComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.interval) clearInterval(this.interval)
+  }
+
+  changeDeviceState() {
+    const dto = {
+      data: {
+        ACTUAL_STATE_TRIGGER: 1,
+        ACTUAL_STATE: this.device['data'].data.ACTUAL_STATE
+      },
+      id: this.device.id
+    };
+    this.putChangeData(dto);
   }
 
   putChangeData(data: any) {

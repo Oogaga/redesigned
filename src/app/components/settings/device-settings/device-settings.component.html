@@ -8,7 +8,7 @@
     <mat-icon>
       <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
     </mat-icon>
-    Отмена
+    Назад
   </button>
 </mat-dialog-actions>
 <mat-stepper
@@ -253,63 +253,81 @@
   </mat-step>
 
   //________________________________________________________________________________Еженедельные настройки
-    <mat-step>
-      <section class="one-step">
-        <div class="navigate-buttons">
-          <button mat-icon-button
-                  class="navigate-button"
-                  matStepperPrevious>
-            <mat-icon>
-              <i class="material-icons-round px30">arrow_back_ios</i>
-            </mat-icon>
-          </button>
-          <div class="settings_label">Еженедельные настройки</div>
-          <button mat-icon-button
-                  class="navigate-button"
-                  matStepperNext>
-            <mat-icon>
-              <i class="material-icons-round px30">arrow_forward_ios</i>
-            </mat-icon>
-          </button>
-        </div>
-        <div class="configs">
+  <mat-step>
+    <section class="one-step">
+      <div class="navigate-buttons">
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperPrevious>
+          <mat-icon>
+            <i class="material-icons-round px30">arrow_back_ios</i>
+          </mat-icon>
+        </button>
+        <div class="settings_label">Еженедельные настройки</div>
+        <button mat-icon-button
+                class="navigate-button"
+                matStepperNext>
+          <mat-icon>
+            <i class="material-icons-round px30">arrow_forward_ios</i>
+          </mat-icon>
+        </button>
+      </div>
+      <div class="configs" style="justify-content: center">
 
-          <section>
-            <div class="weekly_description_state">Понедельник</div>
-            <mat-checkbox [(ngModel)]="weeklySettingsCheckBox" (change)="changeWeeklySettingsCheckBox()"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[0]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[1]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[2]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[3]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[4]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[5]"></mat-checkbox>
-          </section>
-          <section>
-            <button class="weekly_button">Понедельник</button>
-            <mat-checkbox [(ngModel)]="weeklyCheckbox[6]"></mat-checkbox>
-          </section>
+        <section class="day_week_box">
+          <div class="weekly_description_state" [ngClass]="{'weekly_description_state_on': weeklySettingsCheckBox}">
+            <label *ngIf="weeklySettingsCheckBox">Включены</label>
+            <label *ngIf="!weeklySettingsCheckBox">Выключены</label>
+          </div>
+          <mat-checkbox [(ngModel)]="weeklySettingsCheckBox" [color]="color"
+                        (change)="changeWeeklySettingsCheckBox()"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[0].enable"
+                  [matRippleDisabled]="!week[0].enable" (click)="changeTemperature(0)" class="weekly_button">Понедельник
+          </button>
+          <mat-checkbox [(ngModel)]="week[0].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[1].enable"
+                  [matRippleDisabled]="!week[1].enable" (click)="changeTemperature(1)" class="weekly_button">Вторник
+          </button>
+          <mat-checkbox [(ngModel)]="week[1].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[2].enable"
+                  [matRippleDisabled]="!week[2].enable" (click)="changeTemperature(2)" class="weekly_button">Среда
+          </button>
+          <mat-checkbox [(ngModel)]="week[2].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[3].enable"
+                  [matRippleDisabled]="!week[3].enable" (click)="changeTemperature(3)" class="weekly_button">Четверг
+          </button>
+          <mat-checkbox [(ngModel)]="week[3].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[4].enable"
+                  [matRippleDisabled]="!week[4].enable" (click)="changeTemperature(4)" class="weekly_button">Пятница
+          </button>
+          <mat-checkbox [(ngModel)]="week[4].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[5].enable"
+                  [matRippleDisabled]="!week[5].enable" (click)="changeTemperature(5)" class="weekly_button">Суббота
+          </button>
+          <mat-checkbox [(ngModel)]="week[5].enable" [color]="color"></mat-checkbox>
+        </section>
+        <section class="day_week_box">
+          <button mat-ripple [matRippleColor]="rippleColor" [disabled]="!week[6].enable"
+                  [matRippleDisabled]="!week[6].enable" (click)="changeTemperature(6)" class="weekly_button">Воскресение
+          </button>
+          <mat-checkbox [(ngModel)]="week[6].enable" [color]="color"></mat-checkbox>
+        </section>
 
-        </div>
-      </section>
-    </mat-step>
+      </div>
+    </section>
+  </mat-step>
 
   //_______________________________________________________+________________________Настройка розжига
   <mat-step>
@@ -649,15 +667,15 @@
           </section>
         </section>
         <section style="width: 100%;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 7px; margin-top: 7px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 25px; margin-top: 25px;">
             <div class="description_settings">Шнек в поддержке</div>
             <mat-slide-toggle [(ngModel)]="augerWorkMode" [color]="color"></mat-slide-toggle>
           </div>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 7px; margin-top: 7px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 25px; margin-top: 25px;">
             <div class="description_settings">Очистка - работа колосников</div>
             <mat-slide-toggle [(ngModel)]="cleaningWork" [color]="color"></mat-slide-toggle>
           </div>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 7px; margin-top: 7px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 25px; margin-top: 25px;">
             <div class="description_settings">Очистка - работа вентиляторов</div>
             <mat-slide-toggle [(ngModel)]="cleaningSettingsFun" [color]="color"></mat-slide-toggle>
           </div>
@@ -725,8 +743,9 @@
           <div class="description">
             <mat-form-field class="input_settings" appearance="fill">
               <input matInput [(ngModel)]="deviceName">
-              <button matSuffix mat-icon-button (click)="changeName()" >
-                <mat-icon class="material-icons-round">done</mat-icon></button>
+              <button matSuffix mat-icon-button (click)="changeName()">
+                <mat-icon class="material-icons-round">done</mat-icon>
+              </button>
             </mat-form-field>
           </div>
         </section>
@@ -737,7 +756,7 @@
         <section style="height: 110px; width: 100%">
           <div class="description_settings">Установка часового пояса для устройства</div>
           <div class="description">
-            <select class="choose" [(ngModel)]="timezone"  (change)="changeTimeZone()">
+            <select class="choose" [(ngModel)]="timezone" (change)="changeTimeZone()">
               <option *ngFor="let timeZone of arrayOfTimeZone" [value]="timeZone.value">{{timeZone.name}}</option>
             </select>
           </div>
@@ -748,11 +767,13 @@
             <div class="description_settings">
               Хочу удалить устройство
             </div>
-            <mat-checkbox [color]="warn" [(ngModel)]="accept" [(indeterminate)]="indeterminate"></mat-checkbox>
+            <mat-checkbox style="margin-right: 18px" [color]="warn" [(ngModel)]="accept"
+                          [(indeterminate)]="indeterminate"></mat-checkbox>
           </div>
           <button
             [disabled]="accept"
             mat-ripple
+            [matRippleDisabled]="!accept"
             [ngClass]="{'delete_button_disabled': !accept}"
             class="delete_button"
             (click)="deleteDevice()"><label [ngClass]="{'delete_text_disabled': !accept}" class="delete_text">Удалить

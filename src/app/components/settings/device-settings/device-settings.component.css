@@ -7,8 +7,8 @@
 }
 
 ::ng-deep.mat-dialog-container {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(100px);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(25px);
   border-radius: 0;
 }
 
@@ -21,16 +21,22 @@
   align-items: center!important;
 }
 
-mat-ripple {
-  border-radius: 10px !important;
-}
-
 ::ng-deep.mat-horizontal-stepper-header {
   display: none !important;
 }
 
 ::ng-deep.mat-stepper-horizontal-line {
   display: none !important;
+}
+
+::ng-deep.mat-checkbox-inner-container {
+  height: 24px!important;
+  width: 24px!important;
+}
+
+
+mat-ripple {
+  border-radius: 10px !important;
 }
 
 mat-stepper {
@@ -96,6 +102,42 @@ mat-dialog-actions {
 /*  opacity: 20%;*/
 /*  color: #000000;*/
 /*}*/
+
+.day_week_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.weekly_description_state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 204px;
+  height: 52px;
+  border: 1px solid rgba(63 81 181 / 50%);
+  border-radius: 12px;
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+  color: #BB0000;
+}
+
+.weekly_description_state_on{
+  color: #74BE89!important;
+}
+
+.weekly_button {
+  width: 204px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(63 81 181 / 50%);
+  border-radius: 12px;
+  color: #2E2E2F;
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+}
 
 .ngx-slider {
   min-width: 250px !important;

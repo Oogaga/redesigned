@@ -7,6 +7,7 @@
     "dev:test-locally": "ng serve --configuration=test-locally",
     "build": "ng build",
     "build:https": "ng build --configuration=prod-https",
+    "build-prod:app-shell": "ng run redesigned:app-shell:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -23,7 +24,9 @@
     "@angular/material": "^12.2.2",
     "@angular/platform-browser": "~12.2.6",
     "@angular/platform-browser-dynamic": "~12.2.6",
+    "@angular/platform-server": "~12.2.6",
     "@angular/router": "~12.2.6",
+    "@angular/service-worker": "~12.2.6",
     "@firebase/app": "^0.7.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",

@@ -44,6 +44,10 @@ import {MatRippleModule} from "@angular/material/core";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { WeeklySettingsDayComponent } from './components/settings/weekly-settings-day/weekly-settings-day.component';
+import { IAmComponent } from './components/i-am/i-am.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -68,10 +72,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangeDateMsPipe,
     DeviceSettingsComponent,
     DevicesComponent,
-    BaseItemComponent
+    BaseItemComponent,
+    WeeklySettingsDayComponent,
+    IAmComponent
   ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -96,7 +102,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatRippleModule,
         MatSlideToggleModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the app is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        }),
+        RouterModule
     ],
   providers: [
     AuthGuard,

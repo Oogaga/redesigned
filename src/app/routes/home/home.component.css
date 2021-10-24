@@ -41,8 +41,13 @@ app-header {
 /*  -moz-transform: translate3d(0,0,0)*/
 /*}*/
 
-@media only screen and (max-device-width: 1000px) {
+@media only screen and (max-device-width: 900px) {
   #body_home {
     background-size:150vh;
+  }
+}
+@media only screen and (max-device-height: 415px) {
+  #body_home {
+    background-size:250vh;
   }
 }
