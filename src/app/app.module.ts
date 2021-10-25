@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, InjectionToken, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -48,6 +48,12 @@ import { WeeklySettingsDayComponent } from './components/settings/weekly-setting
 import { IAmComponent } from './components/i-am/i-am.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterModule } from '@angular/router';
+import { InstallAppComponent } from './components/promts/install-app/install-app.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {PwaService} from "./services/pwa.service";
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
+
+const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -74,44 +80,47 @@ export function HttpLoaderFactory(http: HttpClient) {
     DevicesComponent,
     BaseItemComponent,
     WeeklySettingsDayComponent,
-    IAmComponent
+    IAmComponent,
+    InstallAppComponent
   ],
-    imports: [
-        BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        MatMenuModule,
-        MatExpansionModule,
-        MatDialogModule,
-        MatStepperModule,
-        NgxSliderModule,
-        MatRippleModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: environment.production,
-          // Register the ServiceWorker as soon as the app is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
-        }),
-        RouterModule
-    ],
+  imports: [
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatDialogModule,
+    MatStepperModule,
+    NgxSliderModule,
+    MatRippleModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:5000'
+    }),
+    RouterModule,
+    MatToolbarModule
+  ],
   providers: [
+    MatBottomSheet,
     AuthGuard,
     {
       provide: BASE_URL_TOKEN,
@@ -122,9 +131,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor
-    }
+    },
+    {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true},
+    {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
+    {provide: MatBottomSheetRef, useValue: {}},
+    {provide: DeviceSettingsComponent, useValue: {}}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, InstallAppComponent]
 })
 export class AppModule {
 }

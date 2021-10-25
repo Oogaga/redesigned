@@ -1,10 +1,9 @@
 ::ng-deep.mat-expansion-panel {
   width: 100%;
-  background: none;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 20%)!important;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1)!important;
+  backdrop-filter: blur(40px)!important;
   border-radius: 35px 15px 15px 35px;
-  border: 1px solid rgba(75, 75, 75, 0.5);
 }
 
 ._biouniversal_ {
@@ -124,7 +123,6 @@
 }
 
 .data-temperature {
-  color: #336214;
   font-family: Roboto;
   font-size: 36px;
   display: flex;

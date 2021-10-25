@@ -1,11 +1,7 @@
 {
-  "name": "redesigned",
-  "short_name": "redesigned",
-  "theme_color": "#1976d2",
+  "_version": "1.1.0",
   "background_color": "#fafafa",
-  "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -55,5 +51,28 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "manifest_version": 1,
+  "name": "Bioprom",
+  "sap.app": {
+    "id": "1",
+    "type": "application",
+    "title": "",
+    "applicationVersion": {
+      "version": "1"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "scope": "./",
+  "short_name": "Bioprom",
+  "start_url": "./index.html",
+  "theme_color": "#C5DCF0",
+  "version": 1
 }

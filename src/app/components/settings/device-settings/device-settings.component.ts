@@ -11,7 +11,7 @@ import {Permission} from "../../../static/enums/permissionEnum.model";
 import {switchMap} from "rxjs/operators";
 import {WeeklySettingsDayComponent} from "../weekly-settings-day/weekly-settings-day.component";
 import {WeeklySettingDtoModel} from "../../../models/dataOut/weeklysettingdto.model";
-import {SettingItem} from "../../../models/dataOut/weeklysettingdto.model";
+import {SettingItem} from "../../../models/dataOut/settingsItem.model";
 
 @Component({
   selector: 'app-device-settings',
@@ -378,7 +378,6 @@ export class DeviceSettingsComponent implements OnInit {
       }
       );
       localStorage.setItem(this.device.id.toString(), JSON.stringify(this.week))
-      console.log(this.week);
     });
   }
 
@@ -752,31 +751,31 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   changeWeeklySettings() {
-    // @ts-ignore
-    const dto = new WeeklySettingDtoModel();
-    dto.on = this.weeklySettingsCheckBox;
-    dto.settings = [];
-    this.week.forEach((day, dayIndex) => {
-      day.data.forEach((temperature: any, hourIndex: any) => {
-        // @ts-ignore
-        const hour = new SettingItem();
-        hour.dayOfWeek = dayIndex;
-        hour.enabled = day.enable;
-        hour.hourOfDay = hourIndex;
-        hour.targetTemperature = temperature;
-        dto.settings.push(hour as SettingItem);
-      });
-
-    });
-    dto.settings.forEach((hour: SettingItem) => {
-      hour.hourOfDay -= this.device.timezone;
-      this.correctDayByDeviceTimezone(hour);
-    });
-    this.service.PutWeeklySettings(dto, this.device.id).subscribe((data: any) => {
-      this.service.getDevices();
-    }, (error2) => {
-      this.service.getDevices();
-    });
+    // const dto = new WeeklySettingDtoModel();
+    // dto.on = this.weeklySettingsCheckBox;
+    // dto.settings = [];
+    // this.week = JSON.parse(localStorage.getItem(String(this.device.id))!)
+    // console.log(this.week)
+    // this.week.forEach((day, dayIndex) => {
+    //   day.data.forEach((temperature: any, hourIndex: any) => {
+    //     const hour = new SettingItem();
+    //     hour.dayOfWeek = dayIndex;
+    //     hour.enabled = day.enable;
+    //     hour.hourOfDay = hourIndex;
+    //     hour.targetTemperature = temperature;
+    //     dto.settings.push(hour as SettingItem);
+    //   });
+    //
+    // });
+    // dto.settings.forEach((hour: SettingItem) => {
+    //   hour.hourOfDay -= this.device.timezone;
+    //   this.correctDayByDeviceTimezone(hour);
+    // });
+    // this.service.PutWeeklySettings(dto, this.device.id).subscribe((data: any) => {
+    //   this.service.getDevices();
+    // }, (error2) => {
+    //   this.service.getDevices();
+    // });
   }
 
   setIfChanged(propName: any, oldData: any, newValue: any, target: any, inverse = false) {

@@ -11,6 +11,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {interval, Observable} from "rxjs";
 import {RegExpData} from "../../../static/reqexp_data";
 import {Permission} from "../../../static/enums/permissionEnum.model";
+import {colors} from "@angular/cli/utilities/color";
 
 @Component({
   selector: 'app-bio-universal',
@@ -28,12 +29,14 @@ export class BioUniversalComponent implements OnInit {
   isOnline: boolean;
   currentCo: number;
   currentGvs: number;
-  currentUse: number;
+  currentUse: string;
   currentPow: number;
   currentTtg: number;
   actualState: number;
   workPriority: number;
   isOn: boolean
+  usedALotFuel: boolean;
+  color: number;
 
   changeCo: number;
   changeGvs: number;
@@ -50,13 +53,15 @@ export class BioUniversalComponent implements OnInit {
     this.isOnline = true;
     this.currentCo = 0;
     this.currentGvs = 0;
-    this.currentUse = 0;
+    this.currentUse = '0кг';
     this.currentPow = 0;
     this.currentTtg = 0;
     this.actualState = 0;
     this.workPriority = 0;
     this.isOn = false
+    this.usedALotFuel = false;
     this.deviceNumber = 0;
+    this.color = 0;
 
     this.changeCo = 0;
     this.changeGvs = 0;
@@ -169,7 +174,7 @@ export class BioUniversalComponent implements OnInit {
     this.isOnline = !this.device.isOnline;
     this.currentCo = this.device.data.data.CENTRAL_HEATING_TEMPERATURE;
     this.currentGvs = this.device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
-    this.currentUse = this.device.data.data.FUEL_AMOUNT;
+    this.currentUse = String(this.device.data.data.FUEL_AMOUNT);
     this.currentPow = this.device.data.data.WORKING_POWER_IN_PERCENT;
     this.currentTtg = this.device.data.data.OPTICAL_SENSOR_VALUE;
     this.actualState = this.device.data.data.ACTUAL_STATE;
@@ -183,15 +188,22 @@ export class BioUniversalComponent implements OnInit {
 
     this.interval = setInterval(() => {
       let device = JSON.parse(localStorage.getItem('devices') || 'null')[this.deviceNumber];
+      if (device.data.data.FUEL_AMOUNT > 900) {
+        this.usedALotFuel = true;
+      }
       this.isOnline = !device.isOnline;
       this.currentCo = device.data.data.CENTRAL_HEATING_TEMPERATURE;
       this.currentGvs = device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
-      this.currentUse = device.data.data.FUEL_AMOUNT;
       this.currentPow = device.data.data.WORKING_POWER_IN_PERCENT;
       this.currentTtg = device.data.data.OPTICAL_SENSOR_VALUE;
       this.actualState = device.data.data.ACTUAL_STATE;
       this.workPriority = device.data.data.WORK_PRIORITY;
       this.isOn = device.data.deviceState === 'START'
+      this.currentUse = this.usedALotFuel ? `${(device.data.data.FUEL_AMOUNT / 1000).toFixed(1)}т` : `${device.data.data.FUEL_AMOUNT}кг`;
+      this.colorPicker(this.currentCo, 'co');
+      this.colorPicker(this.currentGvs, 'gvs');
+      this.colorPicker(this.currentTtg, 'ttg');
+      this.power(this.currentPow);
 
 
       if ((this.oldValueCo !== this.changeCo) && this.inputControlCo.valid) {
@@ -216,6 +228,45 @@ export class BioUniversalComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.interval) clearInterval(this.interval)
+  }
+
+  colorPicker(temperature: number, str: string) {
+    const color1 = 'D80000';
+    const color2 = '54A4EA';
+    if(temperature<40){
+      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${color2}`;
+      return
+    }
+    if(temperature>79){
+      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${color1}`;
+      return
+    }
+    let ratio = (temperature - 40) / 40;
+    let hex = function (x: any) {
+      x = x.toString(16);
+      return (x.length == 1) ? '0' + x : x;
+    };
+    let r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
+    let g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
+    let b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
+    document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${(hex(r) + hex(g) + hex(b))}`;
+  }
+
+  power(pow: number) {
+    const color1 = '336214';
+    const color2 = 'C7B300';
+    if (pow<1){
+      document.getElementById(`${this.deviceName}pow`)!.style.color = `#${color2}`;
+    }
+    let ratio = pow/100;
+    let hex = function (x: any) {
+      x = x.toString(16);
+      return (x.length == 1) ? '0' + x : x;
+    };
+    let r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
+    let g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
+    let b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
+    document.getElementById(`${this.deviceName}pow`)!.style.color = `#${(hex(r) + hex(g) + hex(b))}`;
   }
 
   changeDeviceState() {

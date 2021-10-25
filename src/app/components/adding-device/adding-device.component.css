@@ -1,5 +1,5 @@
 ::ng-deep.cdk-overlay-dark-backdrop {
-  background: none;
+  background: none!important;
 }
 
 ::ng-deep.mat-horizontal-content-container {
@@ -15,9 +15,9 @@
 }
 
 ::ng-deep.mat-dialog-container {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(100px);
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.65)!important;
+  backdrop-filter: blur(100px)!important;
+  border-radius: 0!important;
 }
 
 mat-stepper {

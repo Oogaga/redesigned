@@ -97,6 +97,21 @@ body {
   background: none;
 }
 
+.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
+.bottom_sheet {
+  background: rgba(255, 255, 255, 0.4)!important;
+  backdrop-filter: blur(4px);
+}
+
+.panel{
+  background: rgba(255, 255, 255, 0.75);
+}
+
 .back {
   height: 35px;
   display: flex;

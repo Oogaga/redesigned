@@ -1,5 +1,5 @@
 ::ng-deep.cdk-overlay-dark-backdrop {
-  background: none;
+  background: none!important;
 }
 
 ::ng-deep.mat-horizontal-content-container {
@@ -7,13 +7,13 @@
 }
 
 ::ng-deep.mat-dialog-container {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.5)!important;
+  backdrop-filter: blur(25px)!important;
   border-radius: 0;
 }
 
 ::ng-deep .mat-form-field-underline {
-  display: none;
+  display: none!important;
 }
 
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
