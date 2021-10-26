@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {DevicesService} from "../../../services/devices.service";
 import {MatDialog} from "@angular/material/dialog";
 import {StaticData} from "../../../static/static-data";
@@ -18,7 +18,7 @@ import {colors} from "@angular/cli/utilities/color";
   templateUrl: './bio-universal.component.html',
   styleUrls: ['./bio-universal.component.css']
 })
-export class BioUniversalComponent implements OnInit {
+export class BioUniversalComponent implements OnInit, OnDestroy {
 
   WAITING_TIME = 5000;
 

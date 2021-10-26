@@ -15,5 +15,6 @@ export class UsersAuthData {
     this.lastName = lastName;
     this.birthday = birthday;
     this.locale = locale;
+
   }
 }

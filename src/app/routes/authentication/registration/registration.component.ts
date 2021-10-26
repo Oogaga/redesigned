@@ -5,6 +5,7 @@ import {UsersService} from "../../../services/users.service";
 import {UsersAuthData} from "../../../models/users-authdata.model";
 import {UsersDataOut} from "../../../models/dataOut/data-out.model";
 import * as moment from "moment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -19,8 +20,9 @@ export class RegistrationComponent implements OnInit {
   private isLoaderShown: boolean;
   private hasEmptyFields: boolean;
 
-  constructor(private service: UsersService) {
-    this.emailAlreadyTaken = false;
+  constructor(private service: UsersService,
+              private router: Router) {
+    this.emailAlreadyTaken = true;
     this.hide = true;
     this.hide2 = true;
     this.isLoaderShown = false;
@@ -49,29 +51,30 @@ export class RegistrationComponent implements OnInit {
     ]),
     email: new FormControl(null, [
       Validators.required,
-      this.isEmailUnique(),
       Validators.pattern(RegExpData.EMAIL_VALIDATOR)]),
     phone: new FormControl(null, [
       Validators.required,
       Validators.pattern(RegExpData.PHONE_VALIDATOR_1),
       Validators.pattern(RegExpData.PHONE_VALIDATOR_2)
     ]),
-    birthday: new FormControl(null),
-    agree: new FormControl(false, Validators.requiredTrue),
+    // agree: new FormControl(false, Validators.requiredTrue),
     password: this.passwordControl,
     confirmPassword: this.confirmPasswordControl
   });
 
   checkEmail() {
-    if (this.newUser.controls['email'].invalid) {
+    if (!this.newUser.hasError('required') || this.newUser.hasError('email')) {
       return;
     }
     const email = this.newUser.value.email;
     this.service.checkEmailUser(email).subscribe((data:string) => {
         this.emailAlreadyTaken = !data;
-        this.newUser.controls['email'].updateValueAndValidity();
+        console.log(!data)
+        console.log(this.emailAlreadyTaken)
+        this.newUser.updateValueAndValidity();
       }
     );
+    console.log(this.emailAlreadyTaken)
   }
 
   confirmPasswordValidator(originalPasswordControl: AbstractControl): ValidatorFn {
@@ -96,8 +99,8 @@ export class RegistrationComponent implements OnInit {
       this.newUser.value.email,
       this.newUser.value.password,
       this.newUser.value.phone,
-      this.newUser.value.name,
-      this.newUser.value.surname,
+      this.newUser.value.enteredName,
+      this.newUser.value.enteredSurname,
       birthdayString);
 
     this.service.postDataUser(user).subscribe((data: UsersAuthData) => {
@@ -106,15 +109,9 @@ export class RegistrationComponent implements OnInit {
     }, (error) => {
       this.isLoaderShown = false;
     });
+    setTimeout(()=>{this.router.navigate(['entrance'])}, 2000)
   }
 
-  isEmailUnique(): ValidatorFn {
-    return (
-      control: AbstractControl
-    ): ValidationErrors | null => {
-      return this.emailAlreadyTaken ? {invalid: true} : null;
-    };
-  }
 
   ngOnInit(): void {
   }

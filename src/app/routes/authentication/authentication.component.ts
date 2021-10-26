@@ -84,6 +84,7 @@ export class AuthenticationComponent implements OnInit {
         this.service.saveToken(token);
         this.service.saveRole(role);
         this.loginUser.reset();
+
         this.router.navigate(['/home']);
       } else {
         this.wrongPass = true;

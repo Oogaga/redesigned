@@ -1,1 +1,38 @@
-<p>forgot works!</p>
+<button
+  routerLink="/"
+  class="back button_common"
+  style="color: #FFFFFF!important; margin-left: 10px"
+  mat-ripple
+  [matRippleUnbounded]="false"
+  [matRippleRadius]="65">
+  <mat-icon>
+    <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
+  </mat-icon>
+  Назад
+</button>
+<div style="display: flex; align-items: center; justify-content: center; height: 100%">
+  <section style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+    <div class="text">
+      Введите электронную почту для восстановления пароля
+    </div>
+    <mat-form-field>
+      <input
+        matInput
+        class=""
+        [formControl]="restorePassForm">
+
+      <mat-error
+
+        *ngIf="(restorePassForm.hasError('required') && restorePassForm.touched ) || restorePassForm.hasError('pattern')">
+        Введите электронную почту
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-button
+      [disabled]="restorePassForm.invalid"
+      class="button_big">
+      Отправить email
+    </button>
+
+  </section>
+</div>

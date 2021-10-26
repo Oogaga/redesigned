@@ -1,15 +1,14 @@
 ::ng-deep.mat-expansion-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 20%)!important;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1)!important;
-  backdrop-filter: blur(40px)!important;
+  background: rgba(255, 255, 255, 20%) !important;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(40px) !important;
   border-radius: 35px 15px 15px 35px;
 }
 
 ._biouniversal_ {
   color: #303030;
 }
-
 
 
 .device {
@@ -48,7 +47,6 @@
   filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1));
   /* Similar syntax to box-shadow */
 }
-
 
 
 .svg_button_in {
@@ -189,3 +187,16 @@ input[type="tel"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.offline_icon {
+  position: fixed;
+  right: 14px;
+  top: 25px;
+}
+
+@media only screen and (max-device-width: 480px)  {
+
+  .offline_icon {
+    right: 5px;
+  }
+
+}

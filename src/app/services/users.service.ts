@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BASE_URL_TOKEN } from '../token';
@@ -16,13 +16,17 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService implements OnInit{
   displayingUsers = new Subject<any>();
   arrayOfCountries = new Subject<any>();
 
   constructor(@Inject(BASE_URL_TOKEN) private baseUrl: string,
               private http: HttpClient,
               private router: Router) {
+  }
+
+  ngOnInit() {
+    this.getMyProfileInfo();
   }
 
   getUsers() {
@@ -36,12 +40,18 @@ export class UsersService {
     return this.http.get<any>(url);
   }
 
+  getMyProfileInfo() {
+    this.getInfoMyProfile().subscribe(data => {
+      sessionStorage.setItem('im', JSON.stringify(data));
+    });
+  }
+
   updateMyInfo(dataToSend : any) {
     const url = `${this.baseUrl}/iam`;
     return this.http.put(url, dataToSend);
   }
 
-  updateMyPassword(newPass: string) {
+  updateMyPassword(newPass: { matchingPassword: string; oldPassword: string; newPassword: string }) {
     const url = `${this.baseUrl}/password/change`;
     return this.http.put(url, newPass);
   }

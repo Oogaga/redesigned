@@ -50,6 +50,7 @@
   font-family: Roboto;
   font-size: 18px;
   color: #FFFFFF;
+  width: 200px!important;
 }
 
 .text_18px_2 {
@@ -83,7 +84,7 @@ input {
 ::ng-deep .mat-form-field-suffix {
   position: absolute !important;
   right: 1%;
-  top: 23%;
+  top: 23%!important;
 }
 
 ::ng-deep .mat-form-field-subscript-wrapper {
@@ -140,4 +141,5 @@ a:visited {
   font-size: 16px;
   color: #585858;
 }
+
 

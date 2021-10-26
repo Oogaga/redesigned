@@ -10,5 +10,61 @@
   Назад
 </button>
 
+<div class="scrollbar">
+  <div class="container">
+    <section class="info_block">
+      <div class="description_info">Имя</div>
+      <input [formControl]="firstNameForm" class="info">
+      <mat-error *ngIf="firstNameForm.invalid">Введите имя</mat-error>
+    </section>
+    <section class="info_block">
+      <div class="description_info">Фамилия</div>
+      <input [formControl]="lastNameForm" class="info">
+      <mat-error *ngIf="lastNameForm.invalid">Введите имя</mat-error>
+    </section>
+    <section class="info_block">
+      <div class="description_info">Tелефон</div>
+      <input [formControl]="phoneForm" class="info">
+      <mat-error *ngIf="phoneForm.invalid">Введите имя</mat-error>
+    </section>
+    <section class="info_block">
+      <div class="description_info">Email</div>
+      <div class="info">{{email}}</div>
+    </section>
+    <button [disabled]="firstNameForm.invalid||lastNameForm.invalid||phoneForm.invalid" (click)="changeMyInfo()"
+            mat-ripple [matRippleDisabled]="firstNameForm.invalid||lastNameForm.invalid||phoneForm.invalid"
+            [ngClass]="{'button_disabled':(firstNameForm.invalid||lastNameForm.invalid||phoneForm.invalid)}"
+            class="button_change">Изменить
+    </button>
+  </div>
 
-<p></p>
+  <form [formGroup]="changePasswordForm" class="container">
+    <section class="info_block">
+      <div class="description_info">
+        Ваш пароль
+      </div>
+      <input formControlName="oldPassword" type="password" class="description_input">
+    </section>
+    <section class="info_block">
+      <div class="description_info">
+        Новый пароль
+      </div>
+      <input formControlName="password" type="password" class="description_input">
+    </section>
+    <section class="info_block">
+      <div class="description_info">
+        Повторите
+      </div>
+      <input formControlName="confirmPassword" type="password" class="description_input">
+    </section>
+    <button mat-ripple
+            [matRippleDisabled]="!changePasswordForm.valid"
+            [disabled]="!changePasswordForm.valid"
+            [ngClass]="{'button_disabled': !changePasswordForm.valid}"
+            class="button_change">Изменить
+    </button>
+  </form>
+</div>
+<button class="slide">
+  <span class="material-icons-round">expand_more</span>
+</button>

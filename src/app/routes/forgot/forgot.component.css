@@ -1,0 +1,42 @@
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+
+input{
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+  width: 267px;
+  height: 40px;
+  margin: 50px auto 0;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+mat-error{
+  margin-top: 6%!important;
+  top: 0!important;
+}
+
+.text {
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.button_big {
+  margin-top: 50px;
+  width: 267px;
+  height: 40px;
+  background: #FFFFFF;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #585858;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}

@@ -38,3 +38,105 @@
   font-size: 16px;
   color: #525252;
 }
+
+.scrollbar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.info_block {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.description_info{
+  text-align: left;
+  font-family: Roboto;
+  font-size: 18px;
+  color: #525252;
+  margin-top: 30px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 150px;
+  scroll-snap-align: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 100%;
+}
+
+.slide {
+  position: fixed;
+  bottom: 83px;
+  color: #2E2E2E;
+  margin: 0 auto;
+  background: none;
+  border: none;
+}
+
+.info {
+  color: #696969;
+  font-size: 16px;
+  font-family: "Montserrat Medium";
+}
+
+mat-error{
+  position: inherit;
+}
+
+.button_change {
+  width: 267px;
+  height: 40px;
+  background: #FFFFFF;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
+  color: #585858;
+  border: 1px solid rgba(255,255,255,.4);
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px #0000001a;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.button_disabled{
+  background: none;
+}
+
+.scrollbar:before,
+.scrollbar:after {
+  font-family: "Roboto Regular";
+  scroll-snap-align: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(63 81 181 / 50%);
+  font-size: 35px;
+  font-weight: normal;
+}
+
+input{
+  font-family: "Montserrat Medium";
+  font-size: 16px;
+  align-self: center;
+  width: 267px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}

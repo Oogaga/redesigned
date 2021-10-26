@@ -1,15 +1,18 @@
 <mat-dialog-actions align="start">
-  <button
-    class="back button_common"
-    mat-ripple
-    [matRippleUnbounded]="false"
-    [matRippleRadius]="65"
-    mat-dialog-close>
-    <mat-icon>
-      <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
-    </mat-icon>
-    Назад
-  </button>
+  <div style="display: flex; align-items: center; justify-content: space-between; width: 100%">
+    <button
+      class="back button_common"
+      mat-ripple
+      [matRippleUnbounded]="false"
+      [matRippleRadius]="65"
+      mat-dialog-close>
+      <mat-icon>
+        <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
+      </mat-icon>
+      Назад
+    </button>
+    <button class="button_common back" mat-ripple (click)="changeState()">Сохранить</button>
+  </div>
 </mat-dialog-actions>
 <mat-stepper
   [linear]="true"

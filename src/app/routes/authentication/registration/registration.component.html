@@ -1,13 +1,20 @@
 <button
-  id="back"
   routerLink="/"
-  mat-icon-button>
-  <mat-icon>arrow_back_ios</mat-icon>
-  <mat-label>Назад</mat-label>
+  class="back button_common"
+  style="color: #FFFFFF!important; margin-left: 10px"
+  mat-ripple
+  [matRippleUnbounded]="false"
+  [matRippleRadius]="65">
+  <mat-icon>
+    <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
+  </mat-icon>
+  Назад
 </button>
 <form
+  style="display: flex; align-items: center; justify-content: center"
   [formGroup]="newUser"
   (ngSubmit)="registrationUser()">
+  <div class="form">
   <mat-form-field appearance="fill">
     <div type="text"
          class="text_18px">
@@ -38,16 +45,21 @@
       Адрес эл. почты
     </div>
     <input matInput
+           (ngModelChange)="checkEmail()"
            placeholder="bla_bla@example.com"
            formControlName="email">
     <mat-error
       *ngIf="!newUser.hasError('required') || newUser.hasError('email')">
       Введите электронную почту
     </mat-error>
-<!--    <mat-error-->
-<!--      *ngIf="checkEmail()">-->
-<!--      Введите электронную почту-->
-<!--    </mat-error>-->
+    <mat-error
+      *ngIf="emailAlreadyTaken">
+      Уже используется
+    </mat-error>
+    <!--    <mat-error-->
+    <!--      *ngIf="checkEmail()">-->
+    <!--      Введите электронную почту-->
+    <!--    </mat-error>-->
   </mat-form-field>
   <mat-form-field appearance="fill">
     <div type="text"
@@ -61,42 +73,45 @@
       Неверный формат телефона
     </mat-error>
   </mat-form-field>
-  <div
-    type="text"
-    class="text_18px">
-    Придумайте пароль
+  <div>
+    <div
+      type="text"
+      class="text_18px">
+      Придумайте пароль
+    </div>
+    <mat-form-field appearance="fill">
+      <input matInput
+             formControlName="password"
+             [type]="hide ? 'password' : 'text'">
+      <mat-error
+        *ngIf="!newUser.hasError('required')">Введите пароль
+      </mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput
+             placeholder="Повторите пароль"
+             formControlName="confirmPassword"
+             [type]="hide2 ? 'password' : 'text'">
+      <mat-error
+        *ngIf="!newUser.hasError('required')">Пароли не совпадают!
+      </mat-error>
+      <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide2">
+        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
-  <mat-form-field appearance="fill">
-    <input matInput
-           formControlName="password"
-           [type]="hide ? 'password' : 'text'">
-    <mat-error
-      *ngIf="!newUser.hasError('required')">Введите пароль
-    </mat-error>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <input matInput
-           placeholder="Повторите пароль"
-           formControlName="confirmPassword"
-           [type]="hide2 ? 'password' : 'text'">
-    <mat-error
-      *ngIf="!newUser.hasError('required')">Пароли не совпадают!
-    </mat-error>
-    <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide2">
-      <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
 
   <button
     class="button_big"
+    [disabled]="(!newUser.valid && emailAlreadyTaken)"
     mat-raised-button
     type="submit">
     Зарегистрироваться
   </button>
-
+  </div>
 </form>

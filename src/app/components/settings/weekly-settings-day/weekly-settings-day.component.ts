@@ -7,7 +7,7 @@ import {DeviceSettingsComponent} from "../device-settings/device-settings.compon
   templateUrl: './weekly-settings-day.component.html',
   styleUrls: ['./weekly-settings-day.component.css']
 })
-export class WeeklySettingsDayComponent implements OnInit {
+export class WeeklySettingsDayComponent implements OnInit{
 
   hours: number[];
   choseTemperature: number[];

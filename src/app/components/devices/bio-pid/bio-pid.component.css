@@ -1,14 +1,16 @@
 ::ng-deep.mat-expansion-panel {
   width: 100%;
-  /*background: rgba(255, 255, 255, 0.65);*/
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
-  /*backdrop-filter: blur(30px);*/
+  background: rgba(255, 255, 255, 20%)!important;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1)!important;
+  backdrop-filter: blur(40px)!important;
   border-radius: 35px 15px 15px 35px;
 }
 
 ._biopid_ {
   color: #303030;
 }
+
+
 
 .device {
   margin: 20px 2% 0% 2% !important;
@@ -46,6 +48,8 @@
   filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.1));
   /* Similar syntax to box-shadow */
 }
+
+
 
 .svg_button_in {
   height: 100% !important;
@@ -101,20 +105,24 @@
   font-size: 36px;
 }
 
+.input-error {
+  border: 2px rgba(252, 0, 0, 0.7) inset !important;
+}
+
 .input-temperature {
+  box-sizing: border-box;
   width: 69px;
   height: 46px;
   background: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 5px;
   text-align: center;
-  font-family: Roboto;
+  font-family: "Roboto Regular";
   font-size: 22px;
   color: #525252;
 }
 
 .data-temperature {
-  color: #336214;
   font-family: Roboto;
   font-size: 36px;
   display: flex;
@@ -155,21 +163,43 @@
 .small-card-info {
   width: 111px;
   height: 134px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid #E8E8E8;
   border-radius: 10px;
 }
 
 .change-temp-card {
   width: 345px;
   height: 96px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
 }
 
 .big-card-info {
   width: 345px;
   height: 80px;
-  background: rgba(242, 255, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid #DDDDDD;
   border-radius: 10px;
 }
 
+input[type="tel"]::-webkit-outer-spin-button,
+input[type="tel"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.offline_icon {
+  position: fixed;
+  right: 14px;
+  top: 25px;
+}
+
+@media only screen and (max-device-width: 480px)  {
+
+  .offline_icon {
+    right: 5px;
+  }
+
+}

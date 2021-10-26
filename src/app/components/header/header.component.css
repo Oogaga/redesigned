@@ -14,7 +14,7 @@
 
 ::ng-deep.mat-menu-panel {
   min-width: 70px!important;
-  min-height: 214px!important;
+  min-height: 284px!important;
   background: rgba(255, 255, 255, 0.5)!important;
   backdrop-filter: blur(30px)!important;
   border-radius: 5px!important;

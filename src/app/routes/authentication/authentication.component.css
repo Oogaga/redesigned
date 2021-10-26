@@ -65,6 +65,8 @@
 }
 
 input {
+  font-family: "Montserrat Medium";
+  font-size: 16px;
   width: 267px;
   height: 40px;
   margin: 11px auto 0;

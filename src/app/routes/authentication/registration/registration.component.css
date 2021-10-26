@@ -1,4 +1,6 @@
 input{
+  font-family: "Montserrat Medium";
+  font-size: 16px;
   width: 267px;
   height: 40px;
   margin: 5px auto 15px;
@@ -17,13 +19,13 @@ input{
   width: auto!important;
 }
 
-::ng-deep.mat-form-field-suffix {
-  top: 8%;
-}
+/*::ng-deep.mat-form-field-suffix {*/
+/*  top: 8%;*/
+/*}*/
 
-::ng-deep.mat-form-field-subscript-wrapper{
-margin-top: -5px;
-}
+/*::ng-deep.mat-form-field-subscript-wrapper{*/
+/*margin-top: -5px;*/
+/*}*/
 
 .text_18px{
   text-align: left;
@@ -47,4 +49,10 @@ margin-top: -5px;
 
 ::ng-deep .mat-form-field-underline {
   display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
