@@ -1,14 +1,59 @@
 
-#entrance {
+#entrance {z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  min-height: 100vh;
+  background: url("src/img/dark.avif") no-repeat fixed;
+  background-size: cover;
+  height: 100vh;
+
+
+}
+#container {
+}
+
+@media not all and (min-resolution: .001dpcm) {
+  @media {
+    #entrance {
+      background: url("src/img/dark.jpg") no-repeat fixed;
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-size: 100%;
+    }
+    #entrance:after{
+      content:"";
+      position:fixed;
+      top:0;
+      height:100vh;
+      left:0;
+      right:0;
+      z-index:-1;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+  }
+}
+
+
+.flex_log {
+
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("src/img/dark.avif") no-repeat fixed;
-  background-size: cover;
+  flex-direction: column;
   height: 100vh;
 }
-
 .login {
   width: 302px;
   height: 586px;
@@ -50,7 +95,7 @@
   font-family: Roboto;
   font-size: 18px;
   color: #FFFFFF;
-  width: 200px!important;
+  width: 200px !important;
 }
 
 .text_18px_2 {
@@ -84,7 +129,7 @@ input {
 ::ng-deep .mat-form-field-suffix {
   position: absolute !important;
   right: 1%;
-  top: 23%!important;
+  top: 23% !important;
 }
 
 ::ng-deep .mat-form-field-subscript-wrapper {

@@ -8,6 +8,7 @@ import {StaticData} from '../../static/static-data';
 import {UsersLoginForm} from '../../models/users-loginform.model';
 import {UsersService} from '../../services/users.service';
 import {Observable} from 'rxjs';
+import {Platform} from "@angular/cdk/platform";
 
 
 @Component({
@@ -30,10 +31,13 @@ export class AuthenticationComponent implements OnInit {
   phoneAlreadyTaken: boolean;
   emailValidator: any;
   emailError: boolean;
+  isSafari: boolean
 
   constructor(private service: UsersService,
               private router: Router,
-              private googleService: GoogleOauth2Service) {
+              private platform: Platform,
+  private googleService: GoogleOauth2Service) {
+    this.isSafari = platform.SAFARI;
     this.emailValidator = RegExpData.EMAIL_VALIDATOR;
     this.currentPage = 1;
     this.emailNotFound = false;

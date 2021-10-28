@@ -4,9 +4,11 @@
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1) !important;
   backdrop-filter: blur(40px) !important;
   border-radius: 35px 15px 15px 35px;
+
 }
 
 ._biouniversal_ {
+  font-family: Probert;
   color: #303030;
 }
 
@@ -72,7 +74,7 @@
 
 .deviceName {
   text-align: center;
-  font-family: Probert;
+  font-family: "Montserrat SemiBold";
   font-size: 18px;
   justify-content: center;
   display: flex;
@@ -188,7 +190,7 @@ input[type="tel"]::-webkit-inner-spin-button {
 }
 
 .offline_icon {
-  position: fixed;
+  position: absolute;
   right: 14px;
   top: 25px;
 }
@@ -196,7 +198,7 @@ input[type="tel"]::-webkit-inner-spin-button {
 @media only screen and (max-device-width: 480px)  {
 
   .offline_icon {
-    right: 5px;
+    right: 15px;
   }
 
 }

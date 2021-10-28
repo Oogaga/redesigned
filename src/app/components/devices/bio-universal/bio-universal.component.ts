@@ -12,6 +12,7 @@ import {interval, Observable} from "rxjs";
 import {RegExpData} from "../../../static/reqexp_data";
 import {Permission} from "../../../static/enums/permissionEnum.model";
 import {colors} from "@angular/cli/utilities/color";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-bio-universal',
@@ -37,6 +38,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
   isOn: boolean
   usedALotFuel: boolean;
   color: number;
+  isSafari: boolean;
 
   changeCo: number;
   changeGvs: number;
@@ -48,6 +50,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
   constructor(
     private service: DevicesService,
     public dialog: MatDialog,
+    private platform: Platform
   ) {
     this.deviceName = '';
     this.isOnline = true;
@@ -68,6 +71,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     this.oldValueCo = 0;
     this.oldValueGvs = 0;
 
+    this.isSafari = platform.SAFARI
     this.device = new class implements BaseDeviceModel {
       autoWeekly: any;
       country: any;

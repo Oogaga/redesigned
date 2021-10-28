@@ -8,7 +8,7 @@
     <button
       (click)="openIm()"
       mat-menu-item>
-      <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg *ngIf="!isSafari" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_b)">
           <path
             d="M4.375 12.375C4.375 8.60376 4.375 6.71815 5.54657 5.54657C6.71815 4.375 8.60376 4.375 12.375 4.375H22.625C26.3962 4.375 28.2819 4.375 29.4534 5.54657C30.625 6.71815 30.625 8.60376 30.625 12.375V22.625C30.625 26.3962 30.625 28.2819 29.4534 29.4534C28.2819 30.625 26.3962 30.625 22.625 30.625H12.375C8.60376 30.625 6.71815 30.625 5.54657 29.4534C4.375 28.2819 4.375 26.3962 4.375 22.625V12.375Z"
@@ -64,10 +64,11 @@
           </linearGradient>
         </defs>
       </svg>
+      <img *ngIf="isSafari" src="./img/insta.png" >
     </button>
     <button
       mat-menu-item>
-      <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg *ngIf="!isSafari" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.8">
           <g filter="url(#filter0_b)">
             <ellipse cx="17.5001" cy="11.6666" rx="5.83333" ry="5.83333" fill="#6C7784"/>
@@ -131,6 +132,7 @@
           </linearGradient>
         </defs>
       </svg>
+      <img *ngIf="isSafari" src="./img/User_add.png" >
 
     </button>
     <button
@@ -145,7 +147,7 @@
     <button
       mat-menu-item
       (click)="logout()">
-      <svg width="27" height="37" viewBox="0 0 27 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg *ngIf="!isSafari" width="27" height="37" viewBox="0 0 27 37" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_b)">
           <path
             d="M10.3027 2.16184L19.7754 3.65041C21.6947 3.95201 22.6543 4.10281 23.3751 4.57542C24.0105 4.99198 24.514 5.58085 24.8269 6.27313C25.1819 7.05858 25.1819 8.02999 25.1819 9.97282V27.0272C25.1819 28.97 25.1819 29.9414 24.8269 30.7269C24.514 31.4192 24.0105 32.008 23.3751 32.4246C22.6543 32.8972 21.6947 33.048 19.7754 33.3496L10.3027 34.8382C7.75633 35.2383 6.48315 35.4384 5.49208 35.0629C4.62226 34.7334 3.89447 34.111 3.43391 33.3029C2.90916 32.3821 2.90916 31.0933 2.90916 28.5157V8.48425C2.90916 5.90665 2.90916 4.61786 3.43391 3.69709C3.89447 2.88896 4.62226 2.2666 5.49208 1.93708C6.48315 1.56163 7.75633 1.7617 10.3027 2.16184Z"
@@ -172,6 +174,7 @@
           </linearGradient>
         </defs>
       </svg>
+      <img *ngIf="isSafari" src="./img/logOut.png" >
 
     </button>
   </mat-menu>

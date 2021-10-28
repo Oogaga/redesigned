@@ -1,5 +1,5 @@
-<svg routerLink="/"
-     id="LOGO" width="302" height="100" viewBox="0 0 260 111" preserveAspectRatio="xMidYMid meet" fill="none"
+<svg *ngIf="!isSafari" routerLink="/"
+     class="LOGO" width="302" height="100" viewBox="0 0 260 111" preserveAspectRatio="xMidYMid meet" fill="none"
      xmlns="http://www.w3.org/2000/svg">
   <g filter="url(#filter0_d)">
     <path
@@ -40,6 +40,8 @@
     </filter>
   </defs>
 </svg>
+<img *ngIf="isSafari" routerLink="/" class="LOGO" src="./img/LOGO.png" >
+
 <form
   [formGroup]="loginUser"
   (ngSubmit)="logIn()">
@@ -100,7 +102,7 @@
   Создать аккаунт
 </button>
 <div id="remember" routerLink="/forgot">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg *ngIf="!isSafari" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M3.33325 11.5C3.33325 9.61438 3.33325 8.67157 3.91904 8.08579C4.50482 7.5 5.44763 7.5 7.33325 7.5H12.6666C14.5522 7.5 15.495 7.5 16.0808 8.08579C16.6666 8.67157 16.6666 9.61438 16.6666 11.5V11.5C16.6666 14.3284 16.6666 15.7426 15.7879 16.6213C14.9092 17.5 13.495 17.5 10.6666 17.5H9.33325C6.50482 17.5 5.09061 17.5 4.21193 16.6213C3.33325 15.7426 3.33325 14.3284 3.33325 11.5V11.5Z"
       stroke="#585858" stroke-width="2"/>
@@ -109,5 +111,6 @@
       stroke="#585858" stroke-width="2" stroke-linecap="round"/>
     <ellipse cx="9.99992" cy="12.5" rx="1.66667" ry="1.66667" fill="#585858"/>
   </svg>
+  <img *ngIf="isSafari" src="./img/Lock.png" >
   <div class="text_18px text_18px_2">Забыли пароль?</div>
 </div>

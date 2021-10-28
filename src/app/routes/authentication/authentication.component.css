@@ -28,9 +28,19 @@
 
 }
 
-#LOGO {
+.LOGO {
   margin-top: 32px;
   margin-bottom: 59px;
+}
+
+@media not all and (min-resolution: .001dpcm) {
+  @media {
+
+    .LOGO {
+      height: 20%;
+    }
+
+  }
 }
 
 #pass {

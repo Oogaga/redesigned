@@ -6,6 +6,7 @@ import {BaseDeviceModel} from "../../../models/base-device.model";
 import {FormControl, Validators} from "@angular/forms";
 import {DeviceSettingsComponent} from "../../settings/device-settings/device-settings.component";
 import {Permission} from "../../../static/enums/permissionEnum.model";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-bio-pid',
@@ -37,12 +38,15 @@ export class BioPidComponent implements OnInit {
   oldValueCo: number;
   oldValueGvs: number;
   interval: any;
+  isSafari: boolean
 
 
   constructor(
     private service: DevicesService,
     public dialog: MatDialog,
+    private platform: Platform
   ) {
+    this.isSafari = platform.SAFARI;
     this.deviceName = '';
     this.isOnline = true;
     this.currentCo = 0;

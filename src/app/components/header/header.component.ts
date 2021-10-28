@@ -4,6 +4,7 @@ import {UsersService} from "../../services/users.service";
 import {WeeklySettingsDayComponent} from "../settings/weekly-settings-day/weekly-settings-day.component";
 import {MatDialog} from "@angular/material/dialog";
 import {IAmComponent} from "../i-am/i-am.component";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,12 @@ import {IAmComponent} from "../i-am/i-am.component";
 
 export class HeaderComponent implements OnInit {
 
+  isSafari: boolean;
+
   constructor(private userService: UsersService,
+              private platform: Platform,
               private dialog: MatDialog) {
+    this.isSafari = platform.SAFARI
   }
 
   openIm() {

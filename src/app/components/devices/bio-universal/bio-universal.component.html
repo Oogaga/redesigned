@@ -3,7 +3,7 @@
   class="device">
   <mat-expansion-panel-header
     class="deviceHeader">
-    <svg class="deviceLogo" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg *ngIf="!isSafari" class="deviceLogo" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M15.4508 56.9938C12.262 54.1616 9.07329 49.2642 7.39194 44.6029C6.29037 41.4756 6.00049 39.5285 6.00049 35.2212C6.00049 26.4885 8.49351 20.352 14.3492 14.4516C20.2049 8.4921 28.0899 5.48286 36.1487 6.07291C40.555 6.42694 46.6426 8.19708 46.9905 9.20016C47.2224 9.96722 43.3959 12.1504 37.3083 14.7466C23.9735 20.411 17.8279 26.4295 16.4364 35.0442C15.9146 38.4074 16.4364 43.8948 17.6539 47.0221C18.2337 48.6152 18.2917 48.6152 19.4512 45.1339C20.5528 41.7117 23.2777 37.3453 25.5968 35.2212C26.2926 34.5721 26.9303 32.979 27.1622 31.3859C27.3362 29.8518 27.9739 27.5506 28.5537 26.2525L29.5973 23.8923L29.3074 28.0226L29.0175 32.0939L31.4526 29.9697C33.7137 28.0226 40.0912 24.1873 41.1348 24.1873C41.3667 24.1873 39.6274 25.5444 37.2503 27.1965C33.3658 29.9107 25.133 37.5223 25.133 38.4074C25.133 38.5844 26.6404 38.9384 28.4957 39.1155C30.293 39.3515 32.96 39.8825 34.4094 40.3546L37.0184 41.2396L31.8584 40.9446C23.9155 40.5316 23.2198 40.7676 21.4225 44.7799C20.6108 46.7271 19.6252 50.4443 19.2193 53.5716C18.8135 56.5808 18.3497 59 18.1757 59C17.9438 59 16.7843 58.1149 15.4508 56.9938Z"
         fill="#73BF41"/>
@@ -36,6 +36,7 @@
         </linearGradient>
       </defs>
     </svg>
+    <img *ngIf="isSafari" class="deviceLogo" src="./img/bioUniversal/logo.png" >
     <mat-panel-description
       class="deviceName flex">
       <div class="_biouniversal_">Bio Universal</div>
@@ -51,7 +52,7 @@
         mat-icon-button>
         <mat-icon
           class="svg_button_in">
-          <svg class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg  *ngIf="!isSafari" class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
               <path
                 d="M21.8832 36.5855C22.198 38.0458 22.7887 39.264 23.5193 40.1048C24.3035 41.0076 25.1458 41.3705 25.8864 41.3705C26.6269 41.3705 27.4692 41.0076 28.2535 40.1048C28.984 39.264 29.5747 38.0458 29.8895 36.5855H21.8832Z"
@@ -88,6 +89,7 @@
               </linearGradient>
             </defs>
           </svg>
+          <img *ngIf="isSafari" class="shadow" src="./img/bioUniversal/alert.png" >
         </mat-icon>
       </button>
       <button
@@ -97,7 +99,7 @@
       >
         <mat-icon
           class="svg_button_in">
-          <svg class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg  *ngIf="!isSafari" class="shadow" width="54" height="54" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
               <mask id="path-1-inside-1" fill="white">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -129,6 +131,7 @@
               </linearGradient>
             </defs>
           </svg>
+          <img *ngIf="isSafari" class="shadow" src="./img/bioUniversal/settings.png" >
         </mat-icon>
       </button>
       <button
@@ -139,7 +142,7 @@
         <mat-icon
           *ngIf="!isOn"
           class="svg_button_in">
-          <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg  *ngIf="!isSafari" width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="16" fill="white" fill-opacity="0.6"/>
             <rect x="0.5" y="0.5" width="49" height="49" rx="15.5" stroke="#FF0000" stroke-opacity="0.7"/>
             <g filter="url(#filter0_d_1427:1899)">
@@ -164,11 +167,12 @@
               </filter>
             </defs>
           </svg>
+          <img *ngIf="isSafari" class="shadow" src="./img/bioUniversal/powerOff.png" >
         </mat-icon>
         <mat-icon
           *ngIf="isOn"
           class="svg_button_in">
-          <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg  *ngIf="!isSafari" width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="16" fill="white" fill-opacity="0.6"/>
             <rect x="0.5" y="0.5" width="49" height="49" rx="15.5" stroke="#2B7D2B" stroke-opacity="0.65"/>
             <g filter="url(#filter0_d_1708:1912)">
@@ -193,6 +197,7 @@
               </filter>
             </defs>
           </svg>
+          <img *ngIf="isSafari" class="shadow" src="./img/bioUniversal/powerOn.png" >
         </mat-icon>
       </button>
     </div>
@@ -224,7 +229,7 @@
         <div class="header-bot-card">ЦО</div>
         <section class="value-card">
           <mat-icon aria-hidden="false" aria-label="Example home icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg  *ngIf="!isSafari" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16 13.5278V3.99998C16 1.79086 14.2091 0 12 0C9.79087 0 8.00002 1.79086 8.00002 3.99998V13.5278C6.7725 14.6264 6 16.223 6 18C6 21.3137 8.68631 24 12 24C15.3137 24 18 21.3137 18 18C18 16.223 17.2275 14.6264 16 13.5278ZM12 22C9.79087 22 8.00002 20.2091 8.00002 18C8.00002 16.8451 8.48944 15.7738 9.33384 15.018L10 14.4218V3.99998C10 2.89542 10.8955 1.99997 12 1.99997C13.1046 1.99997 14.0001 2.89538 14.0001 3.99998V14.4218L14.6663 15.018C15.5107 15.7738 16.0001 16.8451 16.0001 18C16 20.2091 14.2091 22 12 22Z"
                 fill="#323232"/>
@@ -233,6 +238,7 @@
                 d="M12 21C13.6569 21 15 19.6569 15 18C15 16.3431 13.6569 15 12 15C10.3431 15 9 16.3431 9 18C9 19.6569 10.3431 21 12 21Z"
                 fill="#323232"/>
             </svg>
+            <img *ngIf="isSafari" src="./img/thermometer.png" >
           </mat-icon>
           <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
             <div [id]="deviceName + 'co'" class="data-temperature">{{currentCo}}
@@ -268,7 +274,7 @@
         <div class="header-bot-card">ГВС</div>
         <section class="value-card">
           <mat-icon>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg  *ngIf="!isSafari" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16 13.5278V3.99998C16 1.79086 14.2091 0 12 0C9.79087 0 8.00002 1.79086 8.00002 3.99998V13.5278C6.7725 14.6264 6 16.223 6 18C6 21.3137 8.68631 24 12 24C15.3137 24 18 21.3137 18 18C18 16.223 17.2275 14.6264 16 13.5278ZM12 22C9.79087 22 8.00002 20.2091 8.00002 18C8.00002 16.8451 8.48944 15.7738 9.33384 15.018L10 14.4218V3.99998C10 2.89542 10.8955 1.99997 12 1.99997C13.1046 1.99997 14.0001 2.89538 14.0001 3.99998V14.4218L14.6663 15.018C15.5107 15.7738 16.0001 16.8451 16.0001 18C16 20.2091 14.2091 22 12 22Z"
                 fill="#323232"/>
@@ -277,6 +283,7 @@
                 d="M12 21C13.6569 21 15 19.6569 15 18C15 16.3431 13.6569 15 12 15C10.3431 15 9 16.3431 9 18C9 19.6569 10.3431 21 12 21Z"
                 fill="#323232"/>
             </svg>
+            <img *ngIf="isSafari" src="./img/thermometer.png" >
           </mat-icon>
           <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
             <div [id]="deviceName + 'gvs'" class="data-temperature">{{currentGvs}}

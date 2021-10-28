@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   hide :boolean;
   hide2 :boolean;
   emailAlreadyTaken: boolean;
-  private isLoaderShown: boolean;
+  private errorRegistration: boolean;
   private hasEmptyFields: boolean;
 
   constructor(private service: UsersService,
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     this.emailAlreadyTaken = true;
     this.hide = true;
     this.hide2 = true;
-    this.isLoaderShown = false;
+    this.errorRegistration = false;
     this.hasEmptyFields = false;
 
   }
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
     if (!this.newUser.valid) {
       return;
     }
-    this.isLoaderShown = true;
+    this.errorRegistration = false;
     const birthdayString = moment(this.newUser.value.birthday).format(RegExpData.DATE_FORMAT);
     const user = new UsersAuthData(
       this.newUser.value.email,
@@ -104,12 +104,12 @@ export class RegistrationComponent implements OnInit {
       birthdayString);
 
     this.service.postDataUser(user).subscribe((data: UsersAuthData) => {
-      this.isLoaderShown = false;
+      this.errorRegistration = false;
       this.newUser.reset();
+      setTimeout(()=>{this.router.navigate(['entrance'])}, 2000)
     }, (error) => {
-      this.isLoaderShown = false;
+      this.errorRegistration = true;
     });
-    setTimeout(()=>{this.router.navigate(['entrance'])}, 2000)
   }
 
 

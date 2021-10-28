@@ -26,13 +26,14 @@ export class DevicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.service.displayingDevices$.subscribe((items: BaseDeviceModel[]) => {
-      this.devices = items;
-    });
-    this.service.getDevices();
     this.intervalTime = window.setInterval(() => {
       this.service.downloadData();
     }, this.refresh_interval);
+    setTimeout(()=>{
+      this.subscription = this.service.displayingDevices$.subscribe((items: BaseDeviceModel[]) => {
+        this.devices = items;
+      });
+      this.service.getDevices();}, 1000)
   }
 
   ngOnDestroy() {

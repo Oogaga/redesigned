@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AddingDeviceComponent} from "../../adding-device/adding-device.component";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-add-new-device',
@@ -9,7 +10,12 @@ import {AddingDeviceComponent} from "../../adding-device/adding-device.component
 })
 export class AddNewDeviceComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  isSafari: boolean
+
+  constructor(public dialog: MatDialog,
+              private platform: Platform) {
+    this.isSafari = platform.SAFARI;
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(AddingDeviceComponent, {
