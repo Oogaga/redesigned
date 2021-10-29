@@ -6,6 +6,7 @@
 
 <button
   class="back button_common"
+  [ngClass]="{'padding':isSafari||browser}"
   mat-ripple
   [matRippleUnbounded]="false"
   [matRippleRadius]="65"

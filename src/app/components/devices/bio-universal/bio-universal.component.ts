@@ -158,7 +158,8 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
       minHeight: '100vh',
       minWidth: '100vw',
       id: 'modal',
-      hasBackdrop: true,
+      panelClass: 'modalSettings',
+      backdropClass: 'none',
       data: {device: JSON.parse(localStorage.getItem('devices') || 'null')[this.deviceNumber]}
     });
 

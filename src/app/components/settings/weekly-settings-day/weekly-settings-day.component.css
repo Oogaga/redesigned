@@ -53,8 +53,9 @@
 .scrollbar_hours:after,
 .not_chose,
 .not_chosed{
+  -webkit-overflow-scrolling:touch;
   font-family: "Roboto Regular";
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 33.3%;
@@ -64,6 +65,10 @@
   color: rgba(63 81 181 / 50%);
   font-size: 35px;
   font-weight: normal;
+}
+
+.padding {
+  margin-top: 30px;
 }
 
 .chosed_hour {

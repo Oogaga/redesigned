@@ -12,6 +12,7 @@ import {switchMap} from "rxjs/operators";
 import {WeeklySettingsDayComponent} from "../weekly-settings-day/weekly-settings-day.component";
 import {WeeklySettingDtoModel} from "../../../models/dataOut/weeklysettingdto.model";
 import {SettingItem} from "../../../models/dataOut/weeklysettingdto.model";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-device-settings',
@@ -108,6 +109,7 @@ export class DeviceSettingsComponent implements OnInit {
   constructor(
     private service: DevicesService,
     private dialog:MatDialog,
+    private platform: Platform,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.arrayOfTimeZone = StaticData.TimeZones;
@@ -321,6 +323,7 @@ export class DeviceSettingsComponent implements OnInit {
       minHeight: '100vh',
       minWidth: '100vw',
       id: 'dayOfWeek',
+      panelClass: 'modalSettings',
       hasBackdrop: true,
       data: {data: this.week[dayNumber], day: dayNumber, id: this.device.id}
     });
@@ -402,6 +405,15 @@ export class DeviceSettingsComponent implements OnInit {
     this.deviceId = this.device.devId;
     this.deviceName = this.device.name;
     this.deviceIp = this.device.ip;
+
+
+    if (this.platform.IOS || this.platform.ANDROID) {
+      // @ts-ignore
+      const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator['standalone']);
+      if (!isInStandaloneMode) {
+        let needMargin = document
+      }
+    }
 
     // ___________________________________________________________________________________________________________________________________Костыль
     let slider = document.getElementsByClassName('ngx-slider') as HTMLCollectionOf<HTMLElement>

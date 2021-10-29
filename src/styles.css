@@ -82,7 +82,17 @@ html {
   scrollbar-width: none; /* Firefox */
 }
 
+.modalSettings {
+  background: rgba(255, 255, 255, 0.5)!important;
+  backdrop-filter: blur(25px)!important;
+  /*padding: 45px 10px 10px 10px!important;*/
+}
+.none {
+  background: none;
+  backdrop-filter: none;
+  border: none;
 
+}
 
 *, *::before, *::after {
   box-sizing: inherit;
@@ -95,6 +105,7 @@ body, html {
 input {outline:none;}
 
 body {
+  -webkit-overflow-scrolling:touch;
   margin: 0;
   overflow: auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -136,9 +147,6 @@ body {
   justify-content: center;
 }
 
-.mozilla_glass {
-
-}
 
 @media only screen and (max-device-width: 480px) {
   /*html {*/

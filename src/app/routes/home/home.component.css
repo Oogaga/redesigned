@@ -2,9 +2,6 @@
 #body_home {
   z-index: -1;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   min-height: 100vh;
   background-image: url('src/img/light.avif');
   background-attachment: fixed;
@@ -14,32 +11,22 @@
   overflow: hidden;
 }
 
-#entrance:after{
-  content:"";
-  position:fixed;
-  top:0;
-  height:100vh;
-  left:0;
-  right:0;
-  z-index:-1;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 
 @media not all and (min-resolution: .001dpcm) {
   @media {
 
     #body_home {
-      /*z-index: -1;*/
-      /*position: fixed;*/
-      /*top: 0;*/
-      /*left: 0;*/
-      /*height: 100%;*/
-      /*width: 100%;*/
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      left: 0;
 
-      background: url("src/img/light.jpg") center center;
+      background: url("src/img/light.jpg");
+
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
   }
 }

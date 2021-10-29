@@ -1,6 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DeviceSettingsComponent} from "../device-settings/device-settings.component";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-weekly-settings-day',
@@ -22,11 +23,14 @@ export class WeeklySettingsDayComponent implements OnInit{
   id: any
   dayOfWeek: string;
   daysOfWeek: string[] = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+  isSafari: boolean;
+  browser:boolean
 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private deviceSettings: DeviceSettingsComponent
+    private deviceSettings: DeviceSettingsComponent,
+    private platform: Platform
   ) {
     this.dailyTemperature = this.data.data;
     this.dayNumber = this.data.day
@@ -36,6 +40,8 @@ export class WeeklySettingsDayComponent implements OnInit{
     this.test = ''
     this.temperature = this.dailyTemperature.data;
     this.dayOfWeek = this.daysOfWeek[this.dayNumber]
+    this.isSafari = platform.SAFARI;
+    this.browser = platform.BLINK
   }
 
 

@@ -1,49 +1,36 @@
 
 #entrance {z-index: -1;
   position: fixed;
-  top: 0;
-  left: 0;
-
   width: 100%;
   min-height: 100vh;
   background: url("src/img/dark.avif") no-repeat fixed;
   background-size: cover;
-  height: 100vh;
-
 
 }
-#container {
-}
+
+
 
 @media not all and (min-resolution: .001dpcm) {
   @media {
     #entrance {
-      background: url("src/img/dark.jpg") no-repeat fixed;
+      background: url("src/img/dark.jpg");
+      background-size: cover;
       z-index: -1;
       position: fixed;
       top: 0;
       left: 0;
       height: 100%;
-      width: 100%;
-      background-size: 100%;
     }
-    #entrance:after{
-      content:"";
-      position:fixed;
-      top:0;
-      height:100vh;
-      left:0;
-      right:0;
-      z-index:-1;
+
+    #entrance:after {
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-    }
 
+    }
   }
 }
-
 
 .flex_log {
 
@@ -187,4 +174,10 @@ a:visited {
   color: #585858;
 }
 
+@media only screen and (max-device-height: 700px) {
 
+  .login {
+    height: 460px;
+    overflow: scroll;
+  }
+}

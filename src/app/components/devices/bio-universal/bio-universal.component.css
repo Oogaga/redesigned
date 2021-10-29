@@ -15,6 +15,7 @@
 
 .device {
   margin: 20px 2% 0% 2% !important;
+  width: 100%;
 }
 
 ::ng-deep.mat-expansion-panel-header {
@@ -195,10 +196,45 @@ input[type="tel"]::-webkit-inner-spin-button {
   top: 25px;
 }
 
-@media only screen and (max-device-width: 480px)  {
+@media only screen and (max-device-width: 480px) {
 
   .offline_icon {
-    right: 15px;
+    right: 20px;
+  }
+
+}
+
+@media only screen and (max-device-width: 370px) {
+  .small-card-info {
+    width: 28vw;
+    height: 105px;
+    margin: 0 1vw 0;
+  }
+  .change-temp-card {
+    width: 90vw;
+    height: 90px;
+  }
+  .top-info {
+    justify-content: center;
+  }
+  .bott-info {
+    align-items: center;
+    height: 435px;
+  }
+  .big-card-info {
+    width: 90vw;
+    height: 75px;
+  }
+  .value-card {
+    padding-left: 5vw;
+  }
+  .header-small-card{
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .buttons {
+    width: 90vw;
+    justify-content: flex-end;
   }
 
 }
