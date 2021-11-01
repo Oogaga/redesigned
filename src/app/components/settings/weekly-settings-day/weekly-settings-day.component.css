@@ -1,3 +1,13 @@
+*{
+  overflow: hidden;
+}
+
+.flex_ios {
+  display: flex;
+  justify-content: center;
+  height: 80%;
+}
+
 .title {
   width: 100%;
   text-align: center;
@@ -7,42 +17,64 @@
   margin-top: 6%;
 }
 .container {
-  flex-direction: row;
-  width: 10rem;
-  height: 22rem;
-  border-radius: 3rem;
+  height: 33.3%;
+  scroll-snap-align: start;
+  position: relative;
+  flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.scrollbar_hours:before,
-.scrollbar_hours:after {
-  content: '';
+.input_ios {
+  width: 50vw;
+  height: 100px;
+  text-align: center;
+  font-family: "Montserrat Medium";
+  font-size: 35px;
+  color: #525252;
+  background: none;
+  border: none;
 }
 
-.scrollbar_temperature:before,
-.scrollbar_temperature:after {
-  content: '';
+.ios_section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+}
+
+.increase,
+.decrease{
+  height: 90px;
+  width: 30vw;
+
+}
+
+.arrow {
+  font-size: 60px;
+  color: #525252;
 }
 
 .scrollbar_hours {
+  -webkit-overflow-scrolling:touch;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   width: 9.4rem;
   height: 22rem;
-  overflow: auto;
+  overflow: scroll;
   scroll-snap-type: y mandatory;
 }
 
 .scrollbar_temperature {
+  -webkit-overflow-scrolling:touch;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   width: 9.4rem;
   height: 22rem;
-  overflow: auto;
+  overflow: scroll;
   scroll-snap-type: y mandatory;
 }
 
@@ -53,7 +85,6 @@
 .scrollbar_hours:after,
 .not_chose,
 .not_chosed{
-  -webkit-overflow-scrolling:touch;
   font-family: "Roboto Regular";
   scroll-snap-align: start;
   flex-grow: 1;
@@ -98,6 +129,7 @@ hr {
 
 .note {
   position: sticky;
+  overflow: visible;
   bottom: 0;
   width: 100%;
   text-align: center;

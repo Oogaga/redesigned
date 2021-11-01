@@ -1,17 +1,11 @@
-import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {DevicesService} from "../../../services/devices.service";
 import {MatDialog} from "@angular/material/dialog";
-import {StaticData} from "../../../static/static-data";
-import {DeviceTypesInfoModel} from "../../../models/DeviceTypesInfo.model";
-import {Place} from "../../../models/places.model";
 import {BioUniversalModel} from "../../../models/bioUniversal.model";
 import {DeviceSettingsComponent} from "../../settings/device-settings/device-settings.component";
 import {BaseDeviceModel} from "../../../models/base-device.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {interval, Observable} from "rxjs";
-import {RegExpData} from "../../../static/reqexp_data";
+import {FormControl, Validators} from "@angular/forms";
 import {Permission} from "../../../static/enums/permissionEnum.model";
-import {colors} from "@angular/cli/utilities/color";
 import {Platform} from "@angular/cdk/platform";
 
 @Component({

@@ -25,7 +25,7 @@ export class PwaService {
         this.openPromptComponent('android');
       });
     }
-    if (this.platform.IOS) {
+    if (this.platform.SAFARI) {
       // @ts-ignore
       const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator['standalone']);
       if (!isInStandaloneMode) {

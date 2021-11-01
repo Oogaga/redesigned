@@ -4,6 +4,7 @@
 <input style="display: none" id="day" [value]="dayNumber">
 <input style="display: none" id="id" [value]="id">
 
+
 <button
   class="back button_common"
   [ngClass]="{'padding':isSafari||browser}"
@@ -19,19 +20,53 @@
 
 <div class="title">{{dayOfWeek}}</div>
 
-<div style="display: flex; height: 70vh;     justify-content: center;    align-items: center;">
-  <div class="container">
+<div *ngIf="isIOS" class="flex_ios">
+  <div style="display: flex; flex-direction: row; align-items: center; width: 100vw">
+    <section class="ios_section">
+      <button class="increase button_common" matRipple (click)="changeHour('decrease')">
+        <span class="material-icons-round arrow">expand_less</span>
+      </button>
+      <input class="input_ios" [(ngModel)]="hourIOS" (change)="changeHour('check')">
+      <button class="decrease button_common" matRipple (click)="changeHour('increase')">
+        <span class="material-icons-round arrow">expand_more</span>
+      </button>
+      <div class="note">
+        Время
+      </div>
+    </section>
+    <section class="ios_section">
+      <button class="increase button_common" matRipple (click)="changeTemperature('decrease')">
+        <span class="material-icons-round arrow">expand_less</span>
+      </button>
+      <input class="input_ios" [(ngModel)]="temperatureIOS" (change)="changeTemperature('check')">
+      <button class="decrease button_common" matRipple (click)="changeTemperature('increase')">
+        <span class="material-icons-round arrow">expand_more</span>
+      </button>
+      <div class="note">
+        Температура
+      </div>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="!isSafari && !isIOS"
+     style="display: flex; height: 70vh;     justify-content: center;    align-items: center;">
+  <div>
     <div class="scrollbar_hours">
+      <div class="not_chose"></div>
       <div class="not_chose" [id]="hour" *ngFor="let hour of hours">{{hour}}</div>
+      <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
       <hr class="hr hr_bot" noshade>
       <div class="note">Время</div>
     </div>
   </div>
-  <div class="container">
+  <div>
     <div class="scrollbar_temperature">
+      <div class="not_chosed"></div>
       <div class="not_chosed" [id]="temperature"
            *ngFor="let temperature of choseTemperature">{{temperature}}</div>
+      <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
       <hr class="hr hr_bot" noshade>
       <div class="note">Температура</div>

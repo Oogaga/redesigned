@@ -1,3 +1,6 @@
+<div class="all_settings">
+
+
 <mat-dialog-actions align="start">
   <div style="display: flex; align-items: center; justify-content: space-between; width: 100%">
     <button
@@ -15,6 +18,7 @@
   </div>
 </mat-dialog-actions>
 <mat-stepper
+  class="stepper"
   [linear]="true"
   #stepper>
 
@@ -511,7 +515,7 @@
       <div class="configs">
 
         <section class="slider_box">
-          <div class="description_settings">Время работы внешнего шнека</div>
+          <div class="description_settings">Диапазон мощности работы</div>
 
           <ngx-slider [(value)]="range9[0]" [(highValue)]="range9[1]"
                       [options]="options_0Pers_100"></ngx-slider>
@@ -521,7 +525,7 @@
           </section>
         </section>
         <section class="slider_box">
-          <div class="description_settings">Время работы внешнего шнека</div>
+          <div class="description_settings">Диапазон мощности доп. вентилятора</div>
 
           <ngx-slider [(value)]="range12[0]" [(highValue)]="range12[1]"
                       [options]="options_0Pers_100"></ngx-slider>
@@ -531,7 +535,7 @@
           </section>
         </section>
         <section class="slider_box">
-          <div class="description_settings">Время работы внешнего шнека</div>
+          <div class="description_settings">Задержка выключения</div>
 
           <ngx-slider [(value)]="range11"
                       [options]="options_0Sec_120"></ngx-slider>
@@ -540,7 +544,7 @@
           </section>
         </section>
         <section class="slider_box">
-          <div class="description_settings">Время работы внешнего шнека</div>
+          <div class="description_settings">Задержка включения</div>
 
           <ngx-slider [(value)]="range10"
                       [options]="options_0Sec_120"></ngx-slider>
@@ -788,4 +792,4 @@
   </mat-step>
 
 </mat-stepper>
-
+</div>

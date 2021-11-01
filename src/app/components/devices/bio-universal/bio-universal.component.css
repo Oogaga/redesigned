@@ -32,13 +32,16 @@
   width: 100%;
   height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: end;
+  margin-right: 12px;
+  margin-top: 5px;
 }
 
 .svg_button {
-  margin-left: 67px !important;
+
   height: 50px;
   width: 50px;
+  margin-left: 10px;
 }
 
 ::ng-deep.mat-button-ripple.mat-ripple {
@@ -87,7 +90,7 @@
   display: flex;
   justify-content: space-between;
   width: 345px;
-  margin: 9px 0px 6px 0px;
+  margin: 5px 0px 6px 0px;
 }
 
 .header-small-card {
@@ -101,7 +104,7 @@
 .value-small-card {
   display: flex;
   justify-content: center;
-  margin-top: 39px;
+  margin-top: 25px;
   font-family: "Roboto Regular";
   font-size: 36px;
 }
@@ -162,8 +165,8 @@
 }
 
 .small-card-info {
-  width: 111px;
-  height: 134px;
+  width: 110px;
+  height: 100px;
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid #E8E8E8;
   border-radius: 10px;
@@ -237,4 +240,9 @@ input[type="tel"]::-webkit-inner-spin-button {
     justify-content: flex-end;
   }
 
+}
+@media (hover: none) {
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
+    background: none!important;
+  }
 }
