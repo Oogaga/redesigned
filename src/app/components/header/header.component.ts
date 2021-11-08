@@ -5,6 +5,7 @@ import {WeeklySettingsDayComponent} from "../settings/weekly-settings-day/weekly
 import {MatDialog} from "@angular/material/dialog";
 import {IAmComponent} from "../i-am/i-am.component";
 import {Platform} from "@angular/cdk/platform";
+import {PrimeComponent} from "../prime/prime.component";
 
 @Component({
   selector: 'app-header',
@@ -27,6 +28,20 @@ export class HeaderComponent implements OnInit {
       minHeight: '100vh',
       minWidth: '100vw',
       id: 'dayOfWeek',
+      hasBackdrop: true
+    });
+
+    dailyTemperature.afterClosed().subscribe(result => {
+
+      console.log(`Dialog result: ` + result);
+    });
+  }
+
+  openPrime() {
+    const dailyTemperature = this.dialog.open(PrimeComponent, {
+      minHeight: '100vh',
+      minWidth: '100vw',
+      id: 'prime',
       hasBackdrop: true
     });
 

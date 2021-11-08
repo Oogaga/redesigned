@@ -29,6 +29,14 @@
   display: none !important;
 }
 
+::ng-deep.mat-dialog-container {
+  border-radius: 0;
+  padding: 24px 0 24px 0!important;
+
+  overflow: hidden;
+  /*position: fixed;*/
+}
+
 .back {
   height: 35px;
   display: flex;
@@ -37,6 +45,7 @@
   font-family: "Montserrat SemiBold";
   font-size: 16px;
   color: #525252;
+  -webkit-margin-before: 30px;
 }
 
 .scrollbar {
@@ -44,7 +53,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   overflow: auto;
   scroll-snap-type: y mandatory;
 }

@@ -41,11 +41,6 @@ app-header {
 }
 
 
-::ng-deep.mat-ripple {
-  border-radius: 10px;
-}
-
-
 /*.background-img {*/
 /*  background-attachment: fixed;*/
 /*  background-position: center;*/

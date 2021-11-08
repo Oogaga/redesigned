@@ -41,9 +41,6 @@
 }
 
 
-mat-ripple {
-  border-radius: 10px !important;
-}
 
 mat-stepper {
   -webkit-overflow-scrolling:touch;

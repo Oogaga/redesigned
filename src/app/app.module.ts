@@ -52,6 +52,7 @@ import { InstallAppComponent } from './components/promts/install-app/install-app
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {PwaService} from "./services/pwa.service";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import { PrimeComponent } from './components/prime/prime.component';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -81,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BaseItemComponent,
     WeeklySettingsDayComponent,
     IAmComponent,
-    InstallAppComponent
+    InstallAppComponent,
+    PrimeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
