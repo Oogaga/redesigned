@@ -32,11 +32,13 @@ export class AuthenticationComponent implements OnInit {
   emailValidator: any;
   emailError: boolean;
   isSafari: boolean
+  savedEmail: string;
+  savedPassword: string;
 
   constructor(private service: UsersService,
               private router: Router,
               private platform: Platform,
-  private googleService: GoogleOauth2Service) {
+              private googleService: GoogleOauth2Service) {
     this.isSafari = platform.SAFARI;
     this.emailValidator = RegExpData.EMAIL_VALIDATOR;
     this.currentPage = 1;
@@ -50,15 +52,15 @@ export class AuthenticationComponent implements OnInit {
     this.phoneAlreadyTaken = false;
     this.isRestoredEmailInvalid = false;
     this.emailError = false;
+    this.savedEmail = '';
+    this.savedPassword = '';
   }
-
 
 
   loginUser = new FormGroup({
     enteredEmail: new FormControl(null, [
       Validators.required,
       Validators.email,
-      Validators.pattern(RegExpData.EMAIL_ENTERED_VALIDATOR)
     ]),
     enteredPassword: new FormControl(null, [
       Validators.required,
@@ -66,7 +68,13 @@ export class AuthenticationComponent implements OnInit {
     ])
   });
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if (localStorage.getItem('login')) {
+      this.loginUser.setValue({
+        enteredEmail: JSON.parse(<string>localStorage.getItem('login')).email,
+        enteredPassword: JSON.parse(<string>localStorage.getItem('login')).password
+      })
+    }
   }
 
   // -------------------log in-------------------------
@@ -76,6 +84,7 @@ export class AuthenticationComponent implements OnInit {
       this.loginUser.value.enteredEmail,
       this.loginUser.value.enteredPassword
     );
+    localStorage.setItem('login', JSON.stringify(loginForm))
     this.loginByParams(loginForm);
 
   }
@@ -95,8 +104,13 @@ export class AuthenticationComponent implements OnInit {
       }
     }, (error) => {
       this.wrongPass = true;
+      setTimeout(() => {
+        this.wrongPass = false
+        this.loginUser.updateValueAndValidity()
+      }, 2000)
     });
   }
+
 
   // -------------------registration form-------------------------
 

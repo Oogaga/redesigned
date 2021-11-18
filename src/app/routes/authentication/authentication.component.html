@@ -40,60 +40,60 @@
     </filter>
   </defs>
 </svg>
-<img *ngIf="isSafari" routerLink="/" class="LOGO" src="./img/LOGO.png" >
+<img *ngIf="isSafari" routerLink="/" class="LOGO" src="./img/LOGO.png">
 
 <form
   [formGroup]="loginUser"
   (ngSubmit)="logIn()">
-<div type="text"
-     class="text_18px">
-  Адрес эл. почты
-</div>
-<mat-form-field appearance="fill">
-  <input matInput
-         placeholder="bla_bla@example.com"
-         formControlName="enteredEmail">
-  <mat-error
-    *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')">Введите электронную почту
-  </mat-error>
-</mat-form-field>
-<div class="text_18px"
-     id="pass">Пароль
-</div>
-<mat-form-field appearance="fill">
-  <input matInput
-         formControlName="enteredPassword"
-         [type]="hide ? 'password' : 'text'">
-  <mat-error
-    *ngIf="!loginUser.hasError('required')">Введите пароль
-  </mat-error>
-  <div
-    class="mat-error"
-    id="wrongPass"
-  *ngIf="wrongPass">
-    Попробуйте правильный пароль
+  <div type="text"
+       class="text_18px">
+    Адрес эл. почты
   </div>
-  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide">
-    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-  </button>
-</mat-form-field>
-<div class="buttons">
-  <button
-    class="button_small"
-    mat-raised-button
-    (click)="googleAuthenticate()">
-    Войти через<br>
-    <label id="google">Google</label>
-  </button>
-  <button
-    [disabled]="!loginUser.valid"
-    class="button_small"
-    mat-raised-button
-    type="submit">
-    Войти
-  </button>
-</div>
+  <mat-form-field appearance="fill">
+    <input matInput
+           placeholder="bla_bla@example.com"
+           formControlName="enteredEmail">
+    <mat-error
+      *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')">Введите электронную почту
+    </mat-error>
+  </mat-form-field>
+  <div class="text_18px"
+       id="pass">Пароль
+  </div>
+  <mat-form-field appearance="fill">
+    <input matInput
+           formControlName="enteredPassword"
+           [type]="hide ? 'password' : 'text'">
+    <mat-error
+      *ngIf="!loginUser.hasError('required')">Введите пароль
+    </mat-error>
+    <div
+      class="mat-error"
+      id="wrongPass"
+      *ngIf="wrongPass">
+      Попробуйте правильный пароль
+    </div>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="buttons">
+    <button
+      class="button_small"
+      mat-raised-button
+      (click)="googleAuthenticate()">
+      Войти через<br>
+      <label id="google">Google</label>
+    </button>
+    <button
+      [disabled]="!loginUser.valid"
+      class="button_small"
+      mat-raised-button
+      type="submit">
+      Войти
+    </button>
+  </div>
 </form>
 <button
   class="button_big"
@@ -111,6 +111,6 @@
       stroke="#585858" stroke-width="2" stroke-linecap="round"/>
     <ellipse cx="9.99992" cy="12.5" rx="1.66667" ry="1.66667" fill="#585858"/>
   </svg>
-  <img *ngIf="isSafari" src="./img/Lock.png" >
+  <img *ngIf="isSafari" src="./img/Lock.png">
   <div class="text_18px text_18px_2">Забыли пароль?</div>
 </div>

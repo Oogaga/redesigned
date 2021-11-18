@@ -1,7 +1,7 @@
 
 export class RegExpData {
   static PASSWORD_VALIDATOR = '^[A-Za-z0-9 !?@#$%^&_+*=\\-.,:;~(){}\\[\\]«»]{6,18}$';
-  static PASSWORD_ENTERED_VALIDATOR = '^.{3,15}$';
+  static PASSWORD_ENTERED_VALIDATOR = '^.{3,20}$';
   static MIN_LENGTH_PASSWORD = 6;
   static EMAIL_VALIDATOR = '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$';
   static EMAIL_ENTERED_VALIDATOR = '^.{3,40}$';
