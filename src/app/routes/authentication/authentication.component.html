@@ -46,7 +46,8 @@
   [formGroup]="loginUser"
   (ngSubmit)="logIn()">
   <div type="text"
-       class="text_18px">
+       class="text_18px"
+       i18n>
     Адрес эл. почты
   </div>
   <mat-form-field appearance="fill">
@@ -54,23 +55,27 @@
            placeholder="bla_bla@example.com"
            formControlName="enteredEmail">
     <mat-error
-      *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')">Введите электронную почту
+      *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')"
+      i18n>Введите электронную почту
     </mat-error>
   </mat-form-field>
   <div class="text_18px"
-       id="pass">Пароль
+       id="pass"
+       i18n>Пароль
   </div>
   <mat-form-field appearance="fill">
     <input matInput
            formControlName="enteredPassword"
            [type]="hide ? 'password' : 'text'">
     <mat-error
-      *ngIf="!loginUser.hasError('required')">Введите пароль
+      *ngIf="!loginUser.hasError('required')"
+      i18n>Введите пароль
     </mat-error>
     <div
       class="mat-error"
       id="wrongPass"
-      *ngIf="wrongPass">
+      *ngIf="wrongPass"
+      i18n>
       Попробуйте правильный пароль
     </div>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -82,7 +87,8 @@
     <button
       class="button_small"
       mat-raised-button
-      (click)="googleAuthenticate()">
+      (click)="googleAuthenticate()"
+      i18n>
       Войти через<br>
       <label id="google">Google</label>
     </button>

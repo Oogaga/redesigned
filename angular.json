@@ -13,6 +13,13 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "ru",
+        "locales": {
+          "en": "src/assets/i18n/en",
+          "uk": "src/assets/i18n/uk"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -53,6 +60,9 @@
             "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
+            "en": {
+              "localize": "en"
+            },
             "production": {
               "budgets": [
                 {

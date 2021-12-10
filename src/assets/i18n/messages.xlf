@@ -1,0 +1,49 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ru-RU" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="8300131186597154679" datatype="html">
+        <source> Адрес эл. почты </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">50,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5348149873773582951" datatype="html">
+        <source>Введите электронную почту </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1341760735183904018" datatype="html">
+        <source>Пароль </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4066332040314416281" datatype="html">
+        <source>Введите пароль </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3659277611285370065" datatype="html">
+        <source> Попробуйте правильный пароль </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">78,80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3267440615041378083" datatype="html">
+        <source> Войти через<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_TAG_LABEL" ctype="x-label" equiv-text="&lt;label id=&quot;google&quot;&gt;"/>Google<x id="CLOSE_TAG_LABEL" ctype="x-label" equiv-text="&lt;/label&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/authentication/authentication.component.html</context>
+          <context context-type="linenumber">91,93</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

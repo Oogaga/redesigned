@@ -40,6 +40,10 @@
   width: 24px!important;
 }
 
+mat-checkbox {
+  overflow: visible;
+}
+
 
 
 mat-stepper {
