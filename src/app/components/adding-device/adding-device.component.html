@@ -16,16 +16,32 @@
   #stepper>
   <mat-step>
     <section class="one-step">
-      <div class="stepper_tips" style="margin-bottom: 21px">Выполните подключение устройства к
+      <div class="stepper_tips" style="margin-bottom: 20px">Выполните подключение устройства к
         сети по видеоинструкции
       </div>
 
+      <a href="https://youtu.be/nST4jXyqwCE">
+        <button
+          matRipple
+          class="downloads button_common">
+        <svg class="youTube_logo" width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M38.742 4.45448C38.2842 2.74139 36.9634 1.39993 35.2703 0.941753C32.9961 0.0533894 10.9685 -0.381883 4.57852 0.967207C2.88544 1.43048 1.55965 2.76684 1.10682 4.47993C0.0804092 9.0363 0.00242176 18.8872 1.13198 23.5454C1.58984 25.2585 2.9106 26.5999 4.60368 27.0581C9.10682 28.1068 30.5156 28.2545 35.2955 27.0581C36.9886 26.5948 38.3144 25.2585 38.7672 23.5454C39.8615 18.5817 39.9395 9.34175 38.742 4.45448Z"
+            fill="#FF0000"/>
+          <path d="M26.415 14.0001L16.1509 8.0437V19.9564L26.415 14.0001Z" fill="white"/>
+        </svg>
+        <div class="youTube">YouTube</div>
+        </button>
+      </a>
+
+      <div style="opacity: 50%;
+    font-family: 'Montserrat SemiBold';
+    font-size: 16px;">или</div>
+
       <a href="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1seIC51BTINps2jiASrFJsvjGN74GdOBi">
         <button
-          mat-button
-          style="font-family: 'Segoe UI Bold'; color: #004070; font-size: 18px"
-
-          class="downloads">
+          matRipple
+          class="downloads button_common">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M15 17.5L14.2929 18.2071L15 18.9142L15.7071 18.2071L15 17.5ZM16 6.25C16 5.69771 15.5523 5.25 15 5.25C14.4477 5.25 14 5.69771 14 6.25L16 6.25ZM8.04289 11.9571L14.2929 18.2071L15.7071 16.7929L9.45711 10.5429L8.04289 11.9571ZM15.7071 18.2071L21.9571 11.9571L20.5429 10.5429L14.2929 16.7929L15.7071 18.2071ZM16 17.5L16 6.25L14 6.25L14 17.5L16 17.5Z"
@@ -34,7 +50,7 @@
               d="M6.25 20L6.25 21.25C6.25 22.6307 7.36929 23.75 8.75 23.75L21.25 23.75C22.6307 23.75 23.75 22.6307 23.75 21.25V20"
               stroke="#004070" stroke-width="2"/>
           </svg>
-          Загрузить видео
+          Загрузите видео
         </button>
       </a>
     </section>

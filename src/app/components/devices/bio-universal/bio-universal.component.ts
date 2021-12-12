@@ -11,7 +11,7 @@ import {Platform} from "@angular/cdk/platform";
 @Component({
   selector: 'app-bio-universal',
   templateUrl: './bio-universal.component.html',
-  styleUrls: ['./bio-universal.component.css']
+  styleUrls: ['./bio-universal.component.scss']
 })
 export class BioUniversalComponent implements OnInit, OnDestroy {
 
@@ -96,18 +96,6 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
 
   }
 
-
-  inputControlCo = new FormControl(null, [
-    Validators.required,
-    Validators.max(90),
-    Validators.min(40)
-  ]);
-
-  inputControlGvs = new FormControl(null, [
-    Validators.required,
-    Validators.max(90),
-    Validators.min(40)
-  ]);
 
   growCo() {
     if (this.changeCo < 90) {
@@ -229,15 +217,28 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     if (this.interval) clearInterval(this.interval)
   }
 
+
+  inputControlCo = new FormControl(null, [
+    Validators.required,
+    Validators.max(90),
+    Validators.min(40)
+  ]);
+
+  inputControlGvs = new FormControl(null, [
+    Validators.required,
+    Validators.max(90),
+    Validators.min(40)
+  ]);
+
   colorPicker(temperature: number, str: string) {
-    const color1 = 'D80000';
-    const color2 = '54A4EA';
+    const colorHot = 'd70000';
+    const colorCold = '002a98';
     if(temperature<40){
-      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${color2}`;
+      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${colorCold}`;
       return
     }
     if(temperature>79){
-      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${color1}`;
+      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${colorHot}`;
       return
     }
     let ratio = (temperature - 40) / 40;
@@ -245,9 +246,9 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
       x = x.toString(16);
       return (x.length == 1) ? '0' + x : x;
     };
-    let r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
-    let g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
-    let b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
+    let r = Math.ceil(parseInt(colorHot.substring(0, 2), 16) * ratio + parseInt(colorCold.substring(0, 2), 16) * (1 - ratio));
+    let g = Math.ceil(parseInt(colorHot.substring(2, 4), 16) * ratio + parseInt(colorCold.substring(2, 4), 16) * (1 - ratio));
+    let b = Math.ceil(parseInt(colorHot.substring(4, 6), 16) * ratio + parseInt(colorCold.substring(4, 6), 16) * (1 - ratio));
     document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${(hex(r) + hex(g) + hex(b))}`;
   }
 

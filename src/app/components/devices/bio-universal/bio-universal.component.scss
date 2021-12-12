@@ -1,10 +1,15 @@
 ::ng-deep.mat-expansion-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 20%) !important;
+  background: rgba(255, 255, 255, 45%) !important;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1) !important;
   backdrop-filter: blur(40px) !important;
   border-radius: 35px 15px 15px 35px;
 
+}
+
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: none!important;
+  box-shadow: 4px 4px 6px rgb(0 0 0 / 10%);
 }
 
 ._biouniversal_ {
@@ -158,6 +163,14 @@
   height: calc(100% - 20px);
 }
 
+.container_temp {
+  height: 100%;
+  width: 100%;
+  margin-top: -28%;
+  position: relative;
+  z-index: 1;
+}
+
 .data {
   font-family: "Segoe UI Bold";
   font-size: 18px;
@@ -170,20 +183,52 @@
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid #E8E8E8;
   border-radius: 10px;
+  overflow: hidden;
 }
+
+::selection{background-color: salmon; color: white;}
+.parallax > use{
+  animation:move-forever 12s linear infinite;
+&:nth-child(1){animation-delay:-2s;}
+&:nth-child(2){animation-delay:-2s; animation-duration:10s}
+&:nth-child(3){animation-delay:-4s; animation-duration:6s}
+}
+
+@keyframes move-forever{
+  0%{transform: translate(-90px , 0%)}
+  100%{transform: translate(85px , 0%)}
+}
+
+
+
+.editorial {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  margin: 0;
+  opacity: 60%;
+  position: relative;
+  z-index: 0;
+}
+
+
+h1{outline:none}
 
 .change-temp-card {
   width: 345px;
   height: 96px;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
+  overflow: hidden;
+  border: rgba(255, 255, 255, 0.3) 1px  solid;
 }
 
 .big-card-info {
   width: 345px;
   height: 80px;
   background: rgba(255, 255, 255, 0.25);
-  border: 1px solid #DDDDDD;
+  border: rgb(94 133 200 / 50%) 1px  solid;
   border-radius: 10px;
 }
 

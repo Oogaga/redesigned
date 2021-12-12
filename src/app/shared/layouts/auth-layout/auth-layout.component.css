@@ -2,7 +2,7 @@
 #entrance {z-index: -1;
   position: fixed;
   width: 100%;
-  min-height: 100vh;
+  min-height: 120%;
   background: url("src/img/dark.avif") no-repeat fixed;
   background-size: cover;
 
@@ -172,6 +172,11 @@ a:visited {
   font-family: "Roboto";
   font-size: 16px;
   color: #585858;
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-color: #585858;
 }
 
 @media only screen and (max-device-height: 700px) {

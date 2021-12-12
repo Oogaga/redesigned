@@ -84,14 +84,15 @@ html {
 }
 
 .modalSettings {
-  background: rgba(255, 255, 255, 0.5)!important;
-  backdrop-filter: blur(25px)!important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(25px) !important;
   height: 100%;
   width: 100%;
   overflow: hidden;
   position: fixed;
   /*padding: 45px 10px 10px 10px!important;*/
 }
+
 .none {
   background: none;
   backdrop-filter: none;
@@ -107,12 +108,30 @@ body, html {
   width: 100%;
 }
 
-input {outline:none;}
+input {
+  outline: none;
+}
 
 body {
   margin: 0;
   overflow: auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button,
+div,
+section,
+svg,
+img,
+mat-checkbox,
+mat-icon{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
 }
 
 .button_common {
@@ -127,11 +146,11 @@ body {
 }
 
 .bottom_sheet {
-  background: rgba(255, 255, 255, 0.4)!important;
+  background: rgba(255, 255, 255, 0.4) !important;
   backdrop-filter: blur(4px);
 }
 
-.panel{
+.panel {
   background: rgba(255, 255, 255, 0.75);
 }
 

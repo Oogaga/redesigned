@@ -2,7 +2,7 @@
 #body_home {
   z-index: -1;
   position: fixed;
-  min-height: 100vh;
+  min-height: 120%;
   background-image: url('src/img/back.jpg');
   background-attachment: fixed;
   background-position: top;
@@ -20,11 +20,11 @@
       position: fixed;
       top: 0;
       left: 0;
+      min-height: 120vh;
 
-      background: url("src/img/light.jpg");
+      background: url("src/img/back.jpg");
 
       -webkit-background-size: cover;
-      -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
     }

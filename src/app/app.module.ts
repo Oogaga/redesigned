@@ -53,6 +53,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {PwaService} from "./services/pwa.service";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import { PrimeComponent } from './components/prime/prime.component';
+import {AppUpdateService} from "./services/app-update.service";
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -124,6 +125,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     MatBottomSheet,
     AuthGuard,
+    AppUpdateService,
     {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl

@@ -1,9 +1,9 @@
 ::ng-deep.cdk-overlay-dark-backdrop {
-  background: none!important;
+  background: none !important;
 }
 
 ::ng-deep.mat-horizontal-content-container {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 ::ng-deep.mat-horizontal-stepper-header {
@@ -15,13 +15,13 @@
 }
 
 ::ng-deep.mat-dialog-container {
-  background: rgba(255, 255, 255, 0.65)!important;
-  backdrop-filter: blur(100px)!important;
-  border-radius: 0!important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(100px) !important;
+  border-radius: 0 !important;
 }
 
 mat-stepper {
-  background: none!important;
+  background: none !important;
   height: 80vh;
 }
 
@@ -33,6 +33,14 @@ mat-step {
 .downloads {
   display: flex;
   align-items: center;
+  font-family: 'Segoe UI Bold';
+  color: #004070;
+  font-size: 18px;
+  border-radius: 7px;
+  height: 40px;
+  width: 200px;
+  justify-content: center;
+  margin: 10px;
 }
 
 .one-step {
@@ -116,7 +124,7 @@ input {
   text-align: center;
 }
 
-.configs{
+.configs {
   height: 80%;
   width: 100%;
   background: rgba(255, 255, 255, 0.4);
@@ -124,4 +132,10 @@ input {
   border-radius: 14px;
 }
 
+.youTube_logo {
+margin-right: 5px;
+}
 
+a {
+  text-decoration: none;
+}

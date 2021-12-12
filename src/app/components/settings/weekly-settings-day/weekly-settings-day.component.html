@@ -26,7 +26,7 @@
       <button class="increase button_common" matRipple (click)="changeHour('decrease')">
         <span class="material-icons-round arrow">expand_less</span>
       </button>
-      <input class="input_ios" [(ngModel)]="hourIOS" (change)="changeHour('check')">
+      <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="hourIOS" (change)="changeHour('check')">
       <button class="decrease button_common" matRipple (click)="changeHour('increase')">
         <span class="material-icons-round arrow">expand_more</span>
       </button>
@@ -38,7 +38,7 @@
       <button class="increase button_common" matRipple (click)="changeTemperature('decrease')">
         <span class="material-icons-round arrow">expand_less</span>
       </button>
-      <input class="input_ios" [(ngModel)]="temperatureIOS" (change)="changeTemperature('check')">
+      <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="temperatureIOS" (change)="changeTemperature('check')">
       <button class="decrease button_common" matRipple (click)="changeTemperature('increase')">
         <span class="material-icons-round arrow">expand_more</span>
       </button>
