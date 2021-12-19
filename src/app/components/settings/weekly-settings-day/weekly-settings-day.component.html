@@ -20,41 +20,26 @@
 
 <div class="title">{{dayOfWeek}}</div>
 
-<div *ngIf="isIOS" class="flex_ios">
-  <div style="display: flex; flex-direction: row; align-items: center; width: 100vw">
-    <section class="ios_section">
-      <button class="increase button_common" matRipple (click)="changeHour('decrease')">
-        <span class="material-icons-round arrow">expand_less</span>
-      </button>
-      <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="hourIOS" (change)="changeHour('check')">
-      <button class="decrease button_common" matRipple (click)="changeHour('increase')">
-        <span class="material-icons-round arrow">expand_more</span>
-      </button>
-      <div class="note">
-        Время
-      </div>
-    </section>
-    <section class="ios_section">
-      <button class="increase button_common" matRipple (click)="changeTemperature('decrease')">
-        <span class="material-icons-round arrow">expand_less</span>
-      </button>
-      <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="temperatureIOS" (change)="changeTemperature('check')">
-      <button class="decrease button_common" matRipple (click)="changeTemperature('increase')">
-        <span class="material-icons-round arrow">expand_more</span>
-      </button>
-      <div class="note">
-        Температура
-      </div>
-    </section>
+<section class="weekly_graph">
+  <div class="flex" *ngFor="let hour of hoursOnInit">
+    <div class="temperature_value">{{temperature[hour]}}</div>
+    <div class="stick"
+         [ngStyle]="{'height.%': setTemperature(hour), 'background': '#' + setColor(hour)}"></div>
+    <!--         [ngStyle]="{'height.%': setTemperature(hour), 'background-image': 'linear-gradient(#' + setColor(hour) + ', #' + setColor(hour) + '), linear-gradient(0deg, #CCCCCC, #' + setColor(hour) + ' 75%)'}"></div>-->
   </div>
+  <div class="min40"></div>
+</section>
+<div class="graph_hours">
+  <div class="hour_value" *ngFor="let hour of graphHours"> {{hour}}</div>
+  <div class="hour_value" style="margin-left: -3vw">23:00</div>
 </div>
 
 <div *ngIf="!isSafari && !isIOS"
-     style="display: flex; height: 70vh;     justify-content: center;    align-items: center;">
+     style="display: flex; height: 45vh;     justify-content: center;    align-items: center;">
   <div>
     <div class="scrollbar_hours">
       <div class="not_chose"></div>
-      <div class="not_chose" [id]="hour" *ngFor="let hour of hours">{{hour}}</div>
+      <div class="not_chose" [id]="hour" *ngFor="let hour of hoursOnInit">{{hour}} : 00</div>
       <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
       <hr class="hr hr_bot" noshade>
@@ -73,5 +58,39 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="isIOS" class="flex_ios">
+  <div style="display: flex; flex-direction: row; align-items: center; width: 100vw">
+    <section class="ios_section">
+      <button class="increase button_common" matRipple (click)="changeHour('increase')">
+        <span class="material-icons-round arrow">expand_less</span>
+      </button>
+      <input (keyup)="changeHour('check')" onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="hourIOS">
+      <button class="decrease button_common" matRipple (click)="changeHour('decrease')">
+        <span class="material-icons-round arrow">expand_more</span>
+      </button>
+      <div class="note">
+        Время
+      </div>
+    </section>
+    <section class="ios_section">
+      <button class="increase button_common" matRipple (click)="changeTemperature('increase')">
+        <span class="material-icons-round arrow">expand_less</span>
+      </button>
+      <div class="wrapper">
+        <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="temperatureIOS"
+               (keyup)="changeTemperature('check')">
+      </div>
+      <button class="decrease button_common" matRipple (click)="changeTemperature('decrease')">
+        <span class="material-icons-round arrow">expand_more</span>
+      </button>
+      <div class="note">
+        Температура
+      </div>
+    </section>
+  </div>
+</div>
+
+
 
 

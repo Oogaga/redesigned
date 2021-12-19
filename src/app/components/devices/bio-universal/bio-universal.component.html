@@ -211,14 +211,18 @@
         <div class="header-small-card">Мощность</div>
         <div
           [id]="deviceName + 'pow'"
-          class="value-small-card">{{currentPow + '%'}}
+          [ngStyle]="{'color': '#' + power(currentPow)}"
+          class="value-small-card">{{currentPow}}
+          <div class="units">%</div>
         </div>
       </div>
       <div class="small-card-info">
         <div class="header-small-card">ТТГ</div>
         <div
           [id]="deviceName + 'ttg'"
-          class="value-small-card">{{currentTtg + '°'}}
+          [ngStyle]="{'color': '#' + colorPicker(currentTtg)}"
+          class="value-small-card">{{currentTtg}}
+          <div class="units">°C</div>
         </div>
       </div>
       <div class="small-card-info">
@@ -226,6 +230,7 @@
         <div
           style="color: #303030"
           class="value-small-card">{{currentUse}}
+          <div class="units">кг</div>
         </div>
       </div>
     </div>
@@ -246,9 +251,11 @@
                         v44h-352z"/>
           </defs>
           <g class="parallax">
-            <use xlink:href="#gentle-wave" x="50" y="10" fill="#4579e2"  stroke="white" stroke-opacity="0.7"/>
-            <use xlink:href="#gentle-wave" x="50" y="1" fill="#3461c1" opacity="0.7" stroke="white" stroke-opacity="0.7"/>
-            <use xlink:href="#gentle-wave" x="50" y="3" fill="#2d55aa" opacity="0.5" stroke="white" stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="10" fill="#4579e2" stroke="white" stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="1" fill="#3461c1" opacity="0.7" stroke="white"
+                 stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="3" fill="#2d55aa" opacity="0.5" stroke="white"
+                 stroke-opacity="0.7"/>
           </g>
         </svg>
         <div class="container_temp">
@@ -268,8 +275,10 @@
               <img draggable="false" *ngIf="isSafari" src="./img/thermometer.png">
             </mat-icon>
             <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
-              <div [id]="deviceName + 'co'" class="data-temperature">{{currentCo}}
-                <div style="font-size: 25px">°C</div>
+              <div [id]="deviceName + 'co'"
+                   [ngStyle]="{'color': '#' + colorPicker(currentCo)}"
+                   class="data-temperature">{{currentCo}}
+                <div class="units">°C</div>
               </div>
               <button
                 (click)="reduceCo()"
@@ -314,9 +323,11 @@
                         v44h-352z"/>
           </defs>
           <g class="parallax">
-            <use xlink:href="#gentle-wave" x="50" y="0" fill="#4579e2"  stroke="white" stroke-opacity="0.7"/>
-            <use xlink:href="#gentle-wave" x="50" y="3" fill="#3461c1" opacity="0.7" stroke="white" stroke-opacity="0.7"/>
-            <use xlink:href="#gentle-wave" x="50" y="6" fill="#2d55aa" opacity="0.5" stroke="white" stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="0" fill="#4579e2" stroke="white" stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="3" fill="#3461c1" opacity="0.7" stroke="white"
+                 stroke-opacity="0.7"/>
+            <use xlink:href="#gentle-wave" x="50" y="6" fill="#2d55aa" opacity="0.5" stroke="white"
+                 stroke-opacity="0.7"/>
           </g>
         </svg>
         <div class="container_temp">
@@ -336,8 +347,10 @@
               <img draggable="false" *ngIf="isSafari" src="./img/thermometer.png">
             </mat-icon>
             <section style="width: 100%; display: flex; justify-content: flex-end; align-items: center">
-              <div [id]="deviceName + 'gvs'" class="data-temperature">{{currentGvs}}
-                <div style="font-size: 25px">°C</div>
+              <div [id]="deviceName + 'gvs'"
+                   [ngStyle]="{'color': '#' + colorPicker(currentGvs)}"
+                   class="data-temperature">{{currentGvs}}
+                <div class="units">°C</div>
               </div>
               <button
                 (click)="reduceGvs()"

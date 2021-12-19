@@ -10,7 +10,9 @@ import {Platform} from "@angular/cdk/platform";
 })
 export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
-  hours: number[];
+  hoursOnInit: number[];
+  hours: string[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
+  graphHours: string[] = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'];
   choseTemperature: number[];
   dailyTemperature: any;
   temperature: number[];
@@ -40,7 +42,7 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     this.dailyTemperature = this.data.data;
     this.dayNumber = this.data.day
     this.id = this.data.id
-    this.hours = [];
+    this.hoursOnInit = [];
     this.choseTemperature = [];
     this.test = ''
     this.temperature = this.dailyTemperature.data.map((item: string) => {
@@ -57,14 +59,14 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isIOS = this.platform.IOS;
+    for (let hour = 0; hour < 24; hour++) {
+      this.hoursOnInit.push(hour)
+    }
+    for (let temperatureCelsius = 40; temperatureCelsius < 91; temperatureCelsius++) {
+      this.choseTemperature.push(temperatureCelsius)
+    }
+    if (this.platform.ANDROID || !this.isIOS) {
 
-    if (this.platform.ANDROID) {
-      for (let hour = 0; hour < 24; hour++) {
-        this.hours.push(hour)
-      }
-      for (let temperatureCelsius = 40; temperatureCelsius < 91; temperatureCelsius++) {
-        this.choseTemperature.push(temperatureCelsius)
-      }
       console.log(this.dailyTemperature)
 
       setTimeout(() => {
@@ -90,39 +92,48 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     }
 
   }
+
   ngOnDestroy() {
     let data = JSON.parse(localStorage.getItem(this.id)!)
-    this.dailyTemperature.data = this.temperature.map((item:number)=>{return String(item)})
+    this.dailyTemperature.data = this.temperature.map((item: number) => {
+      return String(item)
+    })
     data[this.dayNumber] = this.dailyTemperature
 
-    localStorage.setItem(this.id,  JSON.stringify(data))
+    localStorage.setItem(this.id, JSON.stringify(data))
   }
 
-  changeHour(flag: 'increase'|'decrease'|'check') {
-    if ((this.hourIOS <= 0)&&(flag === 'decrease')) {this.hourIOS = 0; return }
-    if ((this.hourIOS >= 23)&&(flag === 'increase')) {this.hourIOS = 23; return}
+  changeHour(flag: 'increase' | 'decrease' | 'check') {
+    if ((this.hourIOS <= 0) && (flag === 'decrease')) {
+      this.hourIOS = 0;
+      return
+    }
+    if ((this.hourIOS >= 23) && (flag === 'increase')) {
+      this.hourIOS = 23;
+      return
+    }
 
-    if (flag === 'check'){
+    if (flag === 'check') {
+      if (this.hourIOS > 23) {
+        this.hourIOS = 23
+      }
       this.temperatureIOS = this.temperature[this.hourIOS]
       return;
-    }
-    else if (flag === 'increase') {
+    } else if (flag === 'increase') {
       let pastTemp = this.temperature[this.hourIOS]
       this.hourIOS++
       let futureTemp = this.temperature[this.hourIOS]
       clearInterval(this.interval)
 
-      this.interval = setInterval(()=>{
-        if (pastTemp<futureTemp) {
+      this.interval = setInterval(() => {
+        if (pastTemp < futureTemp) {
           this.temperatureIOS++;
           pastTemp = this.temperatureIOS;
-        }
-        else if (pastTemp>futureTemp) {
+        } else if (pastTemp > futureTemp) {
           this.temperatureIOS--;
           pastTemp = this.temperatureIOS;
-        }
-        else clearInterval(this.interval)
-      },this.delay)
+        } else clearInterval(this.interval)
+      }, this.delay)
       return;
     } else if (flag === 'decrease') {
       let pastTemp = this.temperature[this.hourIOS]
@@ -130,39 +141,47 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
       let futureTemp = this.temperature[this.hourIOS]
 
       clearInterval(this.interval)
-      this.interval = setInterval(()=>{
-        if (pastTemp<futureTemp) {
+      this.interval = setInterval(() => {
+        if (pastTemp < futureTemp) {
           this.temperatureIOS++;
           pastTemp = this.temperatureIOS;
-        }
-        else if (pastTemp>futureTemp) {
+        } else if (pastTemp > futureTemp) {
           this.temperatureIOS--;
           pastTemp = this.temperatureIOS;
-        }
-        else clearInterval(this.interval)
-      },this.delay)
+        } else clearInterval(this.interval)
+      }, this.delay)
       return;
     }
   }
 
-  changeTemperature(flag: 'increase'|'decrease'|'check') {
-    if ((this.temperatureIOS <= 40)&&(flag === 'decrease')) {this.temperature[this.hourIOS]=40;this.temperatureIOS = 40; return }
-    if ((this.temperatureIOS >= 90)&&(flag === 'increase')) {this.temperature[this.hourIOS]=90;this.temperatureIOS = 90; return}
+  changeTemperature(flag: 'increase' | 'decrease' | 'check') {
+    if ((this.temperatureIOS <= 40) && (flag === 'decrease')) {
+      this.temperature[this.hourIOS] = 40;
+      this.temperatureIOS = 40;
+      return
+    }
+    if ((this.temperatureIOS >= 90) && (flag === 'increase')) {
+      this.temperature[this.hourIOS] = 90;
+      this.temperatureIOS = 90;
+      return
+    }
 
-    if (flag === 'check'&& ((this.temperatureIOS<91)&&(this.temperatureIOS>39))){
+    if (flag === 'check' && (this.temperatureIOS > 90)) {
+      this.temperatureIOS = 90;
       this.temperature[this.hourIOS] = this.temperatureIOS
       return;
-    }
-    else if ((flag === 'increase')&&(this.temperatureIOS>39)) {
+    } else if (flag === 'check' && ((this.temperatureIOS < 91) && (this.temperatureIOS > 39))) {
+      this.temperature[this.hourIOS] = this.temperatureIOS
+      return;
+    } else if ((flag === 'increase') && (this.temperatureIOS > 39)) {
       this.temperatureIOS++
       this.temperature[this.hourIOS] = this.temperatureIOS
       return;
-    } else if ((flag === 'decrease')&&(this.temperatureIOS<91)) {
+    } else if ((flag === 'decrease') && (this.temperatureIOS < 91)) {
       this.temperatureIOS--
       this.temperature[this.hourIOS] = this.temperatureIOS
       return;
-    }
-    else return;
+    } else return;
   }
 
 
@@ -211,6 +230,32 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
   }
 
+
+  setTemperature(hour: number) {
+
+    return 10+(this.temperature[hour]-40)*1.6;
+  }
+
+  setColor(hour: number) {
+    const colorHot = 'FF0000';
+    const colorCold = 'FFB800';
+    if(this.temperature[hour]<40){
+      return colorCold;
+    }
+    if(this.temperature[hour]>79){
+      return colorHot;
+    }
+    let ratio = (this.temperature[hour] - 40) / 40;
+    let hex = function (x: any) {
+      x = x.toString(16);
+      return (x.length == 1) ? '0' + x : x;
+    };
+    let r = Math.ceil(parseInt(colorHot.substring(0, 2), 16) * ratio + parseInt(colorCold.substring(0, 2), 16) * (1 - ratio));
+    let g = Math.ceil(parseInt(colorHot.substring(2, 4), 16) * ratio + parseInt(colorCold.substring(2, 4), 16) * (1 - ratio));
+    let b = Math.ceil(parseInt(colorHot.substring(4, 6), 16) * ratio + parseInt(colorCold.substring(4, 6), 16) * (1 - ratio));
+
+    return (hex(r) + hex(g) + hex(b));
+  }
 
   debounce<T extends Function>(cb: T, wait = 0) {
     let h: any;

@@ -30,7 +30,6 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
   actualState: number;
   workPriority: number;
   isOn: boolean
-  usedALotFuel: boolean;
   color: number;
   isSafari: boolean;
 
@@ -56,7 +55,6 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     this.actualState = 0;
     this.workPriority = 0;
     this.isOn = false
-    this.usedALotFuel = false;
     this.deviceNumber = 0;
     this.color = 0;
 
@@ -175,9 +173,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
 
     this.interval = setInterval(() => {
       let device = JSON.parse(localStorage.getItem('devices') || 'null')[this.deviceNumber];
-      if (device.data.data.FUEL_AMOUNT > 900) {
-        this.usedALotFuel = true;
-      }
+
       this.isOnline = !device.isOnline;
       this.currentCo = device.data.data.CENTRAL_HEATING_TEMPERATURE;
       this.currentGvs = device.data.data.CENTRAL_HOT_WATER_SUPPLY_TEMPERATURE;
@@ -186,12 +182,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
       this.actualState = device.data.data.ACTUAL_STATE;
       this.workPriority = device.data.data.WORK_PRIORITY;
       this.isOn = device.data.deviceState === 'START'
-      this.currentUse = this.usedALotFuel ? `${(device.data.data.FUEL_AMOUNT / 1000).toFixed(1)}т` : `${device.data.data.FUEL_AMOUNT}кг`;
-      this.colorPicker(this.currentCo, 'co');
-      this.colorPicker(this.currentGvs, 'gvs');
-      this.colorPicker(this.currentTtg, 'ttg');
-      this.power(this.currentPow);
-
+      this.currentUse = device.data.data.FUEL_AMOUNT;
 
       if ((this.oldValueCo !== this.changeCo) && this.inputControlCo.valid) {
         const dto = {
@@ -230,18 +221,12 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     Validators.min(40)
   ]);
 
-  colorPicker(temperature: number, str: string) {
+  colorPicker(temperature: number) {
     const colorHot = 'd70000';
     const colorCold = '002a98';
-    if(temperature<40){
-      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${colorCold}`;
-      return
-    }
-    if(temperature>79){
-      document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${colorHot}`;
-      return
-    }
-    let ratio = (temperature - 40) / 40;
+    if (temperature < 40) return colorCold
+    if (temperature > 79) return colorHot
+    let ratio = (temperature - 25) / 50;
     let hex = function (x: any) {
       x = x.toString(16);
       return (x.length == 1) ? '0' + x : x;
@@ -249,24 +234,26 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     let r = Math.ceil(parseInt(colorHot.substring(0, 2), 16) * ratio + parseInt(colorCold.substring(0, 2), 16) * (1 - ratio));
     let g = Math.ceil(parseInt(colorHot.substring(2, 4), 16) * ratio + parseInt(colorCold.substring(2, 4), 16) * (1 - ratio));
     let b = Math.ceil(parseInt(colorHot.substring(4, 6), 16) * ratio + parseInt(colorCold.substring(4, 6), 16) * (1 - ratio));
-    document.getElementById(`${this.deviceName}${str}`)!.style.color = `#${(hex(r) + hex(g) + hex(b))}`;
+    return hex(r) + hex(g) + hex(b)
   }
 
   power(pow: number) {
     const color1 = '336214';
     const color2 = 'C7B300';
-    if (pow<1){
-      document.getElementById(`${this.deviceName}pow`)!.style.color = `#${color2}`;
-    }
-    let ratio = pow/100;
+
+    if (pow < 1) return color2
+
+    let ratio = pow / 100;
     let hex = function (x: any) {
       x = x.toString(16);
       return (x.length == 1) ? '0' + x : x;
     };
+
     let r = Math.ceil(parseInt(color1.substring(0, 2), 16) * ratio + parseInt(color2.substring(0, 2), 16) * (1 - ratio));
     let g = Math.ceil(parseInt(color1.substring(2, 4), 16) * ratio + parseInt(color2.substring(2, 4), 16) * (1 - ratio));
     let b = Math.ceil(parseInt(color1.substring(4, 6), 16) * ratio + parseInt(color2.substring(4, 6), 16) * (1 - ratio));
-    document.getElementById(`${this.deviceName}pow`)!.style.color = `#${(hex(r) + hex(g) + hex(b))}`;
+
+    return hex(r) + hex(g) + hex(b)
   }
 
   changeDeviceState() {

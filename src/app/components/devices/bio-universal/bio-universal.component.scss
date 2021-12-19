@@ -106,12 +106,19 @@
   color: #525252;
 }
 
+.units {
+  font-size: 16px;
+  margin-left: 5px;
+  margin-top: 6px;
+
+}
+
 .value-small-card {
   display: flex;
   justify-content: center;
   margin-top: 25px;
   font-family: "Roboto Regular";
-  font-size: 36px;
+  font-size: 33px;
 }
 
 .input-error {
@@ -133,7 +140,7 @@
 
 .data-temperature {
   font-family: Roboto;
-  font-size: 36px;
+  font-size: 33px;
   display: flex;
   align-items: center;
   padding-right: 27px;

@@ -12,6 +12,13 @@
   margin-right: 15px;
 }
 
+#telegram {
+  content: "";
+  background: url("src/img/telegram_logo.svg") center center no-repeat;
+  max-width: 70px;
+  max-height: 70px;
+}
+
 ::ng-deep.mat-menu-panel {
   min-width: 70px!important;
   min-height: 444px!important;

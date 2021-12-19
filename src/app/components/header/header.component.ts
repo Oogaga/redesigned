@@ -51,6 +51,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  telegram () {
+    location.href = "https://t.me/BiopromNews";
+  }
+
 
   logout() {
     this.userService.logout();

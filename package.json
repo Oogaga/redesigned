@@ -1,6 +1,6 @@
 {
   "name": "redesigned",
-  "version": "1.6.8",
+  "version": "1.7.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,7 @@
     "build:https": "ng build --configuration=prod-https",
     "build-development:app-shell": "ng run redesigned:app-shell:development",
     "build-prod:app-shell": "ng run redesigned:app-shell:production",
+    "build-test-server:app-shell": "ng run redesigned:app-shell:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
