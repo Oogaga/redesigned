@@ -45,6 +45,11 @@ mat-checkbox {
 }
 
 
+.alone_input{
+  overflow: visible;
+  display: flex;
+  justify-content: flex-end
+}
 
 mat-stepper {
   -webkit-overflow-scrolling:touch;

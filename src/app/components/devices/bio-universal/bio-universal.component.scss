@@ -38,7 +38,7 @@
   height: 50px;
   display: flex;
   justify-content: flex-end;
-  margin-right: 12px;
+  margin-right: 4vw;
   margin-top: 5px;
 }
 
@@ -94,7 +94,7 @@
 .top-info {
   display: flex;
   justify-content: space-between;
-  width: 345px;
+  width: 93vw;
   margin: 5px 0px 6px 0px;
 }
 
@@ -116,7 +116,8 @@
 .value-small-card {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  //margin-top: 25px;
+  line-height: 65px;
   font-family: "Roboto Regular";
   font-size: 33px;
 }
@@ -173,7 +174,7 @@
 .container_temp {
   height: 100%;
   width: 100%;
-  margin-top: -28%;
+  margin-top: -95px;
   position: relative;
   z-index: 1;
 }
@@ -185,7 +186,7 @@
 }
 
 .small-card-info {
-  width: 110px;
+  width: calc(90vw/3);
   height: 100px;
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid #E8E8E8;
@@ -223,7 +224,7 @@
 h1{outline:none}
 
 .change-temp-card {
-  width: 345px;
+  width: 93vw;
   height: 96px;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
@@ -232,7 +233,7 @@ h1{outline:none}
 }
 
 .big-card-info {
-  width: 345px;
+  width: 93vw;
   height: 80px;
   background: rgba(255, 255, 255, 0.25);
   border: rgb(94 133 200 / 50%) 1px  solid;

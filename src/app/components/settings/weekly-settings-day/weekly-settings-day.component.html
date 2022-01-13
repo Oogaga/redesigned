@@ -4,34 +4,71 @@
 <input style="display: none" id="day" [value]="dayNumber">
 <input style="display: none" id="id" [value]="id">
 
-
-<button
-  class="back button_common"
-  [ngClass]="{'padding':isSafari||browser}"
-  mat-ripple
-  [matRippleUnbounded]="false"
-  [matRippleRadius]="65"
-  [mat-dialog-close]="data">
-  <mat-icon>
-    <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
-  </mat-icon>
-  Назад
-</button>
+<div
+  class="header_day_weekly"
+  [ngClass]="{'padding':isSafari||browser}">
+  <button
+    class="back button_common"
+    mat-ripple
+    mat-dialog-close
+    (click)="setBackupSettings()"
+    [matRippleUnbounded]="false"
+    [matRippleRadius]="65">
+    <mat-icon>
+      <i class="material-icons-round" style="color: #004070">arrow_back_ios</i>
+    </mat-icon>
+    Назад
+  </button>
+  <button
+    class="back button_common"
+    mat-ripple
+    [matRippleUnbounded]="false"
+    [matRippleRadius]="65"
+    (click)="saveDaySettings()"
+    [mat-dialog-close]="data">
+    Сохранить
+  </button>
+</div>
 
 <div class="title">{{dayOfWeek}}</div>
+<div class="graph">
+  <section class="weekly_graph">
+    <div class="flex" *ngFor="let hour of hoursOnInit">
+      <div class="temperature_value">{{temperature[hour]}}</div>
+      <div class="stick"
+           [ngStyle]="{'height.%': setGraphTemperature(hour), 'background': '#' + setStickColor(hour)}"></div>
+      <!--         [ngStyle]="{'height.%': setTemperature(hour), 'background-image': 'linear-gradient(#' + setColor(hour) + ', #' + setColor(hour) + '), linear-gradient(0deg, #CCCCCC, #' + setColor(hour) + ' 75%)'}"></div>-->
+    </div>
+  </section>
 
-<section class="weekly_graph">
-  <div class="flex" *ngFor="let hour of hoursOnInit">
-    <div class="temperature_value">{{temperature[hour]}}</div>
-    <div class="stick"
-         [ngStyle]="{'height.%': setTemperature(hour), 'background': '#' + setColor(hour)}"></div>
-    <!--         [ngStyle]="{'height.%': setTemperature(hour), 'background-image': 'linear-gradient(#' + setColor(hour) + ', #' + setColor(hour) + '), linear-gradient(0deg, #CCCCCC, #' + setColor(hour) + ' 75%)'}"></div>-->
+  <div class="net1" style="display: flex; justify-content: center; flex-direction: column">
+    <div class="horizontal_lines">
+      <div class="line line_g"></div>
+      <div class="line line_g"></div>
+      <div class="line line_g"></div>
+      <div class="line line_g"></div>
+      <div class="line line_g"></div>
+      <div class="line line_g" style="color: #ff000030; height: 2px"></div>
+    </div>
   </div>
-  <div class="min40"></div>
-</section>
-<div class="graph_hours">
-  <div class="hour_value" *ngFor="let hour of graphHours"> {{hour}}</div>
-  <div class="hour_value" style="margin-left: -3vw">23:00</div>
+  <div class="net1">
+    <div class="vertical_lines">
+      <div class="line line_v" style="display: none"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v"></div>
+      <div class="line line_v" style="display: none"></div>
+    </div>
+  </div>
+
+  <div class="graph_hours">
+    <div class="hour_value" *ngFor="let hour of graphHours"> {{hour}}</div>
+    <div class="hour_value" style="margin-left: -3vw">23:00</div>
+  </div>
 </div>
 
 <div *ngIf="!isSafari && !isIOS"
@@ -50,7 +87,8 @@
     <div class="scrollbar_temperature">
       <div class="not_chosed"></div>
       <div class="not_chosed" [id]="temperature"
-           *ngFor="let temperature of choseTemperature">{{temperature}}</div>
+           *ngFor="let temperature of choseTemperature">{{temperature}}°
+      </div>
       <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
       <hr class="hr hr_bot" noshade>

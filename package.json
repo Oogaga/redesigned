@@ -1,6 +1,6 @@
 {
   "name": "redesigned",
-  "version": "1.7.0",
+  "version": "1.7.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

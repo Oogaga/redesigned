@@ -14,7 +14,7 @@
       </mat-icon>
       Назад
     </button>
-    <button class="button_common back" mat-ripple (click)="changeState()">Сохранить</button>
+    <button mat-dialog-close class="button_common back" mat-ripple (click)="changeState()">Сохранить</button>
   </div>
 </mat-dialog-actions>
 <mat-stepper
@@ -382,7 +382,7 @@
 
           <ngx-slider [(value)]="range1"
                       [options]="options_0Sec_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range1">
           </section>
         </section>
@@ -391,7 +391,7 @@
 
           <ngx-slider [(value)]="range2"
                       [options]="options_0Sec_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range2">
           </section>
         </section>
@@ -400,7 +400,7 @@
 
           <ngx-slider [(value)]="range3"
                       [options]="options_1Temp_20"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range3">
           </section>
         </section>
@@ -409,7 +409,7 @@
 
           <ngx-slider [(value)]="range22"
                       [options]="options_1Min_20"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input type="tel" class="input_small" onclick="this.select()" [(ngModel)]="range22">
           </section>
         </section>
@@ -446,7 +446,7 @@
 
           <ngx-slider [(value)]="range7"
                       [options]="options_1Sec_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range7">
           </section>
         </section>
@@ -455,7 +455,7 @@
 
           <ngx-slider [(value)]="range5"
                       [options]="options_1Sec_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range5">
           </section>
         </section>
@@ -464,7 +464,7 @@
 
           <ngx-slider [(value)]="range4"
                       [options]="options_1Sec_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range4">
           </section>
         </section>
@@ -473,7 +473,7 @@
 
           <ngx-slider [(value)]="range8"
                       [options]="options_1Sec_250"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range8">
           </section>
         </section>
@@ -482,7 +482,7 @@
 
           <ngx-slider [(value)]="range6"
                       [options]="options_1Sec_250"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range6">
           </section>
         </section>
@@ -539,7 +539,7 @@
 
           <ngx-slider [(value)]="range11"
                       [options]="options_0Sec_120"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range11">
           </section>
         </section>
@@ -548,7 +548,7 @@
 
           <ngx-slider [(value)]="range10"
                       [options]="options_0Sec_120"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range10">
           </section>
         </section>
@@ -584,7 +584,7 @@
 
           <ngx-slider [(value)]="range13"
                       [options]="options_30Temp_80"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range13">
           </section>
         </section>
@@ -593,7 +593,7 @@
 
           <ngx-slider [(value)]="range14"
                       [options]="options_0Temp_10"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range14">
           </section>
         </section>
@@ -637,7 +637,7 @@
           <div class="description_settings">Мощность автоматики в поддержке</div>
           <ngx-slider [(value)]="range17"
                       [options]="options_5Pers_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range17">
           </section>
         </section>
@@ -645,7 +645,7 @@
           <div class="description_settings">Гистерезис устройства</div>
           <ngx-slider [(value)]="range15"
                       [options]="options_0Temp_20"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range15">
           </section>
         </section>
@@ -653,7 +653,7 @@
           <div class="description_settings">Очистка - мощность вентилятора 1</div>
           <ngx-slider [(value)]="range19"
                       [options]="options_1Pers_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range19">
           </section>
         </section>
@@ -661,7 +661,7 @@
           <div class="description_settings">Очистка - мощность вентилятора 2</div>
           <ngx-slider [(value)]="range18"
                       [options]="options_1Pers_100"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range18">
           </section>
         </section>
@@ -669,7 +669,7 @@
           <div class="description_settings">Время работы очистки</div>
           <ngx-slider [(value)]="range20"
                       [options]="options_50Sec_1200"></ngx-slider>
-          <section style="display: flex; justify-content: flex-end">
+          <section  class="alone_input">
             <input onclick="this.select()" type="tel" class="input_small" matInput [(ngModel)]="range20">
           </section>
         </section>

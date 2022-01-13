@@ -93,7 +93,23 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy() {
+  saveDaySettings() {
+    if (this.isIOS){
+      let data = JSON.parse(localStorage.getItem(this.id)!)
+      this.dailyTemperature.data = this.temperature.map((item: number) => {
+        return String(item)
+      })
+      data[this.dayNumber] = this.dailyTemperature
+
+      localStorage.setItem(this.id, JSON.stringify(data))
+    }
+
+    // if (!this.isSafari && !this.isIOS){
+    //
+    // }
+  }
+
+  setBackupSettings() {
     let data = JSON.parse(localStorage.getItem(this.id)!)
     this.dailyTemperature.data = this.temperature.map((item: number) => {
       return String(item)
@@ -101,6 +117,10 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     data[this.dayNumber] = this.dailyTemperature
 
     localStorage.setItem(this.id, JSON.stringify(data))
+  }
+
+  ngOnDestroy() {
+
   }
 
   changeHour(flag: 'increase' | 'decrease' | 'check') {
@@ -225,18 +245,19 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
       let data = JSON.parse(localStorage.getItem(id)!)
       data[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id)] = Number(document.getElementsByClassName('chosed_temperature')[0].id)
       localStorage.setItem(id, JSON.stringify(data))
+      console.log(id, JSON.stringify(data))
     }
 
 
   }
 
 
-  setTemperature(hour: number) {
+  setGraphTemperature(hour: number) {
 
     return 10+(this.temperature[hour]-40)*1.6;
   }
 
-  setColor(hour: number) {
+  setStickColor(hour: number) {
     const colorHot = 'FF0000';
     const colorCold = 'FFB800';
     if(this.temperature[hour]<40){

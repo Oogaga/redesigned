@@ -2,7 +2,7 @@
 #body_home {
   z-index: -1;
   position: fixed;
-  min-height: 120%;
+  min-height: 200%;
   background-image: url('src/img/back.jpg');
   background-attachment: fixed;
   background-position: top;
