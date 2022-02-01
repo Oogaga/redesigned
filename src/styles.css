@@ -106,6 +106,7 @@ html {
 
 body, html {
   width: 100%;
+  overscroll-behavior-y: contain;
 }
 
 input {

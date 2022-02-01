@@ -1,6 +1,5 @@
 <mat-accordion
   style=" padding-top: 49px;"
-  *ngIf="devices && devices.length > 0"
   class="all_devices">
   <app-base-item *ngFor="let device of devices" [device]="device"></app-base-item>
   <app-add-new-device></app-add-new-device>

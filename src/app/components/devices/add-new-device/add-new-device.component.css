@@ -13,11 +13,13 @@
   color: #525252;
 }
 
-.deviceLogo {
+#adddevice {
+  background: url("src/img/adddevice.svg") center center no-repeat;
   position: absolute;
   left: 0;
   top: 0;
-
+  height: 70px;
+  width: 70px;
 }
 
 .device {

@@ -75,6 +75,20 @@
   margin-top: 6%;
 }
 
+.button_stop {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+
+}
+
+.label {
+  background: linear-gradient(180deg, #FD5757, #9B0505);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Montserrat Bold";
+  font-size: 16px;
+}
+
 .container {
   height: 33.3%;
   scroll-snap-align: start;
@@ -99,6 +113,9 @@
   color: #525252;
   background: none;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -113,7 +130,9 @@
 .decrease {
   height: 70px;
   width: 25vw;
-
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 1px;
 }
 
 .arrow {
@@ -158,7 +177,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(63 81 181 / 50%);
+  color: rgba(63 81 181);
+  opacity: 50%;
   font-size: 35px;
   font-weight: normal;
 }
@@ -170,13 +190,13 @@
 .chosed_hour {
   font-size: 40px !important;
   font-weight: bold !important;
-  color: rgba(63 81 181 / 90%) !important;
+  opacity: 90% !important;
 }
 
 .chosed_temperature {
   font-size: 40px !important;
   font-weight: bold !important;
-  color: rgba(63 81 181 / 90%) !important;
+  opacity: 90% !important;
 }
 
 .hr {

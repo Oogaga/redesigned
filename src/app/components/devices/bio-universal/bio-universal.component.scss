@@ -8,7 +8,7 @@
 }
 
 .mat-expansion-panel-header.mat-expanded:hover {
-  background: none!important;
+  background: none !important;
   box-shadow: 4px 4px 6px rgb(0 0 0 / 10%);
 }
 
@@ -17,6 +17,24 @@
   color: #303030;
 }
 
+#logoBioUniversal {
+  background-image: url("../../../../img/bioUniversal/logo.svg");
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 70px;
+  width: 70px;
+}
+
+#changeDeviceState {
+  background: url("../../../../img/bioUniversal/powerOff.png");
+  background-size: cover;
+}
+
+#openSettings {
+  background: url("../../../../img/bioUniversal/settings.png");
+  background-size: cover;
+}
 
 .device {
   margin: 20px 2% 0% 2% !important;
@@ -43,10 +61,14 @@
 }
 
 .svg_button {
-
-  height: 50px;
-  width: 50px;
+  border-radius: 16px;
+  height: 56px;
+  width: 56px;
   margin-left: 10px;
+  padding: 0;
+  border: none;
+  display: flex;
+  background: none;
 }
 
 ::ng-deep.mat-button-ripple.mat-ripple {
@@ -186,7 +208,7 @@
 }
 
 .small-card-info {
-  width: calc(90vw/3);
+  width: calc(90vw / 3);
   height: 100px;
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid #E8E8E8;
@@ -194,19 +216,37 @@
   overflow: hidden;
 }
 
-::selection{background-color: salmon; color: white;}
-.parallax > use{
-  animation:move-forever 12s linear infinite;
-&:nth-child(1){animation-delay:-2s;}
-&:nth-child(2){animation-delay:-2s; animation-duration:10s}
-&:nth-child(3){animation-delay:-4s; animation-duration:6s}
+::selection {
+  background-color: salmon;
+  color: white;
 }
 
-@keyframes move-forever{
-  0%{transform: translate(-90px , 0%)}
-  100%{transform: translate(85px , 0%)}
+.parallax > use {
+  animation: move-forever 12s linear infinite;
+
+  &:nth-child(1) {
+    animation-delay: -2s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -2s;
+    animation-duration: 10s
+  }
+
+  &:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 6s
+  }
 }
 
+@keyframes move-forever {
+  0% {
+    transform: translate(-90px, 0%)
+  }
+  100% {
+    transform: translate(85px, 0%)
+  }
+}
 
 
 .editorial {
@@ -221,7 +261,9 @@
 }
 
 
-h1{outline:none}
+h1 {
+  outline: none
+}
 
 .change-temp-card {
   width: 93vw;
@@ -229,14 +271,14 @@ h1{outline:none}
   background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   overflow: hidden;
-  border: rgba(255, 255, 255, 0.3) 1px  solid;
+  border: rgba(255, 255, 255, 0.3) 1px solid;
 }
 
 .big-card-info {
   width: 93vw;
   height: 80px;
   background: rgba(255, 255, 255, 0.25);
-  border: rgb(94 133 200 / 50%) 1px  solid;
+  border: rgb(94 133 200 / 50%) 1px solid;
   border-radius: 10px;
 }
 
@@ -284,7 +326,7 @@ input[type="tel"]::-webkit-inner-spin-button {
   .value-card {
     padding-left: 5vw;
   }
-  .header-small-card{
+  .header-small-card {
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -294,8 +336,9 @@ input[type="tel"]::-webkit-inner-spin-button {
   }
 
 }
+
 @media (hover: none) {
-  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
-    background: none!important;
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: none !important;
   }
 }

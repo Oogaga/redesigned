@@ -34,7 +34,10 @@
 <div class="graph">
   <section class="weekly_graph">
     <div class="flex" *ngFor="let hour of hoursOnInit">
-      <div class="temperature_value">{{temperature[hour]}}</div>
+      <div *ngIf="temperature[hour]!==0" class="temperature_value">{{temperature[hour]}}</div>
+      <div *ngIf="temperature[hour]===0" class="temperature_value">
+        <span class="material-icons-round" style="font-size: 16px">sync_disabled</span>
+      </div>
       <div class="stick"
            [ngStyle]="{'height.%': setGraphTemperature(hour), 'background': '#' + setStickColor(hour)}"></div>
       <!--         [ngStyle]="{'height.%': setTemperature(hour), 'background-image': 'linear-gradient(#' + setColor(hour) + ', #' + setColor(hour) + '), linear-gradient(0deg, #CCCCCC, #' + setColor(hour) + ' 75%)'}"></div>-->
@@ -53,7 +56,7 @@
   </div>
   <div class="net1">
     <div class="vertical_lines">
-      <div class="line line_v" style="display: none"></div>
+      <div class="line line_v" style="background: none"></div>
       <div class="line line_v"></div>
       <div class="line line_v"></div>
       <div class="line line_v"></div>
@@ -61,7 +64,7 @@
       <div class="line line_v"></div>
       <div class="line line_v"></div>
       <div class="line line_v"></div>
-      <div class="line line_v" style="display: none"></div>
+      <div class="line line_v" style="background: none"></div>
     </div>
   </div>
 
@@ -76,7 +79,7 @@
   <div>
     <div class="scrollbar_hours">
       <div class="not_chose"></div>
-      <div class="not_chose" [id]="hour" *ngFor="let hour of hoursOnInit">{{hour}} : 00</div>
+      <div class="not_chose" [id]="hour+'h'" *ngFor="let hour of hoursOnInit">{{hourConverter(hour)}}</div>
       <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
       <hr class="hr hr_bot" noshade>
@@ -86,8 +89,11 @@
   <div>
     <div class="scrollbar_temperature">
       <div class="not_chosed"></div>
+      <div class="not_chosed"
+           style="background: linear-gradient(180deg, rgba(253,87,87), rgba(155,5,5));  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;"
+           [id]="0">{{temperatureConverter(0)}}</div>
       <div class="not_chosed" [id]="temperature"
-           *ngFor="let temperature of choseTemperature">{{temperature}}°
+           *ngFor="let temperature of choseTemperature">{{temperatureConverter(temperature)}}
       </div>
       <div class="not_chose" style="flex-basis: 16.65%"></div>
       <hr class="hr hr_top" noshade>
@@ -116,11 +122,18 @@
         <span class="material-icons-round arrow">expand_less</span>
       </button>
       <div class="wrapper">
-        <input onclick="this.select()" type="tel" class="input_ios" [(ngModel)]="temperatureIOS"
+        <input *ngIf="temperatureIOS!==0" onclick="this.select()" type="tel" class="input_ios"
+               [(ngModel)]="temperatureIOS"
                (keyup)="changeTemperature('check')">
+        <div *ngIf="temperatureIOS===0" class="input_ios"><label class="label">ОЖИДАНИЕ</label></div>
       </div>
-      <button class="decrease button_common" matRipple (click)="changeTemperature('decrease')">
+      <button *ngIf="temperatureIOS!==40" class="decrease button_common" matRipple
+              (click)="changeTemperature('decrease')">
         <span class="material-icons-round arrow">expand_more</span>
+      </button>
+      <button *ngIf="temperatureIOS===40" class="button_stop button_common decrease" matRipple
+              (click)="changeTemperature('STOP')">
+        <label class="label">СТОП</label>
       </button>
       <div class="note">
         Температура

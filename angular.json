@@ -145,6 +145,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/.htaccess",
               "src/manifest.webmanifest"
             ],
             "styles": [

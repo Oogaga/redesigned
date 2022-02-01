@@ -12,11 +12,27 @@
   margin-right: 15px;
 }
 
+#insta {
+  background: url("src/img/insta.svg") center center no-repeat;
+}
+
+#adduser {
+  background: url("src/img/adduser.svg") center center no-repeat;
+}
+
+#creditCard {
+  background: url("src/img/creditCard.svg") center center no-repeat;
+}
+
 #telegram {
   content: "";
   background: url("src/img/telegram_logo.svg") center center no-repeat;
   max-width: 70px;
   max-height: 70px;
+}
+
+#logout {
+  background: url("src/img/logout.svg") center center no-repeat;
 }
 
 ::ng-deep.mat-menu-panel {

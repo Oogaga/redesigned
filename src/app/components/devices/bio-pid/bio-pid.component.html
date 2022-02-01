@@ -1,58 +1,13 @@
 <mat-expansion-panel
-  [disabled]="isOnline"
+  [disabled]="!(!isOnline||(opened&&!isOnline)||(opened&&isOnline))"
+  (opened)="open(true)"
+  (closed)="open(false)"
+  [hideToggle]="isOnline"
   class="device">
   <mat-expansion-panel-header
     class="deviceHeader">
-    <svg *ngIf="!isSafari" class="deviceLogo" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M35 64C19.0095 64 6 50.9905 6 35C6 19.0095 19.0095 6 35 6C50.9912 6 64 19.0095 64 35C64 50.9905 50.9912 64 35 64Z"
-        fill="#E2CA4C"/>
-      <path opacity="0.3"
-            d="M64 35.5L38 15.5L37.5 26.5L39 34.5L44 42.5L40.5 50.5L30 53L43 63C51.5 60 55.2845 56.0634 58.4998 52C61.4998 47.5 63.4998 43 64 35.5Z"
-            fill="black"/>
-      <path
-        d="M39.0062 32.3403V32.6546L39.2895 32.7908C42.9649 34.5591 45.5 38.2811 45.5 42.5955C45.5 48.7657 40.3278 53.7457 34.0374 53.4906C28.3301 53.2591 23.649 48.5341 23.5037 42.8798L23.0038 42.8927L23.5037 42.8798C23.3896 38.4447 25.9542 34.5979 29.7105 32.7908L29.9937 32.6546V32.3403V28.4126V27.9126H29.4937H26.3505V27.2459H29.4937H29.9937V26.7459V24.7692V24.2692H29.4937H26.3505V23.6026H29.4937H29.9937V23.1026V21.1262V20.6262H29.4937H26.3505V19.9596H29.4937H29.9937V19.4596V18.9647C29.9937 16.5028 32.0073 14.5 34.4999 14.5C36.9927 14.5 39.0062 16.5028 39.0062 18.9647V32.3403ZM33.6595 19.4616H33.1595V19.9616V35.0931C29.5638 35.724 26.817 38.8417 26.817 42.5951C26.817 46.8027 30.2674 50.2179 34.4999 50.2179C38.7323 50.2179 42.1826 46.8027 42.1826 42.5951C42.1826 38.8417 39.4359 35.724 35.8402 35.0931V19.9616V19.4616H35.3402H33.6595Z"
-        fill="url(#paint0_linear)" stroke="url(#paint1_linear)"/>
-      <path
-        d="M29.5 42.5C29.5 39.7434 31.7435 37.5 34.5 37.5C37.2565 37.5 39.5 39.7434 39.5 42.5C39.5 45.2566 37.2565 47.5 34.5 47.5C31.7435 47.5 29.5 45.2566 29.5 42.5Z"
-        fill="#B6434F" stroke="#C4BAB0"/>
-      <g filter="url(#filter0_b)">
-        <mask id="path-5-inside-1" fill="white">
-          <path
-            d="M70 35C70 54.33 54.33 70 35 70C15.67 70 0 54.33 0 35C0 15.67 15.67 0 35 0C54.33 0 70 15.67 70 35ZM6.17732 35C6.17732 50.9183 19.0817 63.8227 35 63.8227C50.9183 63.8227 63.8227 50.9183 63.8227 35C63.8227 19.0817 50.9183 6.17732 35 6.17732C19.0817 6.17732 6.17732 19.0817 6.17732 35Z"/>
-        </mask>
-        <path
-          d="M70 35C70 54.33 54.33 70 35 70C15.67 70 0 54.33 0 35C0 15.67 15.67 0 35 0C54.33 0 70 15.67 70 35ZM6.17732 35C6.17732 50.9183 19.0817 63.8227 35 63.8227C50.9183 63.8227 63.8227 50.9183 63.8227 35C63.8227 19.0817 50.9183 6.17732 35 6.17732C19.0817 6.17732 6.17732 19.0817 6.17732 35Z"
-          fill="white" fill-opacity="0.4"/>
-        <path
-          d="M70 35C70 54.33 54.33 70 35 70C15.67 70 0 54.33 0 35C0 15.67 15.67 0 35 0C54.33 0 70 15.67 70 35ZM6.17732 35C6.17732 50.9183 19.0817 63.8227 35 63.8227C50.9183 63.8227 63.8227 50.9183 63.8227 35C63.8227 19.0817 50.9183 6.17732 35 6.17732C19.0817 6.17732 6.17732 19.0817 6.17732 35Z"
-          stroke="url(#paint2_linear)" stroke-width="2" mask="url(#path-5-inside-1)"/>
-      </g>
-      <defs>
-        <filter id="filter0_b" x="-6" y="-6" width="82" height="82" filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feGaussianBlur in="BackgroundImage" stdDeviation="3"/>
-          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
-        </filter>
-        <linearGradient id="paint0_linear" x1="24.2567" y1="43.1608" x2="47.4425" y2="36.9584"
-                        gradientUnits="userSpaceOnUse">
-          <stop stop-color="#024756"/>
-          <stop offset="0.986957" stop-color="#024756"/>
-        </linearGradient>
-        <linearGradient id="paint1_linear" x1="22.4735" y1="37.2348" x2="46.5271" y2="35.2215"
-                        gradientUnits="userSpaceOnUse">
-          <stop stop-color="#73B8C7"/>
-          <stop offset="1" stop-color="#377C8B"/>
-        </linearGradient>
-        <linearGradient id="paint2_linear" x1="70" y1="0" x2="-14.4205" y2="37.7596" gradientUnits="userSpaceOnUse">
-          <stop stop-color="white" stop-opacity="0.6"/>
-          <stop offset="1" stop-color="white" stop-opacity="0.5"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <img *ngIf="isSafari" class="deviceLogo" src="./img/bioPid/logo.png" >
+
+    <div  draggable="false" id="logoBioPid"></div>
 
     <mat-panel-description
       class="deviceName flex">

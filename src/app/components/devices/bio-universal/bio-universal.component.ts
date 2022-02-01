@@ -32,6 +32,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
   isOn: boolean
   color: number;
   isSafari: boolean;
+  opened: boolean;
 
   changeCo: number;
   changeGvs: number;
@@ -57,6 +58,7 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     this.isOn = false
     this.deviceNumber = 0;
     this.color = 0;
+    this.opened = false;
 
     this.changeCo = 0;
     this.changeGvs = 0;
@@ -146,6 +148,10 @@ export class BioUniversalComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  open(opened: boolean) {
+    this.opened = opened
   }
 
   ngOnInit() {

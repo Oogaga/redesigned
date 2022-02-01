@@ -32,6 +32,7 @@ export class BioPidComponent implements OnInit {
   isOn: boolean
   usedALotFuel: boolean;
   color: number;
+  opened: boolean;
 
   changeCo: number;
   changeGvs: number;
@@ -60,6 +61,7 @@ export class BioPidComponent implements OnInit {
     this.usedALotFuel = false;
     this.deviceNumber = 0;
     this.color = 0;
+    this.opened = false;
 
     this.changeCo = 0;
     this.changeGvs = 0;
@@ -146,6 +148,9 @@ export class BioPidComponent implements OnInit {
     }
   }
 
+  open(opened: boolean) {
+    this.opened = opened
+  }
 
 
   ngOnInit() {

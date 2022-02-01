@@ -62,6 +62,7 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     for (let hour = 0; hour < 24; hour++) {
       this.hoursOnInit.push(hour)
     }
+
     for (let temperatureCelsius = 40; temperatureCelsius < 91; temperatureCelsius++) {
       this.choseTemperature.push(temperatureCelsius)
     }
@@ -93,8 +94,21 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
   }
 
+  temperatureConverter(temp: number) {
+    if (temp === 0) {
+      return `стоп`
+    }
+    return temp + '°'
+  }
+
+  hourConverter(hour: number) {
+    if (hour < 10) {
+      return '0' + hour + ' : 00'
+    } else return hour + ' : 00'
+  }
+
   saveDaySettings() {
-    if (this.isIOS){
+    if (this.isIOS) {
       let data = JSON.parse(localStorage.getItem(this.id)!)
       this.dailyTemperature.data = this.temperature.map((item: number) => {
         return String(item)
@@ -174,19 +188,34 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeTemperature(flag: 'increase' | 'decrease' | 'check') {
-    if ((this.temperatureIOS <= 40) && (flag === 'decrease')) {
-      this.temperature[this.hourIOS] = 40;
-      this.temperatureIOS = 40;
-      return
-    }
-    if ((this.temperatureIOS >= 90) && (flag === 'increase')) {
-      this.temperature[this.hourIOS] = 90;
-      this.temperatureIOS = 90;
+  changeTemperature(flag: 'increase' | 'decrease' | 'check' | 'STOP') {
+
+    if (flag === 'STOP') {
+      this.temperatureIOS = 0
+      this.temperature[this.hourIOS] = this.temperatureIOS
       return
     }
 
-    if (flag === 'check' && (this.temperatureIOS > 90)) {
+    if ((this.temperatureIOS <= 40) && (flag === 'decrease')) {
+      this.temperatureIOS = 40;
+      this.temperature[this.hourIOS] = this.temperatureIOS;
+      return
+    }
+    if ((this.temperatureIOS === 0) && (flag === 'increase')) {
+      this.temperatureIOS = 40;
+      this.temperature[this.hourIOS] = this.temperatureIOS;
+      return
+    }
+    if ((this.temperatureIOS >= 90 && this.temperatureIOS === 0) && (flag === 'increase')) {
+      this.temperatureIOS = 90;
+      this.temperature[this.hourIOS] = this.temperatureIOS;
+      return
+    }
+    if (flag === 'check' && (this.temperatureIOS == 0)) {
+      this.temperatureIOS = 0;
+      this.temperature[this.hourIOS] = this.temperatureIOS
+      return;
+    } else if (flag === 'check' && (this.temperatureIOS > 90)) {
       this.temperatureIOS = 90;
       this.temperature[this.hourIOS] = this.temperatureIOS
       return;
@@ -219,14 +248,15 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     if (centerCell) {
       centerCell.classList.add('chosed_hour');
 
-      document.getElementById(JSON.parse(localStorage.getItem(id)!)[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id)])!.scrollIntoView({
+      document.getElementById(JSON.parse(localStorage.getItem(id)!)[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id.slice(0, -1))])!.scrollIntoView({
         block: "center",
         behavior: "smooth"
       })
 
-      console.log(JSON.parse(localStorage.getItem(id)!)[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id)])
+      console.log(JSON.parse(localStorage.getItem(id)!)[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id.slice(0, -1))])
 
     }
+    console.log()
   }
 
   setTemp(e: any) {
@@ -243,7 +273,7 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
     if (centerCell) {
       centerCell.classList.add('chosed_temperature');
       let data = JSON.parse(localStorage.getItem(id)!)
-      data[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id)] = Number(document.getElementsByClassName('chosed_temperature')[0].id)
+      data[day].data[Number(document.getElementsByClassName('chosed_hour')[0].id.slice(0, -1))] = Number(document.getElementsByClassName('chosed_temperature')[0].id)
       localStorage.setItem(id, JSON.stringify(data))
       console.log(id, JSON.stringify(data))
     }
@@ -253,17 +283,18 @@ export class WeeklySettingsDayComponent implements OnInit, OnDestroy {
 
 
   setGraphTemperature(hour: number) {
-
-    return 10+(this.temperature[hour]-40)*1.6;
+    if (this.temperature[hour] === 0) {
+      return 0
+    } else return 10 + (this.temperature[hour] - 40) * 1.6;
   }
 
   setStickColor(hour: number) {
     const colorHot = 'FF0000';
     const colorCold = 'FFB800';
-    if(this.temperature[hour]<40){
+    if (this.temperature[hour] < 40) {
       return colorCold;
     }
-    if(this.temperature[hour]>79){
+    if (this.temperature[hour] > 79) {
       return colorHot;
     }
     let ratio = (this.temperature[hour] - 40) / 40;

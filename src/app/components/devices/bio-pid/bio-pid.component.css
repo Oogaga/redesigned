@@ -11,6 +11,14 @@
   color: #303030;
 }
 
+#logoBioPid {
+  background-image: url("../../../../img/bioPid/logo.svg");
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 70px;
+  width: 70px;
+}
 
 .device {
   margin: 20px 2% 0% 2% !important;
