@@ -8,6 +8,7 @@ import {ForgotComponent} from "./routes/forgot/forgot.component";
 import {RegistrationWithGoogleComponent} from "./routes/authentication/registration-with-google/registration-with-google.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {AdminHomeComponent} from "./routes/admin/admin-home/admin-home.component";
+import {ResrorePasswordComponent} from "./routes/resrore-password/resrore-password.component";
 
 // http://home/ -> HomeComponent
 // http://enterance -> AuthenticationComponent
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: '',
     component: AdminHomeComponent
+  },
+  {
+    path: 'newpass',
+    component: ResrorePasswordComponent
   }
 ]
 

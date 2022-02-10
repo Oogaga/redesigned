@@ -105,6 +105,8 @@ export class DeviceSettingsComponent implements OnInit {
   indeterminate: boolean = true;
   accept: boolean;
   rippleColor = 'rgba(63,81,181,0.2)';
+  isSafari: boolean;
+  browser: boolean
 
   constructor(
     private service: DevicesService,
@@ -157,6 +159,8 @@ export class DeviceSettingsComponent implements OnInit {
     this.range22 = 0;
     this.accept = false;
     this.weeklyCheckbox = []
+    this.isSafari = platform.SAFARI;
+    this.browser = platform.BLINK
   }
 
 

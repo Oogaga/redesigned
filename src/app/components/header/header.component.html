@@ -1,10 +1,12 @@
 <div id="header">
   <button class="menu" mat-icon-button
           [matMenuTriggerFor]="menu"
-          aria-label="Example icon-button with a menu">
+          aria-label="">
     <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
+  <mat-menu #menu="matMenu"
+            backdropClass="menu_panel"
+            overlayPanelClass="menu_panel">
     <button
       (click)="openIm()"
       id="insta"
@@ -19,7 +21,9 @@
       id="creditCard"
       mat-menu-item>
     </button>
-    <button mat-menu-item>
+    <button
+      [matMenuTriggerFor]="language"
+      mat-menu-item>
       <span class="material-icons-round" style="color: #788797; font-size: 35px">language</span>
     </button>
     <button
@@ -32,5 +36,10 @@
       id="logout"
       (click)="logout()">
     </button>
+  </mat-menu>
+  <mat-menu #language="matMenu">
+    <button class="lang_menu" mat-menu-item>RU</button>
+    <button class="lang_menu" mat-menu-item>UA</button>
+    <button class="lang_menu" mat-menu-item>EN</button>
   </mat-menu>
 </div>

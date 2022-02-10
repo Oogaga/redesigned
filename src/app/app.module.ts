@@ -54,6 +54,7 @@ import {PwaService} from "./services/pwa.service";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import { PrimeComponent } from './components/prime/prime.component';
 import {AppUpdateService} from "./services/app-update.service";
+import { ResrorePasswordComponent } from './routes/resrore-password/resrore-password.component';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -84,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     WeeklySettingsDayComponent,
     IAmComponent,
     InstallAppComponent,
-    PrimeComponent
+    PrimeComponent,
+    ResrorePasswordComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

@@ -37,13 +37,16 @@ export class ForgotComponent implements OnInit {
 
     this.service.restorePassword(this.restorePassForm.value).subscribe((result) => {
       this.emailNotFound = false;
+      console.log(`email ${this.emailNotFound} 1`)
       this.openDialogSuccess();
     }, (error) => {
       if (error.status === 200) {
         this.emailNotFound = false;
+        console.log(`email ${this.emailNotFound} 2`)
         this.openDialogSuccess();
       } else {
         this.emailNotFound = true;
+        console.log(`email ${this.emailNotFound} 3`)
       }
     });
   }

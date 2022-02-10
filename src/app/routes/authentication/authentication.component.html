@@ -47,7 +47,7 @@
   (ngSubmit)="logIn()">
   <div type="text"
        class="text_18px"
-       i18n>
+       i18n="login form | label @@login.label">
     Адрес эл. почты
   </div>
   <mat-form-field appearance="fill">
@@ -56,12 +56,12 @@
            formControlName="enteredEmail">
     <mat-error
       *ngIf="!loginUser.hasError('required') || loginUser.hasError('email')"
-      i18n>Введите электронную почту
+      i18n="login form | error @@login.error">Введите электронную почту
     </mat-error>
   </mat-form-field>
   <div class="text_18px"
        id="pass"
-       i18n>Пароль
+       i18n="login form | label @@pass.label">Пароль
   </div>
   <mat-form-field appearance="fill">
     <input matInput
@@ -69,13 +69,13 @@
            [type]="hide ? 'password' : 'text'">
     <mat-error
       *ngIf="!loginUser.hasError('required')"
-      i18n>Введите пароль
+      i18n="login form | error @@pass.error">Введите пароль
     </mat-error>
     <div
       class="mat-error"
       id="wrongPass"
       *ngIf="wrongPass"
-      i18n>
+      i18n="login form | error @@pass.error1">
       Попробуйте правильный пароль
     </div>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -88,7 +88,7 @@
       class="button_small"
       mat-raised-button
       (click)="googleAuthenticate()"
-      i18n>
+      i18n="login form | button label @@google.button.label">
       Войти через<br>
       <label id="google">Google</label>
     </button>

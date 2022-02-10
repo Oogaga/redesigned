@@ -54,7 +54,7 @@ mat-checkbox {
 mat-stepper {
   -webkit-overflow-scrolling:touch;
   background: none;
-  height: 80vh;
+  height: 88vh;
 }
 
 mat-step {
@@ -99,6 +99,7 @@ mat-dialog-actions {
   width: 100%;
   justify-content: space-between;
   margin-bottom: 33px;
+  position: relative;
 }
 
 mat-icon {
@@ -135,7 +136,7 @@ mat-icon {
   align-items: center;
   justify-content: center;
   width: 204px;
-  height: 52px;
+  height: 7vh;
   border: 1px solid rgba(63 81 181 / 50%);
   border-radius: 12px;
   font-family: "Montserrat Medium";
@@ -149,7 +150,7 @@ mat-icon {
 
 .weekly_button {
   width: 204px;
-  height: 52px;
+  height: 7vh;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(63 81 181 / 50%);
   border-radius: 12px;
