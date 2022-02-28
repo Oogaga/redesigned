@@ -96,6 +96,7 @@
       [disabled]="!loginUser.valid"
       class="button_small"
       mat-raised-button
+      i18n="login form | button google @@google.button"
       type="submit">
       Войти
     </button>
@@ -104,6 +105,7 @@
 <button
   class="button_big"
   mat-raised-button
+  i18n="login form | button registration @@registration.button"
   routerLink="/registration">
   Создать аккаунт
 </button>
@@ -118,5 +120,7 @@
     <ellipse cx="9.99992" cy="12.5" rx="1.66667" ry="1.66667" fill="#585858"/>
   </svg>
   <img *ngIf="isSafari" src="./img/Lock.png">
-  <div class="text_18px text_18px_2">Забыли пароль?</div>
+  <div
+    i18n="login form | button remember @@remember.button"
+    class="text_18px text_18px_2">Забыли пароль?</div>
 </div>

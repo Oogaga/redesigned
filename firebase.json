@@ -8,8 +8,23 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/ru/**",
+        "destination": "/ru/index.html"
+      },
+      {
+        "source": "/en/**",
+        "destination": "/en/index.html"
+      },
+      {
+        "source": "/ua/**",
+        "destination": "/ua/index.html"
+      }
+    ],
+    "redirects" : [
+      {
+        "source" : "/",
+        "destination" : "/ru",
+        "type" : 301
       }
     ]
   }

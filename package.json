@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start ua": "ng serve --configuration=ua",
     "dev:test-locally": "ng serve --configuration=test-locally",
     "build": "ng build",
     "build:https": "ng build --configuration=prod-https",
@@ -34,6 +35,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "firebase": "^9.6.4",
     "moment": "^2.29.1",
+    "raw-loader": "^4.0.2",
     "zone.js": "^0.11.4"
   },
   "devDependencies": {

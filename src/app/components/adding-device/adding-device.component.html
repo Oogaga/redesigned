@@ -2,6 +2,7 @@
   <button
     class="back button_common"
     mat-ripple
+    i18n="adding device | button close @@adding.button.close"
     [matRippleUnbounded]="false"
     [matRippleRadius]="65"
     mat-dialog-close>
@@ -16,7 +17,9 @@
   #stepper>
   <mat-step>
     <section class="one-step">
-      <div class="stepper_tips" style="margin-bottom: 20px">Выполните подключение устройства к
+      <div class="stepper_tips"
+           i18n="adding device | tip to download @@adding.tip.1"
+           style="margin-bottom: 20px">Выполните подключение устройства к
         сети по видеоинструкции
       </div>
 
@@ -30,17 +33,22 @@
             fill="#FF0000"/>
           <path d="M26.415 14.0001L16.1509 8.0437V19.9564L26.415 14.0001Z" fill="white"/>
         </svg>
-        <div class="youTube">YouTube</div>
+        <div
+          i18n="adding device | button YouTube @@adding.button.YouTube"
+          class="youTube">YouTube</div>
         </button>
       </a>
 
-      <div style="opacity: 50%;
+      <div
+        i18n="adding device | or @@adding.or"
+        style="opacity: 50%;
     font-family: 'Montserrat SemiBold';
     font-size: 16px;">или</div>
 
       <a href="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1seIC51BTINps2jiASrFJsvjGN74GdOBi">
         <button
           matRipple
+          i18n="adding device | button download @@adding.button.download.tip"
           class="downloads button_common">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -56,6 +64,7 @@
     </section>
     <div class="navigate-buttons" style="justify-content: flex-end">
       <button mat-button
+              i18n="adding device | button next @@adding.button.next"
               class="navigate-button"
               matStepperNext>Далее
       </button>
@@ -67,13 +76,19 @@
         <img
           style="max-width: 100%; max-height: 40%; margin-top: 100px"
           src="wifiid.jpg">
-        <div style="margin-top: 35px" class="stepper_tips">Введите ID
+        <div
+          i18n="adding device | tip 2 @@adding.tip.2"
+          style="margin-top: 35px" class="stepper_tips">Введите ID
           устройства
         </div>
         <input matInput [formControl]="device_id">
         <div class="errors">
-          <mat-error *ngIf="isBadRequestResult">Не найден в кеше ожидания</mat-error>
-          <mat-error *ngIf="(device_id.hasError('required') && device_id.touched ) || device_id.hasError('pattern')">
+          <mat-error
+            i18n="adding device | error 1 @@adding.error.1"
+            *ngIf="isBadRequestResult">Не найден в кеше ожидания</mat-error>
+          <mat-error
+            i18n="adding device | error 2 @@adding.error.2"
+            *ngIf="(device_id.hasError('required') && device_id.touched ) || device_id.hasError('pattern')">
             Введите верный ID
           </mat-error>
         </div>
@@ -81,10 +96,12 @@
       <div class="navigate-buttons">
         <button mat-button
                 class="navigate-button"
+                i18n="adding device | button back @@adding.button.back"
                 matStepperPrevious>Назад
         </button>
         <button mat-button
                 class="navigate-button"
+                i18n="adding device | button next @@adding.button.next"
                 [disabled]="device_id.invalid"
                 (click)="checkIsDeviceWait(stepper)">Далее
         </button>
@@ -93,11 +110,15 @@
   </mat-step>
   <mat-step>
     <section class="one-step">
-      <div style="font-family: 'Segoe UI Bold'; font-size: 18px; margin-top: 35px; opacity: 75%">Дайте имя устройству
+      <div
+        i18n="adding device | tip 3 @@adding.tip.3"
+        style="font-family: 'Segoe UI Bold'; font-size: 18px; margin-top: 35px; opacity: 75%">Дайте имя устройству
       </div>
       <input matInput [formControl]="deviceName">
       <div class="errors">
-        <mat-error *ngIf="deviceName.hasError('required') && deviceName.touched">
+        <mat-error
+          i18n="adding device | error 3 @@adding.error.3"
+          *ngIf="deviceName.hasError('required') && deviceName.touched">
           Введите верный ID
         </mat-error>
       </div>
@@ -105,11 +126,13 @@
     <div class="navigate-buttons">
       <button mat-button
               class="navigate-button"
+              i18n="adding device | button back @@adding.button.back"
               matStepperPrevious>Назад
       </button>
       <button mat-button
               class="navigate-button"
               [disabled]="deviceName.invalid"
+              i18n="adding device | button next @@adding.button.next"
               (click)="createDto()"
               matStepperNext>Далее
       </button>
@@ -119,11 +142,15 @@
     <section class="one-step">
       <div class="finish-data">
         <section>
-          <div class="title_info">Имя устройства</div>
+          <div
+            i18n="adding device | device name @@adding.input.device.name"
+            class="title_info">Имя устройства</div>
           <div class="value_info">{{this.deviceRegistrationDto.name}}</div>
         </section>
         <section style="margin-top: 55px">
-          <div class="title_info">ID устройства</div>
+          <div
+            i18n="adding device | device ID @@adding.input.device.id"
+            class="title_info">ID устройства</div>
           <div class="value_info">{{this.deviceRegistrationDto.deviceId}}</div>
         </section>
       </div>
@@ -131,11 +158,13 @@
     <div class="navigate-buttons">
       <button mat-button
               class="navigate-button"
+              i18n="adding device | button back @@adding.button.back"
               matStepperPrevious>Назад
       </button>
       <button mat-button
               class="navigate-button"
               mat-dialog-close
+              i18n="adding device | button done @@adding.button.done"
               (click)="registrationNewDevice()">Соханить!
       </button>
     </div>
